@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proba Gluco — Natural Weight Loss Support | nupure</title>
+<meta name="description" content="A plant-based, clinically studied formula that naturally supports appetite control, blood-sugar balance and weight management. Vegan, hormone-free, made with natural ingredients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F4F0E7;
+    --paper:#FBF9F3;
+    --ink:#243024;
+    --ink-soft:#4A5A48;
+    --forest:#2C4430;
+    --moss:#5C7A5E;
+    --sage:#86A084;
+    --mist:#E7EADF;
+    --clay:#B45438;
+    --gold:#C28A3A;
+    --white:#ffffff;
+    --line:#E2DDCF;
+    --shadow:0 18px 50px -24px rgba(36,48,36,.45);
+    --shadow-sm:0 6px 22px -12px rgba(36,48,36,.40);
+    --radius:22px;
+    --radius-sm:14px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Hanken Grotesk',-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--moss)}
+
+  /* ---------- announcement ---------- */
+  .topbar{background:var(--forest);color:#EDEAD9;font-size:.78rem;letter-spacing:.04em}
+  .topbar .wrap{display:flex;justify-content:center;gap:26px;padding:9px 22px;flex-wrap:wrap;align-items:center}
+  .topbar b{color:#fff;font-weight:700}
+  .topbar .star{color:#E9C46A}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:60;background:rgba(251,249,243,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 22px}
+  .logo{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:600;letter-spacing:-.02em;color:var(--forest)}
+  .logo span{color:var(--moss)}
+  .nav{display:flex;gap:28px;font-size:.9rem;font-weight:500;color:var(--ink-soft)}
+  .nav a:hover{color:var(--forest)}
+  .header-cta{display:flex;align-items:center;gap:18px}
+  .mini-cart{font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:7px;color:var(--forest)}
+  .mini-cart svg{width:20px;height:20px}
+  @media(max-width:860px){.nav{display:none}}
+
+  /* ---------- hero / product ---------- */
+  .product{padding:42px 0 30px}
+  .product-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start}
+  @media(max-width:920px){.product-grid{grid-template-columns:1fr;gap:30px}}
+
+  /* gallery */
+  .gallery{position:sticky;top:96px}
+  @media(max-width:920px){.gallery{position:static}}
+  .gallery-main{position:relative;background:var(--paper);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
+  .gallery-main img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  .flag{position:absolute;top:16px;left:16px;background:var(--forest);color:#fff;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:7px 13px;border-radius:100px}
+  .thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+  .thumbs button{padding:0;border:1.5px solid var(--line);background:var(--paper);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s}
+  .thumbs button.active{border-color:var(--moss)}
+  .thumbs button:hover{transform:translateY(-2px)}
+  .thumbs img{aspect-ratio:1/1;object-fit:cover}
+
+  /* buybox */
+  .buybox{}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .badge{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:6px 11px;border-radius:100px;background:var(--mist);color:var(--forest)}
+  .badge.hl{background:var(--gold);color:#3a2a0c}
+  h1.title{font-size:clamp(2.2rem,5vw,3.1rem);color:var(--forest);margin:4px 0 10px}
+  .rating{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:.9rem;color:var(--ink-soft)}
+  .stars{color:#E0A53B;letter-spacing:2px;font-size:1.05rem}
+  .lede{font-family:'Fraunces',serif;font-size:1.18rem;font-style:italic;color:var(--moss);margin-bottom:16px}
+  .benefits{list-style:none;display:grid;gap:11px;margin-bottom:24px}
+  .benefits li{display:flex;gap:11px;align-items:flex-start;font-size:.97rem;color:var(--ink-soft)}
+  .benefits svg{flex:none;width:21px;height:21px;margin-top:1px;color:var(--moss)}
+  .benefits b{color:var(--ink);font-weight:600}
+
+  /* buy more save more */
+  .bms-head{display:flex;align-items:center;justify-content:space-between;margin:6px 0 12px}
+  .bms-head h3{font-size:1.15rem;color:var(--forest)}
+  .bms-head .save-tag{font-size:.74rem;font-weight:700;color:var(--clay);letter-spacing:.04em}
+  .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:22px}
+  .tier{position:relative;border:1.8px solid var(--line);background:var(--paper);border-radius:var(--radius-sm);padding:14px 14px 13px;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s;display:flex;gap:12px;align-items:center}
+  .tier:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .tier.active{border-color:var(--moss);background:#fff;box-shadow:0 0 0 3px rgba(124,161,125,.18)}
+  .tier .pack{width:54px;height:54px;flex:none;border-radius:10px;background:var(--mist);object-fit:cover}
+  .tier .t-info{flex:1;min-width:0}
+  .tier .t-qty{font-weight:700;font-size:.95rem;color:var(--ink)}
+  .tier .t-sub{font-size:.74rem;color:var(--ink-soft)}
+  .tier .t-price{font-weight:700;font-size:1.02rem;color:var(--forest);margin-top:2px}
+  .tier .t-was{font-size:.78rem;color:#A6A08C;text-decoration:line-through;margin-left:5px;font-weight:500}
+  .disc{position:absolute;top:-10px;right:10px;background:var(--clay);color:#fff;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.03em}
+  .ribbon{position:absolute;top:-10px;left:10px;background:var(--gold);color:#3a2a0c;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.1em;text-transform:uppercase}
+  @media(max-width:480px){.tiers{grid-template-columns:1fr}}
+
+  .qty-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .stepper{display:flex;align-items:center;border:1.6px solid var(--line);border-radius:100px;overflow:hidden;background:var(--paper)}
+  .stepper button{width:42px;height:46px;border:0;background:none;font-size:1.3rem;cursor:pointer;color:var(--forest)}
+  .stepper span{min-width:34px;text-align:center;font-weight:700}
+  .stock{font-size:.85rem;color:var(--moss);font-weight:600;display:flex;align-items:center;gap:7px}
+  .stock::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--moss);box-shadow:0 0 0 4px rgba(124,161,125,.25)}
+
+  .add-cart{width:100%;border:0;background:var(--forest);color:#fff;font-family:'Hanken Grotesk';font-weight:700;font-size:1.05rem;letter-spacing:.02em;padding:18px;border-radius:100px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:background .2s,transform .15s}
+  .add-cart:hover{background:#1f3322;transform:translateY(-1px)}
+  .add-cart .price-now{font-weight:700}
+  .add-cart .price-was{opacity:.6;text-decoration:line-through;font-weight:500;font-size:.92rem}
+
+  .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px;text-align:center}
+  .trust div{font-size:.76rem;color:var(--ink-soft);display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 4px;background:var(--paper);border:1px solid var(--line);border-radius:12px}
+  .trust svg{width:22px;height:22px;color:var(--moss)}
+  .pay{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;flex-wrap:wrap}
+  .pay span{font-size:.62rem;font-weight:700;letter-spacing:.05em;color:#7c7a6c;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+  .secure{text-align:center;font-size:.74rem;color:var(--ink-soft);margin-top:9px}
+
+  /* ---------- USP strip ---------- */
+  .usp-strip{background:var(--forest);color:#EDEAD9;padding:30px 0}
+  .usp-strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .usp{display:flex;align-items:center;gap:14px;justify-content:center}
+  .usp svg{width:34px;height:34px;flex:none;color:var(--sage)}
+  .usp b{display:block;font-size:1.02rem;color:#fff;font-weight:700}
+  .usp small{font-size:.82rem;color:#C3CDB8}
+  @media(max-width:760px){.usp-strip .wrap{grid-template-columns:1fr;gap:16px}.usp{justify-content:flex-start}}
+
+  /* ---------- section base ---------- */
+  section.block{padding:78px 0}
+  .section-head{max-width:640px;margin:0 auto 46px;text-align:center}
+  .section-head h2{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--forest);margin:12px 0 14px}
+  .section-head p{color:var(--ink-soft);font-size:1.04rem}
+
+  /* how it works */
+  .how{background:var(--paper)}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  @media(max-width:820px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;position:relative}
+  .step .n{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--sage);line-height:1;margin-bottom:12px}
+  .step h4{font-size:1.12rem;color:var(--forest);margin-bottom:8px}
+  .step p{font-size:.92rem;color:var(--ink-soft)}
+
+  /* results / clinically proven */
+  .results{background:linear-gradient(160deg,#2C4430,#1d2f20);color:#EDEAD9}
+  .results .section-head h2,.results .eyebrow{color:#fff}
+  .results .eyebrow{color:var(--sage)}
+  .results .section-head p{color:#C3CDB8}
+  .res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:820px){.res-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.res-grid{grid-template-columns:1fr}}
+  .res{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:var(--radius);padding:28px 22px;text-align:center}
+  .res .big{font-family:'Fraunces',serif;font-size:3rem;color:#fff;line-height:1}
+  .res .lbl{font-size:.9rem;color:#C3CDB8;margin-top:10px}
+  .res-note{text-align:center;font-size:.8rem;color:#9fb09c;margin-top:26px;max-width:620px;margin-left:auto;margin-right:auto}
+
+  /* ingredients */
+  .ing-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  @media(max-width:900px){.ing-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.ing-grid{grid-template-columns:1fr}}
+  .ing{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .25s,box-shadow .25s}
+  .ing:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  .ing .ph{aspect-ratio:1/1;background:var(--mist);overflow:hidden}
+  .ing .ph img{width:100%;height:100%;object-fit:cover}
+  .ing .body{padding:18px 16px 20px}
+  .ing h4{font-size:1.12rem;color:var(--forest);margin-bottom:3px}
+  .ing .dose{font-size:.74rem;font-weight:700;color:var(--clay);letter-spacing:.04em;margin-bottom:9px}
+  .ing p{font-size:.86rem;color:var(--ink-soft)}
+
+  /* who is it for */
+  .who{background:var(--paper)}
+  .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  @media(max-width:820px){.who-grid{grid-template-columns:1fr;gap:30px}}
+  .who-img{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .who-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .who-list{list-style:none;display:grid;gap:16px}
+  .who-list li{display:flex;gap:14px;align-items:flex-start}
+  .who-list .dot{flex:none;width:38px;height:38px;border-radius:50%;background:var(--mist);display:flex;align-items:center;justify-content:center;color:var(--moss)}
+  .who-list .dot svg{width:20px;height:20px}
+  .who-list b{display:block;color:var(--forest);font-size:1.02rem;margin-bottom:2px}
+  .who-list span{font-size:.92rem;color:var(--ink-soft)}
+
+  /* usage */
+  .use-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:34px}
+  @media(max-width:680px){.use-grid{grid-template-columns:1fr}}
+  .use{text-align:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 22px}
+  .use svg{width:38px;height:38px;color:var(--moss);margin:0 auto 14px}
+  .use h4{font-size:1.1rem;color:var(--forest);margin-bottom:6px}
+  .use p{font-size:.9rem;color:var(--ink-soft)}
+  .use-note{max-width:760px;margin:0 auto;background:var(--mist);border-radius:var(--radius);padding:24px 26px;font-size:.9rem;color:var(--ink-soft)}
+  .use-note b{color:var(--forest)}
+
+  /* comparison */
+  .compare{background:var(--paper)}
+  .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);background:var(--cream)}
+  table{width:100%;border-collapse:collapse;min-width:520px}
+  th,td{padding:16px 18px;text-align:center;border-bottom:1px solid var(--line);font-size:.92rem}
+  thead th{font-family:'Fraunces',serif;font-size:1rem;color:var(--forest);background:var(--mist);font-weight:600}
+  thead th.feat{text-align:left}
+  tbody td:first-child{text-align:left;font-weight:600;color:var(--ink)}
+  .col-us{background:rgba(124,161,125,.10)}
+  thead th.col-us{background:var(--moss);color:#fff;border-radius:0}
+  .yes{color:var(--moss);font-weight:700}
+  .no{color:#bcb6a4}
+
+  /* faq */
+  .faq-list{max-width:760px;margin:0 auto;display:grid;gap:12px}
+  .faq-item{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
+  .faq-q{width:100%;text-align:left;border:0;background:none;cursor:pointer;padding:20px 22px;font-family:'Fraunces',serif;font-size:1.08rem;color:var(--forest);display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq-q .ic{flex:none;width:24px;height:24px;border-radius:50%;background:var(--mist);display:flex;align-items:center;justify-content:center;transition:transform .3s;font-size:1.1rem;color:var(--moss)}
+  .faq-item.open .ic{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-a p{padding:0 22px 20px;color:var(--ink-soft);font-size:.94rem}
+
+  /* reviews */
+  .reviews{background:var(--paper)}
+  .rev-top{text-align:center;margin-bottom:40px}
+  .rev-top .big{font-family:'Fraunces',serif;font-size:3.4rem;color:var(--forest);line-height:1}
+  .rev-top .stars{font-size:1.4rem}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.rev-grid{grid-template-columns:1fr}}
+  .rev{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
+  .rev .stars{color:#E0A53B;font-size:1rem;letter-spacing:2px}
+  .rev h4{font-size:1.08rem;color:var(--forest);margin:10px 0 8px}
+  .rev p{font-size:.9rem;color:var(--ink-soft)}
+  .rev .who-r{margin-top:16px;font-size:.82rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .rev .av{width:34px;height:34px;border-radius:50%;background:var(--moss);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+  .verified{font-size:.7rem;font-weight:600;color:var(--moss);letter-spacing:.03em}
+
+  /* final cta */
+  .final{background:linear-gradient(160deg,#2C4430,#21331f);color:#EDEAD9;text-align:center}
+  .final h2{color:#fff;font-size:clamp(2rem,5vw,3rem);margin-bottom:14px}
+  .final p{color:#C3CDB8;max-width:560px;margin:0 auto 28px;font-size:1.05rem}
+  .final .btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--forest);font-weight:700;padding:17px 38px;border-radius:100px;font-size:1.05rem;transition:transform .15s}
+  .final .btn:hover{transform:translateY(-2px)}
+  .final .reassure{margin-top:20px;font-size:.82rem;color:#9fb09c}
+
+  /* footer */
+  footer{background:#1b2a1c;color:#aebba9;padding:50px 0 30px;font-size:.88rem}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;margin-bottom:34px}
+  @media(max-width:680px){.foot-grid{grid-template-columns:1fr;gap:24px}}
+  footer .logo{color:#fff;margin-bottom:12px}
+  footer h5{color:#fff;font-family:'Hanken Grotesk';font-weight:700;font-size:.95rem;margin-bottom:14px;letter-spacing:.02em}
+  footer ul{list-style:none;display:grid;gap:9px}
+  footer a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:.76rem;color:#7e8c7c;line-height:1.7}
+
+  /* sticky mobile bar */
+  .sticky-buy{position:fixed;left:0;right:0;bottom:0;z-index:80;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -10px 30px -18px rgba(0,0,0,.4);padding:11px 16px;display:none;align-items:center;justify-content:space-between;gap:14px;transform:translateY(120%);transition:transform .35s}
+  .sticky-buy.show{transform:translateY(0)}
+  .sticky-buy .sp{font-size:.78rem;color:var(--ink-soft)}
+  .sticky-buy .sp b{display:block;font-size:1.1rem;color:var(--forest);font-family:'Fraunces',serif}
+  .sticky-buy button{flex:1;max-width:240px;border:0;background:var(--forest);color:#fff;font-weight:700;padding:14px;border-radius:100px;cursor:pointer;font-family:'Hanken Grotesk';font-size:.95rem}
+  @media(max-width:920px){.sticky-buy{display:flex}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* toast */
+  .toast{position:fixed;top:80px;right:20px;z-index:200;background:var(--forest);color:#fff;padding:14px 20px;border-radius:14px;box-shadow:var(--shadow);transform:translateX(140%);transition:transform .4s;font-size:.9rem;font-weight:600}
+  .toast.show{transform:none}
+</style>
+</head>
+<body>
+
+<!-- announcement -->
+<div class="topbar">
+  <div class="wrap">
+    <span><b>Free delivery</b> on orders over €30</span>
+    <span class="star">★ ★ ★ ★ ★ <b style="color:#fff">4.8/5</b> from real customers</span>
+    <span>90-day money-back guarantee</span>
+  </div>
+</div>
+
+<!-- header -->
+<header>
+  <div class="wrap">
+    <a href="#" class="logo">nu<span>pure</span></a>
+    <nav class="nav">
+      <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#ingredients">Ingredients</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-cta">
+      <a href="#buy" class="mini-cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg>
+        Cart
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- product -->
+<section class="product" id="buy">
+  <div class="wrap">
+    <div class="product-grid">
+
+      <!-- gallery -->
+      <div class="gallery">
+        <div class="gallery-main">
+          <span class="flag">Best-seller</span>
+          <img id="mainImg" src="https://nl.nupure.eu/cdn/shop/files/01_proba_gluco_30_main_PDP_extra_image_packshot_with_stamp_NL.png?v=1779797962&width=1000" alt="Proba Gluco Metabolism Balance">
+        </div>
+        <div class="thumbs" id="thumbs">
+          <button class="active"><img src="https://nl.nupure.eu/cdn/shop/files/01_proba_gluco_30_main_PDP_extra_image_packshot_with_stamp_NL.png?v=1779797962&width=200" alt="Pack"></button>
+          <button><img src="https://nl.nupure.eu/cdn/shop/files/02_proba_gluco_60_benefits_PDP_image_woman_02_NL.png?v=1770037091&width=200" alt="Benefits"></button>
+          <button><img src="https://nl.nupure.eu/cdn/shop/files/04_proba_gluco_60_Numerical_claims_PDP_image_NL.png?v=1770037091&width=200" alt="Claims"></button>
+          <button><img src="https://nl.nupure.eu/cdn/shop/files/06_proba_gluco_60_ingredients_benefits_PDP_image_NL.png?v=1770037091&width=200" alt="Ingredients"></button>
+          <button><img src="https://nl.nupure.eu/cdn/shop/files/03_proba_gluco_60_link_PDP_image_man_01_NL.png?v=1770037091&width=200" alt="Lifestyle"></button>
+        </div>
+      </div>
+
+      <!-- buybox -->
+      <div class="buybox">
+        <div class="badges">
+          <span class="badge hl">Natural weight loss</span>
+          <span class="badge">Vegan</span>
+          <span class="badge">Hormone-free</span>
+          <span class="badge">Sugar-free</span>
+        </div>
+
+        <h1 class="title">Proba Gluco</h1>
+        <div class="rating">
+          <span class="stars">★ ★ ★ ★ ★</span>
+          <span>4.8 · <a href="#reviews" style="text-decoration:underline">Read reviews</a></span>
+        </div>
+
+        <p class="lede">Your body's own path to natural weight management.</p>
+
+        <ul class="benefits">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg><span><b>Curbs cravings naturally</b> — wakes up your fullness signals so you feel satisfied sooner.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg><span><b>Up to 40% fewer sugars &amp; carbs absorbed</b> from the food you eat.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg><span><b>Steadier blood sugar</b> for calmer energy and fewer afternoon dips.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg><span><b>Plant-based &amp; gut-friendly</b> — a clean formula your body recognises.</span></li>
+        </ul>
+
+        <!-- buy more save more -->
+        <div class="bms-head">
+          <h3>Buy more, save more</h3>
+          <span class="save-tag">Save up to 25%</span>
+        </div>
+        <div class="tiers" id="tiers">
+          <!-- tier 1 -->
+          <div class="tier" data-now="34.95" data-was="44.95" data-label="1 pack · 30 capsules" data-disc="">
+            <img class="pack" src="https://nl.nupure.eu/cdn/shop/files/NU_proba_GLP1_buybox_60_x1_f718056b-b5d0-4d07-9da9-69c9b9ee5437.png?v=1756966949" alt="1 pack">
+            <div class="t-info">
+              <div class="t-qty">1 × 30 caps</div>
+              <div class="t-sub">15-day starter</div>
+              <div class="t-price">€34.95</div>
+            </div>
+          </div>
+          <!-- tier 2 -->
+          <div class="tier active" data-now="59.90" data-was="89.90" data-label="2 packs · 60 capsules" data-disc="-15%">
+            <span class="disc">-15%</span>
+            <img class="pack" src="https://nl.nupure.eu/cdn/shop/files/NU_proba_GLP1_buybox_60_x2_eb430375-3590-4ed1-81bc-0d11794283ec.png?v=1756966948" alt="2 packs">
+            <div class="t-info">
+              <div class="t-qty">2 × 30 caps</div>
+              <div class="t-sub">€29.95 / pack</div>
+              <div class="t-price">€59.90<span class="t-was">€69.90</span></div>
+            </div>
+          </div>
+          <!-- tier 3 -->
+          <div class="tier" data-now="79.85" data-was="104.85" data-label="3 packs · 90 capsules" data-disc="-20%">
+            <span class="ribbon">Most popular</span>
+            <span class="disc">-20%</span>
+            <img class="pack" src="https://nl.nupure.eu/cdn/shop/files/NU_proba_GLP1_buybox_60_x3_2743f650-3a46-4e3e-bb99-b763f7b5869b.png?v=1756966949" alt="3 packs">
+            <div class="t-info">
+              <div class="t-qty">3 × 30 caps</div>
+              <div class="t-sub">€26.62 / pack</div>
+              <div class="t-price">€79.85<span class="t-was">€104.85</span></div>
+            </div>
+          </div>
+          <!-- tier 4 -->
+          <div class="tier" data-now="104.80" data-was="139.80" data-label="4 packs · 120 capsules" data-disc="-25%">
+            <span class="ribbon">Best value</span>
+            <span class="disc">-25%</span>
+            <img class="pack" src="https://nl.nupure.eu/cdn/shop/files/NU_proba_GLP1_buybox_60_x4_272cfb1c-1744-48f4-8a62-ddf6384c0799.png?v=1756966949" alt="4 packs">
+            <div class="t-info">
+              <div class="t-qty">4 × 30 caps</div>
+              <div class="t-sub">€26.20 / pack</div>
+              <div class="t-price">€104.80<span class="t-was">€139.80</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qty-row">
+          <div class="stepper">
+            <button id="dec" aria-label="decrease">−</button>
+            <span id="qty">1</span>
+            <button id="inc" aria-label="increase">+</button>
+          </div>
+          <span class="stock">In stock · ships in 1–2 working days</span>
+        </div>
+
+        <button class="add-cart" id="addBtn">
+          <span>Add to cart</span>
+          <span><span class="price-now" id="cartNow">€59.90</span> <span class="price-was" id="cartWas">€69.90</span></span>
+        </button>
+
+        <div class="trust">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 13h13v-3l4 3v4h-2"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>Free shipping over €30</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Delivery in 1–2 days</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l7 3v6c0 4-3 6.5-7 9-4-2.5-7-5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>90-day guarantee</div>
+        </div>
+
+        <div class="pay">
+          <span>iDEAL</span><span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Apple Pay</span><span>Google Pay</span>
+        </div>
+        <p class="secure">🔒 All transactions are secure and encrypted.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- USP strip -->
+<div class="usp-strip">
+  <div class="wrap">
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c5-3 8-6 8-11a4 4 0 0 0-8-1 4 4 0 0 0-8 1c0 5 3 8 8 11z"/></svg>
+      <div><b>Natural weight loss</b><small>Support your body's own balance</small></div>
+    </div>
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6v4l-3 3-3-3z"/><path d="M6 21c0-4 2.7-6 6-6s6 2 6 6"/><circle cx="12" cy="10" r="0"/></svg>
+      <div><b>Clinically proven</b><small>Backed by published studies</small></div>
+    </div>
+    <div class="usp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22c0-6 3-10 8-12-6-1-10 2-11 7"/><path d="M12 22C9 16 6 13 3 12c4-1 7 1 8 5"/></svg>
+      <div><b>Natural ingredients</b><small>Plant &amp; nature-derived actives</small></div>
+    </div>
+  </div>
+</div>
+
+<!-- how it works -->
+<section class="block how" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The natural mechanism</span>
+      <h2>How Proba Gluco works with your body</h2>
+      <p>After every meal, your body releases its own signals that tell you you've had enough. Age, diet and lifestyle can dull these signals — Proba Gluco helps switch them back on, naturally.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h4>You eat</h4><p>Food enters the digestive tract and the gut–brain connection begins to wake up the body's fullness response.</p></div>
+      <div class="step reveal"><div class="n">02</div><h4>Signals fire</h4><p>Natural actives help amplify your satiety signals, so the message "I'm full" reaches you sooner and lasts longer.</p></div>
+      <div class="step reveal"><div class="n">03</div><h4>Sugar slows down</h4><p>Plant extracts help reduce how many sugars and carbs are absorbed, easing the spikes that drive cravings.</p></div>
+      <div class="step reveal"><div class="n">04</div><h4>Balance returns</h4><p>Steadier blood sugar and a calmer appetite make mindful, natural weight management feel effortless.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- clinically proven -->
+<section class="block results" id="results">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Clinically proven</span>
+      <h2>Measurable results, fast</h2>
+      <p>The active formula has been clinically studied — with effects observed within minutes of intake.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res reveal"><div class="big" data-count="65" data-suffix="%">0%</div><div class="lbl">More satiety signals released</div></div>
+      <div class="res reveal"><div class="big" data-count="42" data-prefix="−" data-suffix="%">0%</div><div class="lbl">Lower blood-sugar response</div></div>
+      <div class="res reveal"><div class="big" data-count="41" data-prefix="−" data-suffix="%">0%</div><div class="lbl">Lower insulin response</div></div>
+      <div class="res reveal"><div class="big" data-count="40" data-prefix="−" data-suffix="%">0%</div><div class="lbl">Fewer sugars &amp; carbs absorbed</div></div>
+    </div>
+    <p class="res-note">Figures reflect outcomes observed in clinical evaluation of the active ingredients. Food supplements are not a substitute for a varied, balanced diet and a healthy lifestyle.</p>
+  </div>
+</section>
+
+<!-- ingredients -->
+<section class="block" id="ingredients">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Natural ingredients</span>
+      <h2>Five carefully chosen actives</h2>
+      <p>Every ingredient is plant- or nature-derived, dosed for effectiveness, and chosen to work in synergy.</p>
+    </div>
+    <div class="ing-grid">
+      <div class="ing reveal"><div class="ph"><img src="https://nl.nupure.eu/cdn/shop/files/Petridish_Reducose_a7185f53-7e88-4cf9-8574-9c08f172d307.webp?v=1754656856&width=400" alt="Reducose"></div><div class="body"><h4>Reducose®</h4><div class="dose">250 mg / day</div><p>A patented white mulberry leaf extract that helps balance carbohydrate metabolism.</p></div></div>
+      <div class="ing reveal"><div class="ph"><img src="https://nl.nupure.eu/cdn/shop/files/Berberine.webp?v=1754596228&width=400" alt="Berberine"></div><div class="body"><h4>Berberine</h4><div class="dose">250 mg / day</div><p>A 100% natural plant extract that supports healthy blood-sugar regulation.</p></div></div>
+      <div class="ing reveal"><div class="ph"><img src="https://nl.nupure.eu/cdn/shop/files/Petridish_chicory_21_4f707cae-2bcc-403d-840d-ba22571b3f30.avif?v=1754597861&width=400" alt="Lactobacillus paracasei"></div><div class="body"><h4>L. paracasei D3-5</h4><div class="dose">100 mg / day</div><p>A well-studied, heat-stable bacterial strain that adheres to the gut lining.</p></div></div>
+      <div class="ing reveal"><div class="ph"><img src="https://nl.nupure.eu/cdn/shop/files/Chromium.webp?v=1754597674&width=400" alt="Chromium"></div><div class="body"><h4>Chromium</h4><div class="dose">6 mcg / day</div><p>An essential trace element that contributes to normal macronutrient metabolism.</p></div></div>
+      <div class="ing reveal"><div class="ph"><img src="https://nl.nupure.eu/cdn/shop/files/Petridish_chicory.webp?v=1754597675&width=400" alt="Chicory"></div><div class="body"><h4>Chicory</h4><div class="dose">20 mg / day</div><p>Supports digestion and contributes to the health of the liver.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- who is it for -->
+<section class="block who">
+  <div class="wrap">
+    <div class="who-grid">
+      <div class="who-img reveal"><img src="https://nl.nupure.eu/cdn/shop/files/02_proba_gluco_60_benefits_PDP_image_woman_02_NL.png?v=1770037091&width=900" alt="Wellness lifestyle"></div>
+      <div class="reveal">
+        <span class="eyebrow">Who it's for</span>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.5rem);color:var(--forest);margin:12px 0 22px">Made for wellness seekers</h2>
+        <ul class="who-list">
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg></span><span><b>You want a natural route</b> to managing your weight — without injections, hormones or harsh stimulants.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg></span><span><b>You struggle with cravings</b> and snacking, and want to feel satisfied with less.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg></span><span><b>You notice slower metabolism</b> with age or hormonal changes and want gentle, daily support.</span></li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-11"/></svg></span><span><b>You care about clean labels</b> — vegan, gluten-free, fructose-free, non-GMO and sugar-free.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- usage -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Simple ritual</span>
+      <h2>How to take it</h2>
+    </div>
+    <div class="use-grid">
+      <div class="use reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="7" height="11" rx="3.5"/><rect x="14" y="4" width="7" height="11" rx="3.5"/></svg><h4>2 capsules a day</h4><p>Take with a glass of water, without chewing.</p></div>
+      <div class="use reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h4>Works in minutes</h4><p>Clinically observed activity shortly after intake.</p></div>
+      <div class="use reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h10"/></svg><h4>Daily, long-term</h4><p>Use as long as you feel the benefit for lasting balance.</p></div>
+    </div>
+    <div class="use-note reveal">
+      <b>Good to know.</b> Do not exceed the recommended daily dose. Food supplements are not a substitute for a varied, balanced diet and a healthy lifestyle. Keep cool, dry and out of reach of young children. If you take medication or have a medical condition, ask your doctor before starting.
+    </div>
+  </div>
+</section>
+
+<!-- comparison -->
+<section class="block compare">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Why Proba Gluco</span>
+      <h2>A gentler, smarter approach</h2>
+      <p>See how a natural daily formula compares with the usual routes to weight management.</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th class="feat">&nbsp;</th>
+            <th class="col-us">Proba Gluco</th>
+            <th>Crash diets</th>
+            <th>Stimulant burners</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Natural &amp; plant-based</td><td class="col-us yes">✔</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td>Hormone-free</td><td class="col-us yes">✔</td><td class="yes">✔</td><td class="no">—</td></tr>
+          <tr><td>Curbs cravings</td><td class="col-us yes">✔</td><td class="no">—</td><td class="yes">✔</td></tr>
+          <tr><td>Supports blood-sugar balance</td><td class="col-us yes">✔</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td>No jitters or stimulants</td><td class="col-us yes">✔</td><td class="yes">✔</td><td class="no">—</td></tr>
+          <tr><td>Clinically studied</td><td class="col-us yes">✔</td><td class="no">—</td><td class="no">—</td></tr>
+          <tr><td>Sustainable, daily ritual</td><td class="col-us yes">✔</td><td class="no">—</td><td class="no">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Good questions</span>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal"><button class="faq-q">How does Proba Gluco support natural weight loss?<span class="ic">+</span></button><div class="faq-a"><p>It helps reactivate your body's own satiety signals, gently curbs appetite, and supports a balanced blood-sugar and insulin response. Plant actives also help reduce how many sugars and carbs are absorbed from your food.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How fast does it work?<span class="ic">+</span></button><div class="faq-a"><p>The active formula has been clinically observed to start working within minutes of intake. For lasting results on metabolism and appetite, take it daily alongside a balanced lifestyle.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">How do I take it?<span class="ic">+</span></button><div class="faq-a"><p>Adults take 2 capsules daily with enough water, without chewing. Do not exceed the recommended daily dose.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Is it suitable for my diet?<span class="ic">+</span></button><div class="faq-a"><p>Yes. Proba Gluco is vegan, gluten-free, fructose-free, non-GMO and contains no added sugar or hormones.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Are there any side effects?<span class="ic">+</span></button><div class="faq-a"><p>When starting any new supplement there can be a short adjustment period with mild digestive sensations such as bloating, which usually settle within about two weeks. If symptoms persist or are severe, consult your doctor.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Can I take it during pregnancy?<span class="ic">+</span></button><div class="faq-a"><p>The formula has not been specifically studied in pregnant or breastfeeding women. Please ask your doctor or midwife for advice before use.</p></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Does it replace a healthy diet?<span class="ic">+</span></button><div class="faq-a"><p>No. It is a supplement designed to support — not replace — a balanced diet and healthy lifestyle.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- reviews -->
+<section class="block reviews" id="reviews">
+  <div class="wrap">
+    <div class="rev-top reveal">
+      <div class="big">4.8</div>
+      <div class="stars" style="color:#E0A53B">★ ★ ★ ★ ★</div>
+      <p style="color:var(--ink-soft);margin-top:6px">Based on verified customer reviews</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev reveal"><div class="stars">★ ★ ★ ★ ★</div><h4>A genuine surprise</h4><p>I'd tried so many things without luck and was sceptical. I noticed a difference quickly — my appetite felt calmer and I've been sleeping better too. Very pleasantly surprised.</p><div class="who-r"><span class="av">R</span>Roos<span class="verified">· Verified</span></div></div>
+      <div class="rev reveal"><div class="stars">★ ★ ★ ★ ★</div><h4>So far, so great</h4><p>Two weeks in and I feel good using it. I'm not getting the hunger pangs I used to, and any gentle weight change I see is a welcome bonus. Happy with it.</p><div class="who-r"><span class="av">M</span>Marianne A.<span class="verified">· Verified</span></div></div>
+      <div class="rev reveal"><div class="stars">★ ★ ★ ★ ☆</div><h4>Easy to keep up</h4><p>Simple two-capsule routine that fits into my morning. I like that it's plant-based and clean — exactly the natural approach I was after.</p><div class="who-r"><span class="av">S</span>Sanne<span class="verified">· Verified</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- final cta -->
+<section class="block final">
+  <div class="wrap reveal">
+    <h2>Start your natural reset</h2>
+    <p>Join the wellness seekers choosing a gentler, clinically studied way to manage weight — risk-free for 90 days.</p>
+    <a href="#buy" class="btn">Choose your pack
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="reassure">Free shipping over €30 · Ships in 1–2 days · 90-day money-back guarantee</div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">nu<span style="color:var(--sage)">pure</span></div>
+        <p style="max-width:320px">Science-backed supplements with unique formulations, crafted to support your gut health and everyday wellbeing.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#ingredients">Ingredients</a></li>
+          <li><a href="#results">Clinical results</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Shipping &amp; returns</a></li>
+          <li><a href="#">90-day guarantee</a></li>
+          <li><a href="#">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      Food supplements are not a substitute for a varied, balanced diet and a healthy lifestyle. This product is not intended to diagnose, treat, cure or prevent any disease. If you are ill, pregnant or breastfeeding, consult your doctor before use.<br>
+      © 2026 nupure — a brand of AIXSWISS B.V.
+    </div>
+  </div>
+</footer>
+
+<!-- sticky mobile buy -->
+<div class="sticky-buy" id="stickyBuy">
+  <div class="sp">Proba Gluco<b id="stickyPrice">€59.90</b></div>
+  <button id="stickyBtn">Add to cart</button>
+</div>
+
+<div class="toast" id="toast">Added to cart ✓</div>
+
+<script>
+  /* ---------- gallery ---------- */
+  const mainImg=document.getElementById('mainImg');
+  document.querySelectorAll('#thumbs button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#thumbs button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const src=btn.querySelector('img').src.replace('width=200','width=1000');
+      mainImg.src=src;
+    });
+  });
+
+  /* ---------- buybox tiers ---------- */
+  const tiers=document.querySelectorAll('.tier');
+  const cartNow=document.getElementById('cartNow');
+  const cartWas=document.getElementById('cartWas');
+  const stickyPrice=document.getElementById('stickyPrice');
+  let qty=1;
+  const qtyEl=document.getElementById('qty');
+
+  function fmt(n){return '€'+n.toFixed(2);}
+  let unitNow=59.90, unitWas=69.90;
+
+  function refresh(){
+    const total=unitNow*qty;
+    const totalWas=unitWas*qty;
+    cartNow.textContent=fmt(total);
+    cartWas.textContent=totalWas>total?fmt(totalWas):'';
+    stickyPrice.textContent=fmt(total);
+  }
+
+  tiers.forEach(t=>{
+    t.addEventListener('click',()=>{
+      tiers.forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      unitNow=parseFloat(t.dataset.now);
+      unitWas=parseFloat(t.dataset.was);
+      refresh();
+    });
+  });
+
+  document.getElementById('inc').addEventListener('click',()=>{qty++;qtyEl.textContent=qty;refresh();});
+  document.getElementById('dec').addEventListener('click',()=>{if(qty>1){qty--;qtyEl.textContent=qty;refresh();}});
+
+  /* init from active tier */
+  (function(){const a=document.querySelector('.tier.active');unitNow=parseFloat(a.dataset.now);unitWas=parseFloat(a.dataset.was);refresh();})();
+
+  /* ---------- add to cart toast ---------- */
+  const toast=document.getElementById('toast');
+  function addToCart(){toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800);}
+  document.getElementById('addBtn').addEventListener('click',addToCart);
+  document.getElementById('stickyBtn').addEventListener('click',()=>{document.getElementById('buy').scrollIntoView({behavior:'smooth'});addToCart();});
+
+  /* ---------- faq ---------- */
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement;
+      const a=item.querySelector('.faq-a');
+      const open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+      if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+    });
+  });
+
+  /* ---------- reveal on scroll ---------- */
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  /* ---------- count up stats ---------- */
+  const counters=document.querySelectorAll('[data-count]');
+  const cio=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const el=e.target;const target=+el.dataset.count;const pre=el.dataset.prefix||'';const suf=el.dataset.suffix||'';
+        let cur=0;const step=Math.max(1,Math.round(target/40));
+        const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=pre+cur+suf;},22);
+        cio.unobserve(el);
+      }
+    });
+  },{threshold:.5});
+  counters.forEach(c=>cio.observe(c));
+
+  /* ---------- sticky mobile bar ---------- */
+  const sticky=document.getElementById('stickyBuy');
+  const buySection=document.getElementById('buy');
+  window.addEventListener('scroll',()=>{
+    const past=buySection.getBoundingClientRect().bottom<0;
+    if(window.innerWidth<=920 && past){sticky.classList.add('show');}else{sticky.classList.remove('show');}
+  });
+</script>
+</body>
+</html>
