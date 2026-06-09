@@ -256,6 +256,44 @@
     .feature-bar{flex-direction:column;gap:10px;}
   }
 </style>
+<!-- RunConverge pixel — replace {{CONVERGE_PUBLIC_TOKEN}}. QA: append ?internalUser=1 to suppress tracking. -->
+<script src="https://static.runconverge.com/pixels/{{CONVERGE_PUBLIC_TOKEN}}.js" async></script>
+<script>
+  window.cvg||(c=window.cvg=function(){c.process?c.process.apply(c,arguments):c.queue.push(arguments)},c.queue=[]);
+  cvg({ method:"track", eventName:"$page_load" });
+  window.CHECKOUT_CONFIG = {
+    storeUrl:"https://nupureshop.com",
+    crossDomain:false,                       // pages.nupureshop.com -> nupureshop.com = same root, auto-stitched
+    allowedDomains:["nupureshop.com"],
+    product:{ variant_id:"49029898142035", quantity:3, sku:"PROBAFLOR-N95-80", name:"probaflor MAX SPEKTRUM N95 (80 Kapseln)", vendor:"nupure" },
+    crossSell:{ variant_id:"", price:29.90, name:"Colon Pure Transit (Platzhalter)" }   // add real variant_id to include at checkout
+  };
+</script>
+<style>
+  /* Mini-cart (additive — uses existing Nupure tokens) */
+  .mc-scrim{position:fixed;inset:0;background:rgba(20,26,4,.45);opacity:0;visibility:hidden;transition:.2s;z-index:200;}
+  .mc-scrim.open{opacity:1;visibility:visible;}
+  .minicart{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:#fff;z-index:210;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(0,0,0,.18);font-family:var(--sans);}
+  .minicart.open{transform:translateX(0);}
+  .mc-h{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line);}
+  .mc-h h3{margin:0;font-family:var(--serif);font-weight:600;font-size:20px;color:var(--ink);}
+  .mc-x{background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);}
+  .mc-b{padding:20px;overflow:auto;flex:1;}
+  .mc-line{display:flex;gap:14px;align-items:center;margin-bottom:16px;}
+  .mc-line .ph{width:64px;height:64px;border-radius:8px;flex:0 0 auto;}
+  .mc-nm{font-weight:700;font-size:14px;color:var(--ink);}
+  .mc-qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:6px;}
+  .mc-qty button{border:0;background:var(--cream);width:28px;height:28px;cursor:pointer;font-weight:800;color:var(--ink);}
+  .mc-qty span{min-width:30px;text-align:center;font-size:14px;}
+  .mc-cross{border:1px dashed var(--navy);border-radius:12px;padding:14px;margin-top:8px;background:var(--cream);}
+  .mc-cross .tag{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
+  .mc-cross-row{display:flex;gap:12px;align-items:center;margin-top:10px;}
+  .mc-f{border-top:1px solid var(--line);padding:18px 20px;}
+  .mc-tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;margin-bottom:6px;color:var(--ink);}
+  .mc-est{font-size:12px;color:var(--muted);margin-bottom:14px;}
+  .mc-cta{display:block;width:100%;text-align:center;background:var(--navy);color:#fff;font-weight:700;letter-spacing:.04em;padding:15px;border:0;border-radius:4px;cursor:pointer;font-size:14px;text-transform:uppercase;}
+  .mc-small{font-size:11px;color:var(--ph-label);margin:8px 0 0;}
+</style>
 </head>
 <body>
 
@@ -545,6 +583,93 @@
   document.querySelectorAll('.qa button').forEach(function(b){
     b.addEventListener('click',function(){ b.parentElement.classList.toggle('open'); });
   });
+</script><!-- MINI-CART (additive overlay) -->
+<div class="mc-scrim" id="mcScrim"></div>
+<aside class="minicart" id="minicart" aria-hidden="true" aria-label="Warenkorb">
+  <div class="mc-h"><h3>Ihr Warenkorb</h3><button class="mc-x" id="mcX" aria-label="Schlie&szlig;en">&times;</button></div>
+  <div class="mc-b">
+    <div class="mc-line">
+      <div class="ph"><span></span></div>
+      <div style="flex:1">
+        <div class="mc-nm">probaflor MAX SPEKTRUM N95</div>
+        <div style="font-size:13px;color:var(--muted)">80 Kapseln</div>
+        <div class="mc-qty"><button id="mcMinus" aria-label="weniger">&minus;</button><span id="mcQty">3</span><button id="mcPlus" aria-label="mehr">+</button></div>
+      </div>
+      <div id="mcLine" style="font-weight:800;color:var(--ink)">&euro;99,90</div>
+    </div>
+    <div class="mc-cross">
+      <span class="tag">Dazu passend</span>
+      <div class="mc-cross-row">
+        <div class="ph" style="width:54px;height:54px;border-radius:8px"><span></span></div>
+        <div style="flex:1"><div class="mc-nm" id="csName">Colon Pure Transit</div><div style="font-size:13px;color:var(--muted)" id="csPrice">+ &euro;29,90</div></div>
+        <button class="mc-cta" id="csAdd" style="width:auto;padding:8px 14px">Hinzuf&uuml;gen</button>
+      </div>
+      <p class="mc-small">Platzhalter-Cross-Sell &ndash; wird erst mit echter Varianten-ID an die Kasse &uuml;bergeben.</p>
+    </div>
+  </div>
+  <div class="mc-f">
+    <div class="mc-tot"><span>Zwischensumme</span><span id="mcTotal">&euro;99,90</span></div>
+    <div class="mc-est">Gesch&auml;tzt &ndash; der endg&uuml;ltige Betrag (Rabatte, Versand) wird an der Shopify-Kasse berechnet.</div>
+    <button class="mc-cta" id="mcGo">Zur Kasse &rarr;</button>
+  </div>
+</aside>
+
+<script>
+(function(){
+  var cfg = window.CHECKOUT_CONFIG||{};
+  var euro=function(n){return '\u20ac'+n.toFixed(2).replace('.',',');};
+  var unit=39.90;                 // single-dose price for manual qty changes
+  var qty=3, total=99.90, cross=false;
+
+  var opts=document.querySelectorAll('.opt');
+  function parseQty(c){ var l=(c.querySelector('.lab')||{}).textContent||''; var m=l.match(/(\d+)/); return m?parseInt(m[1],10):1; }
+  function parseTotal(c){ var p=c.querySelector('.price'); if(!p) return 0; var t=(p.firstChild?p.firstChild.textContent:p.textContent)||''; var m=t.replace(/\s/g,'').match(/([\d.,]+)/); return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0; }
+  function selectCard(c){ opts.forEach(function(o){o.classList.remove('sel');}); c.classList.add('sel'); qty=parseQty(c); total=parseTotal(c); cfg.product.quantity=qty; render(); }
+  opts.forEach(function(o){ o.addEventListener('click',function(){ selectCard(o); }); });
+  var pre=document.querySelector('.opt.sel'); if(pre){ qty=parseQty(pre); total=parseTotal(pre); cfg.product.quantity=qty; }
+
+  function cartTotal(){ return total + (cross?(cfg.crossSell.price||0):0); }
+  function render(){
+    document.getElementById('mcQty').textContent=qty;
+    document.getElementById('mcLine').textContent=euro(total);
+    document.getElementById('mcTotal').textContent=euro(cartTotal());
+    document.getElementById('csName').textContent=cfg.crossSell.name;
+    document.getElementById('csPrice').textContent='+ '+euro(cfg.crossSell.price||0);
+    document.getElementById('csAdd').textContent=cross?'Entfernen':'Hinzuf\u00fcgen';
+  }
+
+  document.getElementById('mcPlus').addEventListener('click',function(){ qty++; total=unit*qty; cfg.product.quantity=qty; render(); });
+  document.getElementById('mcMinus').addEventListener('click',function(){ if(qty>1){ qty--; total=unit*qty; cfg.product.quantity=qty; render(); } });
+  document.getElementById('csAdd').addEventListener('click',function(){ cross=!cross; render(); });
+
+  var scrim=document.getElementById('mcScrim'), mc=document.getElementById('minicart');
+  function openCart(){
+    cfg.product.quantity=qty;
+    if(typeof window.cvg==='function'){ window.cvg({method:'track',eventName:'Added To Cart',properties:{variant_id:cfg.product.variant_id,sku:cfg.product.sku,name:cfg.product.name,price:unit,currency:'EUR',quantity:qty,vendor:cfg.product.vendor}}); }
+    render(); scrim.classList.add('open'); mc.classList.add('open'); mc.setAttribute('aria-hidden','false');
+  }
+  function closeCart(){ scrim.classList.remove('open'); mc.classList.remove('open'); mc.setAttribute('aria-hidden','true'); }
+  document.getElementById('mcX').addEventListener('click',closeCart);
+  scrim.addEventListener('click',closeCart);
+
+  // wire purchase CTAs (all .btn except the newsletter signup)
+  document.querySelectorAll('a.btn').forEach(function(a){ if(a.closest('.news')) return; a.addEventListener('click',function(e){ e.preventDefault(); openCart(); }); });
+
+  function hostOk(u){ try{ var h=new URL(u).hostname; return (cfg.allowedDomains||[]).some(function(d){return h===d||h.endsWith('.'+d);});}catch(e){return false;} }
+  function getCookie(n){ var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m?m.pop():''; }
+  document.getElementById('mcGo').addEventListener('click',function(){
+    var items=[{variant_id:cfg.product.variant_id,quantity:qty}];
+    if(cross&&cfg.crossSell.variant_id) items.push({variant_id:cfg.crossSell.variant_id,quantity:1});
+    var parts=items.filter(function(i){return i.variant_id;}).map(function(i){return encodeURIComponent(i.variant_id)+':'+encodeURIComponent(i.quantity);});
+    var url=cfg.storeUrl.replace(/\/$/,'')+'/cart/'+parts.join(',');
+    var q=[]; if(cfg.crossDomain){ var uid=getCookie('__cvg_uid'),sid=getCookie('__cvg_sid'); if(uid&&sid){ q.push('__cvg_uid='+encodeURIComponent(uid)); q.push('__cvg_sid='+encodeURIComponent(sid)); } }
+    if(q.length) url+='?'+q.join('&');
+    if(!hostOk(url)){ console.error('[checkout] destination not in allowlist:',url); return; }
+    setTimeout(function(){ window.location.href=url; },150);
+  });
+
+  render();
+})();
 </script>
 
 </body>
