@@ -1263,7 +1263,9 @@
   }
 
   // intercept all ATC buttons (href contains /cart/ OR has data-atc attribute)
+  // exclude #mc-checkout-btn — that one should navigate to Shopify, not re-open the minicart
   document.querySelectorAll('[data-atc], a[href*="/cart/"]').forEach(function(el){
+    if(el.id === 'mc-checkout-btn') return;
     el.addEventListener('click', function(e){
       e.preventDefault();
       openCart();
