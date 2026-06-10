@@ -229,8 +229,6 @@
   .offer .banner{position:absolute;top:0;left:0;right:0;background:var(--ink2);
     color:var(--gold);text-align:center;font-size:11px;font-weight:800;
     padding:4px;border-radius:12px 12px 0 0;letter-spacing:.5px}
-  .offer.hasbanner{padding-top:30px}
-  .radio{width:18px;height:18px;border-radius:50%;border:2px solid #b7b5a8;flex:0 0 auto;margin-top:2px}
   .offer.active .radio{border-color:var(--brand);background:radial-gradient(var(--brand) 42%,#fff 46%)}
   .offer .info{flex:1}
   .offer .info b{font-size:16px;color:#2a2a26}
@@ -241,8 +239,6 @@
   .offer .price b{font-size:18px;color:#2a2a26}
   .offer .price s{display:block;font-size:12px;color:var(--muted)}
   .offer .price span{display:block;font-size:11px;color:var(--muted)}
-  .autoapplied{background:var(--butter);color:#6b5300;text-align:center;font-weight:700;
-    font-size:13px;border-radius:10px;padding:10px;margin:12px 0}
   .trust3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin:18px 0}
   .trust3 .it{font-size:11px;color:var(--muted);font-weight:600}
   .trust3 .ic{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--brand);
@@ -676,7 +672,7 @@
       </div>
       <div>
         <div class="maincard">
-          <div class="ribbon">🔥 BESTSELLER: BIS ZU 46 % SPAREN 🔥</div>
+          <div class="ribbon">🔥 BESTSELLER: WELTWEIT UMFANGREICHSTES STAMMSPEKTRUM 🔥</div>
           <div class="inner">
             <div class="galmain">
               <div class="ph onlight filled" id="galMain">
@@ -720,40 +716,17 @@
         </div>
       </div>
       <hr>
-      <div class="flabel">Einnahme-Präferenz
-        <button class="infoicon" data-modal="sugar" aria-label="Einnahmeinfo">i</button>
-      </div>
-      <div class="toggles">
-        <div class="tog active" data-group="sugar" data-sugar="low">Morgens</div>
-        <div class="tog" data-group="sugar" data-sugar="free">Abends</div>
-      </div>
-      <hr>
-      <div class="qrow"><div class="flabel" style="margin:0">Menge</div><span class="pill soft">⊘ 2 kaufen, 30 % sparen</span></div>
+      <div class="qrow"><div class="flabel" style="margin:0">Menge</div></div>
       <div class="toggles" style="margin-top:8px">
         <div class="tog active" data-group="qty" data-qty="1">1</div>
         <div class="tog" data-group="qty" data-qty="2">2</div>
       </div>
       <hr>
-      <div class="flabel" style="margin-bottom:10px" id="offers">Angebot wählen</div>
-      <div class="offer hasbanner active" data-group="offer" data-offer="sub">
-        <div class="banner">BELIEBTESTE WAHL: 46 % SPAREN</div>
-        <div class="radio"></div>
-        <div class="info">
-          <b>Abo &amp; Sparen</b>
-          <div class="sub">Lieferung alle 40 Tage, jederzeit kündbar</div>
-          <div class="li"><span class="v">✓</span>Kein aufgeblähtes Bauchgefühl mehr unterstützen</div>
-          <div class="li"><span class="v">✓</span>Kostenloser Versand inklusive</div>
-          <div class="li"><span class="v">✓</span>Prioritärer Kundendienst</div>
-        </div>
-        <div class="price"><b id="subPrice">€34,95</b><s id="subComp">€64,95</s><span id="subDay">€0,87/Tag</span></div>
-      </div>
-      <div class="offer" data-group="offer" data-offer="one">
-        <div class="radio"></div>
-        <div class="info"><b>Einmalig kaufen</b><div class="sub">80 Kapseln, einmalige Lieferung</div></div>
-        <div class="price"><b id="onePrice">€64,95</b><s id="oneComp">€64,95</s><span id="oneDay">€1,62/Tag</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <span style="font-size:15px;color:var(--muted)">Gesamt</span>
+        <span id="onePrice" style="font-size:22px;font-weight:900;color:#2a2a26">€64,95</span>
       </div>
       <a href="https://nupureshop.com/cart/49029898142035:1,55883547476350:1" class="btn" data-atc>Jetzt in den Warenkorb</a>
-      <div class="autoapplied">Rabatt automatisch angewendet ✅ <span id="saveAmt">Sie sparen €30,00</span></div>
       <div class="trust3">
         <div class="it"><div class="ic">✓</div>90 Tage Geld-zurück-Garantie</div>
         <div class="it"><div class="ic">◈</div>Klinisch &amp; 3rd-Party-geprüft</div>
@@ -948,7 +921,7 @@
   <div class="wrap">
     <div class="ftop">
       <div class="news">
-        <h3>Spare 46 % beim ersten Abo</h3>
+        <h3>Bleib auf dem Laufenden</h3>
         <div class="phone"><input placeholder="Handynummer"><button class="go">→</button></div>
         <a href="#" class="alt">Lieber per E-Mail informieren</a>
         <p class="fine">Ich stimme zu, regelmäßig E-Mails und SMS von nupure zu erhalten. Mit STOP abmelden. Weitere Informationen zum Datenschutz unter nupureshop.com/datenschutz.</p>
@@ -971,7 +944,7 @@
 
     <div class="disc">
       <div class="box">*Die Bewertung einzelner gesundheitsbezogener Aussagen ist ausstehend (Zichorie). Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche, ausgewogene Ernährung und eine gesunde Lebensweise. Die empfohlene Tagesdosis sollte nicht überschritten werden. Außerhalb der Reichweite von Kleinkindern aufbewahren.</div>
-      <div class="box">**Abo-Rabatt gilt für Neukunden und kann jederzeit in Ihrem Kundenkonto gekündigt werden. Der Rabatt bezieht sich auf den regulären Einzelpreis. Angebote solange der Vorrat reicht.</div>
+      <div class="box">Preise inkl. MwSt. Versandkosten werden an der Kasse berechnet.</div>
     </div>
 
     <div class="copy">
@@ -1006,26 +979,16 @@
   });
 
   // ---------- variant state + dynamic pricing ----------
-  var state = { flavor:'original', sugar:'low', qty:1, offer:'sub' };
-  // representative table: [subPrice, compareAt, oneTimePrice] per flavor>sugar>qty
-  var PRICES = {
-    original:{ low:{1:[34.95,64.95,64.95], 2:[66.45,129.90,123.40]},
-               free:{1:[34.95,64.95,64.95], 2:[66.45,129.90,123.40]} },
-    firecracker:{ low:{1:[24.95,34.95,34.95], 2:[47.40,69.90,66.40]},
-                  free:{1:[24.95,34.95,34.95], 2:[47.40,69.90,66.40]} }
-  };
+  var state = { flavor:'original', qty:1 };
+  var UNIT_PRICES = { original:64.95, firecracker:34.95 }; // 80caps, 30caps
   var money = function(n){ return '€'+n.toFixed(2).replace('.',','); };
-  var perDay = function(t,q){ return '€'+(t/(40*q)).toFixed(2).replace('.',',')+'/Tag'; };
   function renderPrice(){
-    var p = PRICES[state.flavor][state.sugar][state.qty];
-    document.getElementById('subPrice').textContent = money(p[0]);
-    document.getElementById('subComp').textContent  = money(p[1]);
-    document.getElementById('subDay').textContent   = perDay(p[0],state.qty);
-    document.getElementById('onePrice').textContent = money(p[2]);
-    document.getElementById('oneComp').textContent  = money(p[1]);
-    document.getElementById('oneDay').textContent   = perDay(p[2],state.qty);
-    var active = state.offer==='sub' ? p[0] : p[2];
-    document.getElementById('saveAmt').textContent  = 'Sie sparen '+money(p[1]-active);
+    var unit = UNIT_PRICES[state.flavor] || 64.95;
+    document.getElementById('onePrice').textContent = money(unit * state.qty);
+  }
+  function setActive(group, el){
+    document.querySelectorAll('[data-group="'+group+'"]').forEach(function(s){ s.classList.remove('active'); });
+    el.classList.add('active');
   }
   function setActive(group, el){
     document.querySelectorAll('[data-group="'+group+'"]').forEach(function(s){ s.classList.remove('active'); });
@@ -1043,9 +1006,7 @@
         var variantId = el.getAttribute('data-variant');
         if(variantId && window._mcUpdateVariant) window._mcUpdateVariant(variantId);
       }
-      if(g==='sugar') state.sugar = el.getAttribute('data-sugar');
-      if(g==='qty')   state.qty   = parseInt(el.getAttribute('data-qty'),10);
-      if(g==='offer') state.offer = el.getAttribute('data-offer');
+      if(g==='qty') state.qty = parseInt(el.getAttribute('data-qty'),10);
       renderPrice();
     });
   });
