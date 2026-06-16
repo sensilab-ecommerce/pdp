@@ -3,19 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>probaflor MAX SPEKTRUM N95 – Gegen Blähungen & für eine gesunde Darmflora | nupure</title>
-<!-- favicon from nupure brand book -->
+<title>probaflor MAX SPEKTRUM N95 – 95 Stämme gegen Blähungen &amp; Blähbauch | nupure</title>
 <link rel="icon" href="https://nupureshop.com/cdn/shop/files/nupure-favicon.png?crop=center&height=32&v=1704810304&width=32">
 
 <!--
-  PDP: nupure · probaflor MAX SPEKTRUM N95 · DE · Angle: Blähungen (bloating)
-  Template: Grüns 7 Benefits
-  Built: 2026-06-10
-  Main variant: 49029898142035 (80 caps), 49048171020627 (30 caps)
-  Cross-sell variant: 55883547476350
-  Cart link: https://nupureshop.com/cart/49029898142035:1,55883547476350:1
-  CDN base: https://nupureshop.com/cdn/shop/files/
-  Base timestamp: 1749556800
+  ASSUMPTIONS / NOTES (competitor teardown wireframe, not a VHC deliverable):
+  - Single self-contained file. No external CSS/JS/font dependencies.
+    Brand uses a rounded geometric display face; recreated with a system
+    sans stack at heavy weights for fidelity without a web-font request.
+  - Breakpoint: >=900px = DESKTOP (two-column features, side-by-side buy block);
+    <900px = MOBILE (everything stacks; in feature blocks the order becomes
+    eyebrow -> heading -> media -> body, matching the mobile screenshot).
+  - ALL copy is Lorem ipsum. Numeric/price/rating tokens (84%, 4.76, $1.26, ★)
+    are kept as representative placeholders since they carry layout meaning and
+    lorem can't express them.
+  - Every PHOTO / PRODUCT SHOT / VIDEO STILL / LOGO / INFOGRAPHIC is a labelled
+    placeholder box (dimensions + inferred type). Structured UI that is real
+    HTML/CSS on the live site (grids, comparison table, stat blocks, buy-box
+    controls, review list) is rebuilt as real markup, not images.
+  - Tiny inline glyph icons (the dots inside "6 Common Gaps", "Packed With",
+    trust badges, socials) are drawn as simple shapes/emoji rather than fully
+    labelled placeholder boxes, purely for readability at that scale.
+  - JS is vanilla, no libraries. Interactions reproduced from the live page:
+    image gallery (thumbnail swap + prev/next arrows; thumbs carry data-full
+    so a real product image swaps into #galMain), supply selection
+    (single-pack 1x / 3-pack 3x cards; the chosen card drives the "you're
+    saving" line and points every add-to-cart button at that variant's cart
+    link via its data-variant + the page price strings),
+    lightbox modals (nutrition label), smooth-scroll anchors (hero CTA ->
+    #offers, rating -> #reviews), the UGC carousel, review tabs, and review
+    sort / photo-filter / see-more.
+  - The live site is a Shopify PDP: its real add-to-cart, discount auto-apply
+    and checkout are bound to Shopify's cart/variant APIs and cannot run in a
+    static file. Prices/savings here are representative client-side demos only.
 -->
 
 <style>
@@ -28,9 +48,9 @@
     --radius:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:clip}
   body{font-family:var(--sans);color:var(--text);background:var(--page);
-    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
   img{max-width:100%}
   a{color:inherit}
   .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
@@ -73,7 +93,7 @@
   /* ---------- header ---------- */
   header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
   header .wrap{display:flex;align-items:center;justify-content:center;height:58px}
-  .logo{display:flex;align-items:center}
+  .logo{font-weight:900;font-size:30px;color:var(--heading);letter-spacing:-1px}
 
   /* ---------- hero ---------- */
   .hero{background:var(--cream)}
@@ -88,9 +108,9 @@
   .avatars .ph:first-child{margin-left:0}
   .hero h1{font-size:46px;margin-bottom:18px}
   .hero .lead{margin-bottom:24px}
-  .ctablock{position:relative;display:inline-block;margin-bottom:18px}
-  .ctablock .pill{position:absolute;top:-12px;left:18px;z-index:2}
-  .ctablock .btn{padding-top:18px}
+  .ctablock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:18px}
+  .ctablock .pill{position:static}
+  .ctablock .btn{width:auto;padding:15px 34px}
   .riskfree{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
   .riskfree .chk{color:var(--brand)}
   .riskfree u{cursor:pointer}
@@ -152,7 +172,7 @@
   /* sec06 comparison bars */
   .cmprow{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:14px;
     display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:10px;align-items:center}
-  .cmprow .lbl b{display:block;font-size:14px;color:var(--heading)}
+  .cmprow .lbl b{display:block;color:var(--heading);font-size:14px}
   .cmprow .lbl span{font-size:11px;color:var(--muted)}
   .bar{border-radius:10px;text-align:center;font-weight:800;font-size:14px;padding:18px 6px;color:#fff}
   .bar.gr{background:var(--ink2)}
@@ -212,7 +232,6 @@
     text-align:center;position:relative;background:#fff}
   .optcard.active{border-color:var(--brand);background:#eef6ec}
   .optcard .ph{height:62px;font-size:0;padding:2px;margin-bottom:6px}
-  .optcard .ph.filled>img{object-fit:contain;background:#fff}
   .optcard .nm{font-size:12px;font-weight:700;color:#2a2a26}
   .optcard .lt{position:absolute;top:-9px;left:50%;transform:translateX(-50%);
     background:#f4b9b0;color:#7a2018;font-size:9px;font-weight:800;padding:2px 8px;
@@ -229,6 +248,8 @@
   .offer .banner{position:absolute;top:0;left:0;right:0;background:var(--ink2);
     color:var(--gold);text-align:center;font-size:11px;font-weight:800;
     padding:4px;border-radius:12px 12px 0 0;letter-spacing:.5px}
+  .offer.hasbanner{padding-top:30px}
+  .radio{width:18px;height:18px;border-radius:50%;border:2px solid #b7b5a8;flex:0 0 auto;margin-top:2px}
   .offer.active .radio{border-color:var(--brand);background:radial-gradient(var(--brand) 42%,#fff 46%)}
   .offer .info{flex:1}
   .offer .info b{font-size:16px;color:#2a2a26}
@@ -239,6 +260,8 @@
   .offer .price b{font-size:18px;color:#2a2a26}
   .offer .price s{display:block;font-size:12px;color:var(--muted)}
   .offer .price span{display:block;font-size:11px;color:var(--muted)}
+  .autoapplied{background:var(--butter);color:#6b5300;text-align:center;font-weight:700;
+    font-size:13px;border-radius:10px;padding:10px;margin:12px 0}
   .trust3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin:18px 0}
   .trust3 .it{font-size:11px;color:var(--muted);font-weight:600}
   .trust3 .ic{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--brand);
@@ -376,12 +399,6 @@
   /* footer */
   footer{background:var(--ink);color:#dfe8d8}
   .ftop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;padding-top:46px}
-  .news h3{color:var(--gold);font-size:20px;margin-bottom:16px}
-  .phone{display:flex;max-width:300px;border-radius:8px;overflow:hidden}
-  .phone input{flex:1;border:none;padding:13px 14px;font-size:14px;font-family:inherit}
-  .phone .go{background:var(--gold);border:none;width:46px;cursor:pointer;font-size:18px;color:#5a4500}
-  .news .alt{display:inline-block;color:#fff;text-decoration:underline;font-weight:700;font-size:13px;margin:14px 0}
-  .news .fine{font-size:10.5px;color:#8fb79a;line-height:1.5;max-width:340px}
   .fcol h4{color:var(--gold);font-size:14px;margin-bottom:14px;letter-spacing:.5px}
   .fcol a{display:block;color:#cfe0d3;font-size:13px;margin-bottom:9px;text-decoration:none}
   .fcol a:hover{color:#fff}
@@ -394,82 +411,60 @@
   .disc .box{border:1px solid #3a5d46;border-radius:8px;padding:14px;font-size:10.5px;color:#9cbca6;line-height:1.5}
   .copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
     padding:18px 0 26px;border-top:1px solid #2b4d38;font-size:11.5px;color:#9cbca6}
-  .copy .links{display:flex;gap:16px;flex-wrap:wrap}
-  .copy .links a{text-decoration:none}
 
-  /* gallery interactivity */
-  .thumbs .ph.thumb{cursor:pointer;border:2px solid transparent}
-  .thumbs .ph.thumb.active{border-color:var(--brand)}
-  .galmain{position:relative}
-  .galarr{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;
-    border-radius:50%;border:none;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.22);
-    cursor:pointer;font-size:22px;line-height:1;color:#2a2a26;display:flex;align-items:center;justify-content:center;z-index:3}
-  .galarr.left{left:8px}.galarr.right{right:8px}
-  /* info icon */
-  .infoicon{width:17px;height:17px;border-radius:50%;border:1.5px solid var(--muted);
-    background:none;color:var(--muted);font-size:11px;font-style:italic;font-weight:700;
-    cursor:pointer;line-height:1;vertical-align:middle;margin-left:6px;font-family:Georgia,serif}
-  /* selects */
-  select.sel{font-family:inherit;cursor:pointer}
-  /* collapsed reviews */
-  .ritem.collapsed{display:none}
-  /* modal */
-  .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;
-    align-items:center;justify-content:center;z-index:200;padding:20px}
-  .modal.open{display:flex}
-  .modal .box{background:#fff;border-radius:18px;max-width:520px;width:100%;
-    padding:22px;position:relative;max-height:88vh;overflow:auto}
-  .modal .box h4{font-size:18px;margin-bottom:14px}
-  .modal .close{position:absolute;top:12px;right:14px;border:none;background:none;
-    font-size:24px;cursor:pointer;color:#777;line-height:1}
-  .modal .box .ph{height:300px}
-
-  /* ============ RESPONSIVE ============ */  @media (max-width:900px){
-    .hero h1{font-size:34px}
-    .hero .wrap{grid-template-columns:1fr;gap:26px;padding-top:0}
-    .hero-media{order:-1;margin:0 -22px}
-    .hero-media .ph{border-radius:0;height:330px}
-    .hero-media .tag{top:14px;left:14px}
-    .clincard{top:50px;left:14px}
-    .reviewpill{order:1}
-
-    .feature .wrap{grid-template-columns:1fr;gap:18px;
-      grid-template-areas:"head" "media" "body"}
-    .feature h2{font-size:26px}
-    .feature .f-body{max-width:none}
-
-    .statgrid{grid-template-columns:1fr 1fr;gap:24px}
-    .trusted07 .wrap{grid-template-columns:1fr}
-    .buygrid{grid-template-columns:1fr}
-    .rev3 .grid{grid-template-columns:1fr}
-    .vs .wrap{grid-template-columns:1fr}
-    .why .top{grid-template-columns:1fr}
-    .whygrid{grid-template-columns:1fr}
-    .ftop{grid-template-columns:1fr 1fr;gap:26px}
-    .disc{grid-template-columns:1fr}
-    .ritem{grid-template-columns:1fr}
-    .ritem .person{display:flex;align-items:center;gap:10px}
-    .ritem .person .av{margin-bottom:0}
+  /* ---------- responsive ---------- */
+  /* <900px: two-column layouts stack (matches the hero/feature/buy-block design) */
+  @media (max-width:899px){
+    .hero .wrap{grid-template-columns:1fr;gap:28px}
+    .hero h1{font-size:36px}
+    .hero-media .ph{height:320px}
+    .feature .wrap{grid-template-columns:1fr;gap:24px;grid-template-areas:"head" "body" "media"}
+    .feature .f-media{align-self:stretch}
+    .trusted07 .wrap{grid-template-columns:1fr;gap:28px}
+    .buygrid{grid-template-columns:1fr;gap:28px}
+    .vs .wrap{grid-template-columns:1fr;gap:24px}
+    .why .top{grid-template-columns:1fr;gap:22px}
     .maincard .inner{grid-template-columns:1fr}
+    .statgrid{grid-template-columns:repeat(2,1fr)}
+    .ugcgrid{grid-template-columns:repeat(2,1fr)}
+    .rev3 .grid{grid-template-columns:1fr}
+    .whygrid{grid-template-columns:1fr}
+    .ftop{grid-template-columns:1fr 1fr}
     .rsummary{flex-direction:column;align-items:flex-start;gap:14px}
     .hist{width:100%;max-width:none}
   }
+  /* <560px: phones — everything to a single column */
   @media (max-width:560px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:28px}
     .gaps{grid-template-columns:1fr}
-    .opts2{grid-template-columns:1fr}
+    .statgrid{grid-template-columns:1fr 1fr}
+    .ugcgrid{grid-template-columns:1fr 1fr}
+    .trust3{grid-template-columns:1fr}
     .ftop{grid-template-columns:1fr}
     .cmprow{grid-template-columns:1fr;text-align:center}
+    .ritem{grid-template-columns:1fr}
     .tl{gap:16px}
+    .disc{grid-template-columns:1fr}
   }
+  /* ingredient popup (template shipped without modal CSS) */
+  .modal{position:fixed;inset:0;background:rgba(20,30,20,.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .modal.open{display:flex}
+  .modal .box{background:#fff;border-radius:16px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 26px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .modal .box h4{font-size:20px;margin:0 0 16px;color:#16402a;padding-right:30px}
+  .modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:26px;line-height:1;cursor:pointer;color:#73726b}
+  .modal .ingredients h5{font-size:13px;font-weight:800;color:#16402a;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.4px}
+  .modal .ingredients h5:first-child{margin-top:0}
+  .modal .ingredients p{font-size:13px;line-height:1.6;color:#3a3a32;margin:0}
 </style>
 </head>
 <body>
 
 <!-- announcement -->
-<div class="announce"><b>✦ Kostenloser Versand ab 30 € ✦</b><br>90-Tage-Geld-zurück-Garantie · Lieferung in 1–2 Werktagen</div>
+<div class="announce"><b>✦ Gratis Versand ab 30 € ✦</b><br>90-Tage-Geld-zurück-Garantie · Apotheken-Qualität · Lieferung in 1–2 Werktagen</div>
 
 <!-- header -->
-<header><div class="wrap"><div class="logo"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=100 100w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=150 150w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200 200w" sizes="100px" alt="nupure" width="100" height="auto" style="display:block;height:28px;width:auto"></div></div></header>
+<header><div class="wrap"><div class="logo" style="display:flex;align-items:center"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=100 100w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200 200w" sizes="100px" alt="nupure" style="height:28px;width:auto;display:block"></div></div></header>
 
 <!-- hero -->
 <section class="hero">
@@ -477,27 +472,25 @@
     <div class="hero-text">
       <div class="reviewpill">
         <span class="avatars">
-          <span class="ph"></span><span class="ph"></span><span class="ph"></span>
+          <span class="ph filled" id="img-01"><img src="https://nupureshop.com/cdn/shop/files/1781596801.jpg" alt="Zufriedene Kundin" width="24" height="24" loading="lazy"></span><span class="ph filled" id="img-02"><img src="https://nupureshop.com/cdn/shop/files/1781596802.jpg" alt="Zufriedener Kunde" width="24" height="24" loading="lazy"></span><span class="ph filled" id="img-03"><img src="https://nupureshop.com/cdn/shop/files/1781596803.jpg" alt="Zufriedene Kundin" width="24" height="24" loading="lazy"></span>
         </span>
-        <span class="stars">★★★★★</span> 4.8 Sterne | 915+ Bewertungen | 1M+ Kunden
+        <span class="stars">★★★★★</span> 4,8 Sterne | 973 Bewertungen | Apotheken-Qualität
       </div>
-      <h1>Schluss mit Blähbauch – von innen, nachhaltig</h1>
-      <p class="lead">95 Bakterienstämme unterstützen ein vielfältiges Darmmikrobiom und fördern so ein ruhigeres, leichteres Bauchgefühl von Tag zu Tag.*</p>
+      <h1>7 Vorteile, die Max Spektrum N95-Nutzer bei Blähungen lieben</h1>
+      <p class="lead">Endlich ein flacher Bauch, auf den Sie sich verlassen können</p>
       <div class="ctablock">
-        <span class="pill">★ ProbaTech™ klinisch untersucht</span>
-        <a href="https://nupureshop.com/cart/49029898142035:1,55883547476350:1" class="btn" data-atc>Jetzt bestellen + Colon Pure gratis dazu</a>
+        <span class="pill">95 Stämme · 95 Mrd. KBE</span>
+        <a href="#offers" class="btn js-scroll">Jetzt entdecken</a>
       </div>
       <div class="riskfree"><span class="chk">✔</span> 90 Tage <u>Geld-zurück-Garantie</u></div>
     </div>
     <div class="hero-media">
-      <div class="ph filled" id="img-hero">
-        <img src="https://nupureshop.com/cdn/shop/files/1749556800.jpg" alt="Frau hält nupure probaflor MAX SPEKTRUM N95 Dose in der Hand, entspannte Körperhaltung" width="620" height="430" loading="lazy">
-      </div>
+      <div class="ph filled" id="img-04"><img src="https://nupureshop.com/cdn/shop/files/1781596804.jpg" alt="Frau in ruhiger Morgenroutine mit einem Glas Wasser" width="620" height="430" loading="lazy"></div>
       <span class="pill tag">★ Apotheken-Qualität</span>
       <div class="clincard">
         <span style="font-size:11px;color:#888">❮ &nbsp; ❯</span>
         <b>ProbaTech™</b>
-        <span>Klinisch geprüfte Stammformel – exklusiv bei nupure.</span>
+        <span>Nupures eigene, klinisch untersuchte Stammformel im Inneren.</span>
       </div>
     </div>
   </div>
@@ -506,13 +499,11 @@
 <!-- feature 01 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">01</div><h2>Blähungen beginnen im Darm – und dort setzen wir an</h2></div>
-    <p class="f-body">Ein unausgeglichenes Darmmikrobiom kann Blähungen, Völlegefühl und ein unbequemes Bauchgefühl begünstigen. MAX SPEKTRUM N95 liefert 95 wissenschaftlich untersuchte Stämme von Milchsäurebakterien, die die natürliche Vielfalt des Darms nachahmen und so die Grundlage für eine ausgeglichene Verdauung schaffen.*</p>
+    <div class="f-head"><div class="eyebrow">01</div><h2>Weniger Beschwerden, mehr Wohlbefinden im Alltag</h2></div>
+    <p class="f-body">Blähungen und ein aufgeblähter Bauch beeinflussen den ganzen Alltag: das Gefühl nach dem Essen, die Kleidung, die sich zu eng anfühlt, das Unbehagen am Abend, das einfach nicht verschwindet. Viele Menschen kämpfen täglich damit – ohne zu wissen, dass ein unausgeglichenes Darmmikrobiom einer der häufigsten Auslöser für Blähbauch ist. Genau hier setzt Max Spektrum N95 an. Mit der richtigen Unterstützung von innen kann sich das Wohlbefinden im Alltag spürbar und nachhaltig verändern.</p>
     <div class="f-media">
       <div class="card dark">
-        <div class="ph ondark filled" id="img-01" style="height:300px">
-          <img src="https://nupureshop.com/cdn/shop/files/1749556801.jpg" alt="Infografik: Darmmikrobiom-Vielfalt im Vergleich – wenige vs. 95 Stämme" width="440" height="300" loading="lazy">
-        </div>
+        <div class="ph ondark filled" id="img-05" style="height:300px"><img src="https://nupureshop.com/cdn/shop/files/1781596805.jpg" alt="Illustration zu Blähbauch und Wohlbefinden im Darm" width="440" height="300" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -521,18 +512,18 @@
 <!-- feature 02 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">02</div><h2>95 Stämme – für jede Bauchzone das richtige Bakterium</h2></div>
-    <p class="f-body">Verschiedene Bakterienstämme übernehmen unterschiedliche Aufgaben im Verdauungstrakt. MAX SPEKTRUM N95 kombiniert sechs entscheidende Stammgruppen, damit kein Bereich des Darms vernachlässigt wird.</p>
+    <div class="f-head"><div class="eyebrow">02</div><h2>95 Milliarden lebende Bakterien – die breiteste Stammvielfalt auf dem Markt</h2></div>
+    <p class="f-body">Verschiedene Bakterienstämme übernehmen verschiedene Aufgaben im Darm. Gemeinsam machen sie das Mikrobiom robuster, ausgeglichener und reduzieren die übermäßige Gasbildung, die Blähungen und Blähbauch verursacht. Mit 95 Milliarden KBE pro Tagesdosis und 95 verschiedenen Stämmen ist Max Spektrum einzigartig auf dem Markt. Zum Vergleich: Das entspricht der Bakterienmenge in einem ganzen Kilogramm Naturjoghurt – und das täglich.</p>
     <div class="f-media">
       <div class="card green">
-        <div class="gaps-title"><h3>6 wichtige Stammgruppen</h3><span>für ein ausgewogenes Mikrobiom</span></div>
+        <div class="gaps-title"><h3>6 häufige Auslöser für Blähbauch</h3><span>wenn das Darmmikrobiom aus dem Gleichgewicht gerät</span></div>
         <div class="gaps">
-          <div class="gap"><div><b>Lactobacillus</b><span>Unterstützt die Darmbarriere</span></div><span class="gico"></span></div>
-          <div class="gap"><div><b>Bifidobacterium</b><span>Fördert ein ruhiges Bauchgefühl</span></div><span class="gico"></span></div>
-          <div class="gap"><div><b>Streptococcus</b><span>Unterstützt die Verdauung</span></div><span class="gico"></span></div>
-          <div class="gap"><div><b>Pediococcus</b><span>Stärkt das Mikrobiom-Gleichgewicht</span></div><span class="gico"></span></div>
-          <div class="gap"><div><b>Inulin (Zichorie)</b><span>Nährstoff für nützliche Bakterien</span></div><span class="gico"></span></div>
-          <div class="gap"><div><b>Vitamin B2</b><span>Erhält die Darmschleimhaut*</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Einseitige Ernährung</b><span>wenig Ballaststoffe</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Zu schnelles Essen</b><span>mehr verschluckte Luft</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Antibiotika</b><span>verändern die Darmflora</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Stress</b><span>verlangsamt die Verdauung</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Gestörte Darmflora</b><span>übermäßige Gasbildung</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Wenig Bewegung</b><span>trägere Verdauung</span></div><span class="gico"></span></div>
         </div>
       </div>
     </div>
@@ -542,15 +533,13 @@
 <!-- feature 03 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">03</div><h2>Magensaftresistente Kapseln – die Bakterien kommen an</h2></div>
-    <p class="f-body">Was nützen hochwertige Stämme, wenn sie die Magenpassage nicht überleben? Die magensaftresistente Kapsel von MAX SPEKTRUM N95 schützt die Kulturen auf dem Weg durch den Magen und sorgt dafür, dass sie dort ankommen, wo sie gebraucht werden: im Darm.</p>
+    <div class="f-head"><div class="eyebrow">03</div><h2>Klinisch getestete Inhaltsstoffe</h2></div>
+    <p class="f-body">Nicht nur viele Stämme, sondern auch gut erforschte. Max Spektrum enthält die 11 klinisch untersuchten Stämme aus ProbaTech™, Nupures eigener wissenschaftlicher Mischung, die in einer klinischen Studie nach 12 Wochen messbare Verbesserungen bei Blähungen und Verdauungsbeschwerden gezeigt hat. Weitere enthaltene Stämme wie Lactobacillus acidophilus, L. rhamnosus und Bifidobacterium longum sind ebenfalls in zahlreichen Studien auf ihre Wirkung im Darm untersucht worden und wissenschaftlich gut dokumentiert.</p>
     <div class="f-media">
       <div class="card butter calloutcard">
-        <div class="callout">95 Stämme &nbsp;•&nbsp; 95 Mrd. KBE Tagesdosis</div>
-        <div class="ph onlight filled" id="img-02">
-          <img src="https://nupureshop.com/cdn/shop/files/1749556802.jpg" alt="probaflor MAX SPEKTRUM N95 Kapsel-Nahaufnahme mit Beschriftungen der Wirkmerkmale" width="380" height="300" loading="lazy">
-        </div>
-        <div class="callout" style="text-align:right">Activ-Vial™ Feuchtigkeitsschutz &nbsp;•&nbsp; Ohne Zucker</div>
+        <div class="callout">95 Stämme &nbsp;•&nbsp; 95 Mrd. KBE / Tag</div>
+        <div class="ph onlight filled" id="img-06"><img src="https://nupureshop.com/cdn/shop/files/1781596806.jpg" alt="probaflor MAX SPEKTRUM N95 Dose mit Hinweisen zu Stammvielfalt" width="380" height="300" loading="lazy"></div>
+        <div class="callout" style="text-align:right">magensaftresistent &nbsp;•&nbsp; Apotheken-Qualität</div>
       </div>
     </div>
   </div>
@@ -559,14 +548,12 @@
 <!-- feature 04 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">04</div><h2>Echte Menschen, echte Ergebnisse: weniger Blähbauch</h2></div>
-    <p class="f-body">Kundenmeinungen zeigen: Viele spüren bereits nach wenigen Wochen regelmäßiger Einnahme ein ruhigeres Bauchgefühl – weniger Blähungen und ein leichteres Körpergefühl nach dem Essen.</p>
+    <div class="f-head"><div class="eyebrow">04</div><h2>Präbiotische Ballaststoffe, die die guten Bakterien nähren</h2></div>
+    <p class="f-body">Probiotika brauchen Nahrung, um zu überleben, sich anzusiedeln und ihre volle Wirkung zu entfalten. Deshalb enthält Max Spektrum Inulin aus Chicorée-Wurzel, einen natürlichen präbiotischen Ballaststoff, der nützliche Darmbakterien gezielt ernährt und ihr Wachstum fördert. Im Dickdarm wird Inulin zu Butyrat fermentiert, dem wichtigsten Energielieferanten für die Darmschleimhautzellen. Weniger unkontrollierte Gärung bedeutet direkt weniger Gasbildung und weniger Blähbauch.</p>
     <div class="f-media">
       <div class="card butter quotecard">
-        <div class="qbox"><div class="quotemark">"</div>Ich hab keinen aufgeblähten Bauch mehr und fühle mich auch sonst nicht mehr so träge. Ich hab es schon weiterempfohlen!</div>
-        <div class="ph onlight filled" id="img-03" style="height:170px">
-          <img src="https://nupureshop.com/cdn/shop/files/1749556803.jpg" alt="Zufriedene Kundin hält probaflor MAX SPEKTRUM N95, lächelt entspannt" width="440" height="170" loading="lazy">
-        </div>
+        <div class="qbox"><div class="quotemark">”</div>Seit ich es nehme, habe ich keinen aufgeblähten Bauch mehr und fühle mich auch sonst nicht mehr so träge. Ich hab es schon weiterempfohlen.</div>
+        <div class="ph onlight filled" id="img-07"><img src="https://nupureshop.com/cdn/shop/files/1781596807.jpg" alt="Kundin in entspanntem Moment zu Hause" width="440" height="170" loading="lazy"></div>
         <div class="namecard"><b>Diana</b>Verifizierte Käuferin</div>
       </div>
     </div>
@@ -576,18 +563,16 @@
 <!-- feature 05 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">05</div><h2>Einfach in den Alltag integriert – 2 Kapseln täglich</h2></div>
-    <p class="f-body">MAX SPEKTRUM N95 passt unkompliziert in jede Routine. Einfach täglich 2 Kapseln mit einem Glas Wasser nehmen – kein Kühlschrank nötig, keine Zubereitung, kein Kompromiss beim Geschmack.</p>
+    <div class="f-head"><div class="eyebrow">05</div><h2>Regelmäßigere Verdauung – klinisch bestätigt</h2></div>
+    <p class="f-body">Nahrung, die zu lange im Darm verweilt, führt zu Gärung, übermäßiger Gasbildung und einem dauerhaft aufgeblähten Bauch. In der klinischen Studie zu ProbaTech™ konnte nach 12 Wochen eine messbar regelmäßigere Verdauung nachgewiesen werden – ein zentrales Ergebnis der Studie. Wenn der Darm regelmäßig und gleichmäßig arbeitet, hat Luft schlicht weniger Zeit, sich anzustauen und Blähungen zu verursachen.</p>
     <div class="f-media">
       <div class="card green prodgreen">
         <div class="faded">
-          <span>Ohne Zucker</span><span>Vegan</span><span>Ohne Gluten</span><span>Ohne Fruktose</span>
-          <span>Kein GMO</span><span>Kein Kühlschrank</span><span>Magensaftresistent</span><span>Apotheken-Qualität</span>
-          <span>95 Stämme</span><span>95 Mrd. KBE</span><span>ProbaTech™</span><span>Vitamin B2</span>
+          <span>95 Stämme</span><span>Vegan-Kapsel</span><span>Vitamin B2</span><span>Chicorée</span>
+          <span>magensaftresistent</span><span>ohne Zucker</span><span>kein GMO</span><span>laktosearm</span>
+          <span>95 Mrd. KBE</span><span>glutenfrei</span><span>ProbaTech™</span><span>Activ-Vial™</span>
         </div>
-        <div class="ph ondark filled" id="img-04">
-          <img src="https://nupureshop.com/cdn/shop/files/1749556804.jpg" alt="probaflor MAX SPEKTRUM N95 Dose auf sauberem Hintergrund, freistehend" width="200" height="230" loading="lazy">
-        </div>
+        <div class="ph ondark filled" id="img-08"><img src="https://nupureshop.com/cdn/shop/files/1781596808.jpg" alt="probaflor MAX SPEKTRUM N95 Dose freigestellt" width="200" height="230" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -596,17 +581,17 @@
 <!-- feature 06 -->
 <section class="feature sec">
   <div class="wrap">
-    <div class="f-head"><div class="eyebrow">06</div><h2>Klinisch geprüft, messbar wirksam: ProbaTech™</h2></div>
-    <p class="f-body">MAX SPEKTRUM N95 enthält ProbaTech™ – Nupures eigene Stammformel, untersucht in einer 12-wöchigen, randomisierten, doppelblinden, placebokontrollierten Studie mit gesunden Erwachsenen. Die Ergebnisse zeigen messbare Verbesserungen des gastrointestinalen Wohlbefindens.*</p>
+    <div class="f-head"><div class="eyebrow">06</div><h2>Schützt die Darmschleimhaut von innen</h2></div>
+    <p class="f-body">Eine geschwächte Darmschleimhaut lässt unerwünschte Stoffe passieren, verstärkt Entzündungsreaktionen und macht den Bauch deutlich anfälliger für Blähungen, Reizungen und Beschwerden. Max Spektrum enthält Vitamin B2 (Riboflavin), das zur Erhaltung normaler Schleimhäute beiträgt. Eine intakte und gesunde Darmbarriere ist die Grundlage für einen ruhigen, beschwerdefreien Bauch im Alltag.</p>
     <div class="f-media">
       <div class="card butter">
         <div class="cmprow">
-          <div class="lbl"><b>Nützliche Darmstoffe (SCFAs)</b><span>bis zu 35 % mehr vs. Placebo*</span></div>
-          <div class="bar gr">+35 %</div><div class="bar gy">Placebo</div>
+          <div class="lbl"><b>SCFAs im Darm</b><span>ProbaTech™ vs. Placebo</span></div>
+          <div class="bar gr">+35 %</div><div class="bar gy">Basis</div>
         </div>
         <div class="cmprow">
-          <div class="lbl"><b>Mikrobielle Vielfalt</b><span>signifikant erhöht vs. Ausgangswert*</span></div>
-          <div class="bar gr">↑ Vielfalt</div><div class="bar gy">Placebo</div>
+          <div class="lbl"><b>Mikrobielle Vielfalt</b><span>ProbaTech™ vs. Placebo</span></div>
+          <div class="bar gr">höher</div><div class="bar gy">Basis</div>
         </div>
       </div>
     </div>
@@ -616,14 +601,14 @@
 <!-- stats band -->
 <section class="sec"><div class="wrap">
   <div class="statsband">
-    <span class="pill">ProbaTech™ Studienergebnisse</span>
+    <span class="pill">Warum der Darm zählt</span>
     <div class="statgrid">
-      <div><div class="n">95</div><div class="l">wissenschaftlich untersuchte Stämme*</div></div>
-      <div><div class="n">+35%</div><div class="l">mehr nützliche Darmstoffe (SCFAs)*</div></div>
-      <div><div class="n">95</div><div class="l">Mrd. KBE pro Tagesdosis bis MHD</div></div>
-      <div><div class="n">12</div><div class="l">Wochen Studiendauer, RCT, placebokontrolliert</div></div>
+      <div><div class="n">95%</div><div class="l">des Serotonins entsteht im Darm*</div></div>
+      <div><div class="n">80%</div><div class="l">der aktiven Immunzellen sitzen im Darm*</div></div>
+      <div><div class="n">8</div><div class="l">wichtige Vitamine bilden Darmbakterien*</div></div>
+      <div><div class="n">95</div><div class="l">untersuchte Bakterienstämme pro Dose</div></div>
     </div>
-    <div class="statfoot">*Ergebnisse aus einer 12-wöchigen randomisierten, doppelblinden, placebokontrollierten Studie mit gesunden Erwachsenen, ProbaTech™-Formel.</div>
+    <div class="statfoot">*Allgemeine Angaben zur Rolle des Darmmikrobioms – keine produktbezogene Wirkaussage.</div>
   </div>
 </div></section>
 
@@ -631,126 +616,125 @@
 <section class="trusted07 sec"><div class="wrap">
   <div>
     <div class="eyebrow">07</div>
-    <h2 style="font-size:30px;margin-bottom:14px">Vertraut von über 1 Million Kunden</h2>
-    <p class="lead" style="margin-bottom:16px">nupure probaflor gehört zu den meistverkauften Probiotika in Deutschland – bei Apotheken, auf Amazon und direkt bei Kunden, die ihren Darm langfristig unterstützen möchten.</p>
-    <span class="pill soft">♥ Durchschnittlich 4.8/5.0 über 15.000+ Bewertungen.</span>
+    <h2 style="font-size:30px;margin-bottom:14px">Von tausenden Menschen täglich genutzt</h2>
+    <p class="lead" style="margin-bottom:16px">Tausende Menschen setzen Max Spektrum N95 täglich ein, um Blähungen und Blähbauch langfristig in den Griff zu bekommen. Wer einmal verstanden hat, wie stark Darmgesundheit das tägliche Wohlbefinden beeinflusst, möchte diesen Schritt nicht mehr missen. Die Kombination aus maximaler Stammvielfalt, klinisch untersuchten Bakterien, präbiotischen Ballaststoffen und Vitamin B2 macht Max Spektrum zur umfassendsten täglichen Unterstützung für einen ruhigen, ausgeglichenen Darm.</p>
+    <span class="pill soft">♥ 4,8 / 5,0 aus 973 Bewertungen.</span>
   </div>
   <div class="ugccard">
-    <div class="top"><div class="stars">★★★★★</div><div class="rate">4.8/5.0 nupure, 915+ Bewertungen</div></div>
+    <div class="top"><div class="stars">★★★★★</div><div class="rate">4,8 / 5,0 · 973 Bewertungen</div></div>
     <div class="ugcgrid">
-      <div class="ph ondark filled" id="img-ugc1"><img src="https://nupureshop.com/cdn/shop/files/1749556805.jpg" alt="Kundenfoto mit probaflor MAX SPEKTRUM N95" width="150" height="120" loading="lazy"></div>
-      <div class="ph ondark tall filled" id="img-ugc2"><img src="https://nupureshop.com/cdn/shop/files/1749556806.jpg" alt="Kundenfoto – Alltagsroutine mit nupure" width="150" height="160" loading="lazy"></div>
-      <div class="ph ondark filled" id="img-ugc3"><img src="https://nupureshop.com/cdn/shop/files/1749556807.jpg" alt="Kundenfoto probaflor Kapsel in der Hand" width="150" height="120" loading="lazy"></div>
-      <div class="ph ondark filled" id="img-ugc4"><img src="https://nupureshop.com/cdn/shop/files/1749556808.jpg" alt="Kundenfoto – Dose auf Frühstückstisch" width="150" height="120" loading="lazy"></div>
-      <div class="ph ondark filled" id="img-ugc5"><img src="https://nupureshop.com/cdn/shop/files/1749556809.jpg" alt="Kundenfoto – Nahaufnahme Kapsel" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-09"><img src="https://nupureshop.com/cdn/shop/files/1781596809.jpg" alt="Kundin mit probaflor in der Küche" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark tall filled" id="img-10"><img src="https://nupureshop.com/cdn/shop/files/1781596810.jpg" alt="probaflor Dose auf dem Frühstückstisch" width="150" height="160" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-11"><img src="https://nupureshop.com/cdn/shop/files/1781596811.jpg" alt="Hand hält zwei Kapseln" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-12"><img src="https://nupureshop.com/cdn/shop/files/1781596812.jpg" alt="Ruhiger Morgenmoment mit Wasserglas" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-13"><img src="https://nupureshop.com/cdn/shop/files/1781596813.jpg" alt="probaflor auf dem Nachttisch" width="150" height="120" loading="lazy"></div>
     </div>
   </div>
 </div></section>
 
 <!-- buy section -->
 <section class="buy sec"><div class="wrap">
-  <div class="topcap"><span class="pill soft">Probiotika &amp; klinisch untersucht</span></div>
+  <div class="topcap"><span class="pill soft">95 Stämme · klinisch untersuchte ProbaTech™-Formel</span></div>
   <div class="buygrid">
     <!-- gallery (interactive: thumb click swaps main, arrows cycle) -->
     <div class="gallery">
       <div class="thumbs" id="thumbs">
-        <div class="ph thumb active filled" id="img-t0" data-idx="0" data-ty="Produktfoto"><img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086" alt="Produktfoto Thumbnail 1" width="64" height="64" loading="lazy"></div>
-        <div class="ph thumb filled" id="img-t1" data-idx="1" data-ty="Inhaltsstoffe"><img src="https://nupureshop.com/cdn/shop/files/1749556811.jpg" alt="Produktfoto Thumbnail 2" width="64" height="64" loading="lazy"></div>
-        <div class="ph thumb filled" id="img-t2" data-idx="2" data-ty="Bewertungen Collage"><img src="https://nupureshop.com/cdn/shop/files/1749556812.jpg" alt="Produktfoto Thumbnail 3" width="64" height="64" loading="lazy"></div>
-        <div class="ph thumb filled" id="img-t3" data-idx="3" data-ty="Was erwartet mich"><img src="https://nupureshop.com/cdn/shop/files/1749556813.jpg" alt="Produktfoto Thumbnail 4" width="64" height="64" loading="lazy"></div>
-        <div class="ph thumb filled" id="img-t4" data-idx="4" data-ty="Klinische Ergebnisse"><img src="https://nupureshop.com/cdn/shop/files/1749556814.jpg" alt="Produktfoto Thumbnail 5" width="64" height="64" loading="lazy"></div>
-        <div class="ph thumb filled" id="img-t5" data-idx="5" data-ty="Lifestyle Darm"><img src="https://nupureshop.com/cdn/shop/files/1749556815.jpg" alt="Produktfoto Thumbnail 6" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb active filled" data-idx="0" data-ty="Produktfoto" data-full="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=640"><img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=128" alt="probaflor MAX SPEKTRUM N95 Packung" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="1" data-ty="Produktdetails" data-full="https://nupureshop.com/cdn/shop/files/03_NU_Probaflor-Max-spektrum-N95_DE_627cfb5e-89f2-441c-b712-71cb25ec2a1a.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/03_NU_Probaflor-Max-spektrum-N95_DE_627cfb5e-89f2-441c-b712-71cb25ec2a1a.png?v=1744710095&width=128" alt="probaflor Produktdetails" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="2" data-ty="Inhaltsstoffe" data-full="https://nupureshop.com/cdn/shop/files/04_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/04_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1744710095&width=128" alt="probaflor Inhaltsstoffe" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="3" data-ty="Einnahme" data-full="https://nupureshop.com/cdn/shop/files/05_NU_Probaflor-Max-spektrum-N95_DE_55e497e0-ca7e-4dbe-bb6a-096a7339c3c8.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/05_NU_Probaflor-Max-spektrum-N95_DE_55e497e0-ca7e-4dbe-bb6a-096a7339c3c8.png?v=1744710095&width=128" alt="probaflor Einnahme" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="4" data-ty="Auf Reisen" data-full="https://nupureshop.com/cdn/shop/files/06_proba_reise_probatech_PDP_image_DE_19975d3f-835b-420a-91ef-19e2b2e9fb04.png?v=1773319041&width=640"><img src="https://nupureshop.com/cdn/shop/files/06_proba_reise_probatech_PDP_image_DE_19975d3f-835b-420a-91ef-19e2b2e9fb04.png?v=1773319041&width=128" alt="probaflor für unterwegs" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="5" data-ty="Vergleich" data-full="https://nupureshop.com/cdn/shop/files/07-comparison_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1773319041&width=640"><img src="https://nupureshop.com/cdn/shop/files/07-comparison_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1773319041&width=128" alt="probaflor Vergleich" width="64" height="64" loading="lazy"></div>
       </div>
       <div>
         <div class="maincard">
-          <div class="ribbon">🔥 BESTSELLER: WELTWEIT UMFANGREICHSTES STAMMSPEKTRUM 🔥</div>
+          <div class="ribbon">🔥 SPAR-AKTION: BIS ZU 28 % SPAREN 🔥</div>
           <div class="inner">
             <div class="galmain">
               <div class="ph onlight filled" id="galMain">
-                <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086" alt="probaflor MAX SPEKTRUM N95 Hauptbild" width="320" height="280" loading="lazy">
+                <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=640" alt="probaflor MAX SPEKTRUM N95" width="320" height="280" loading="lazy">
+                <span class="dim">320 × 280</span>
+                <span class="ty" id="galType">Produktfoto (1/6)</span>
               </div>
-              <span class="ty" id="galType" style="display:none">Produktfoto (1/6)</span>
               <button class="galarr left" id="galPrev" aria-label="Vorheriges Bild">‹</button>
               <button class="galarr right" id="galNext" aria-label="Nächstes Bild">›</button>
             </div>
             <div class="featlist">
-              <div class="it"><div class="ic">🦠</div>95 Bakterienstämme</div>
-              <div class="it"><div class="ic">💊</div>Magensaftresistent</div>
-              <div class="it"><div class="ic">🌿</div>Mit Inulin & Vitamin B2</div>
-              <div class="it"><div class="ic">🔬</div>ProbaTech™ klinisch geprüft</div>
-              <div class="it"><div class="ic">✓</div>Ohne Zucker & Gluten</div>
+              <div class="it"><div class="ic">♺</div>95 Stämme</div>
+              <div class="it"><div class="ic">◉</div>95 Mrd. KBE / Tag</div>
+              <div class="it"><div class="ic">♥</div>magensaftresistent</div>
+              <div class="it"><div class="ic">⚡</div>ProbaTech™ Formel</div>
+              <div class="it"><div class="ic">★</div>Apotheken-Qualität</div>
             </div>
           </div>
         </div>
-        <button class="btn-out nutbtn" id="nutBtn">Nährwertinformationen ansehen</button>
-        <div class="labtest"><span class="b">✓</span> Apotheken-Qualität &nbsp;·&nbsp; <b>Activ-Vial™</b> Feuchtigkeitsschutz &nbsp;·&nbsp; 3rd-Party-geprüft →</div>
+        <button class="btn-out nutbtn" id="nutBtn">Nährwerte &amp; Inhaltsstoffe ansehen</button>
+        <div class="labtest"><span class="b">✓</span> Garantierte Dosierung bis zum <b>Ende der Haltbarkeit</b> — dank Activ-Vial™ →</div>
       </div>
     </div>
 
     <!-- buybox -->
     <div class="bb">
-      <div class="rate"><span class="stars">★★★★★</span> <a href="#reviews" class="js-scroll"><u>4.8/5.0 (915 Bewertungen), 1M+ Kunden</u></a></div>
-      <h2>probaflor MAX SPEKTRUM N95: Für ein ruhiges Bauchgefühl</h2>
-      <p class="desc">95 wissenschaftlich geprüfte Milchsäurebakterienstämme mit Inulin und Vitamin B2 – zur Unterstützung einer ausgeglichenen Darmflora und einer normalen Verdauungsfunktion.*</p>
+      <div class="rate"><span class="stars">★★★★★</span> <a href="#reviews" class="js-scroll"><u>4,8 / 5,0 (973 Bewertungen)</u></a></div>
+      <h2>probaflor MAX SPEKTRUM N95</h2>
+      <p class="desc">95 wissenschaftlich untersuchte Bakterienstämme und 95 Mrd. KBE pro Tagesdosis – für ein ausgeglichenes Darmmikrobiom und weniger Gasbildung, die Blähungen und Blähbauch verursacht. 80 Kapseln, magensaftresistent.</p>
       <hr>
-      <div class="flabel">Packungsgröße: <span style="font-weight:400" id="flavorName">80 Kapseln</span>
-        <button class="infoicon" data-modal="taste" aria-label="Packungsinfo">i</button>
-      </div>
-      <div class="fsub">80 Kapseln = 40 Tage Versorgung (2 Kapseln täglich)</div>
-      <div class="opts2">
-        <div class="optcard active" data-group="flavor" data-flavor="original" data-name="80 Kapseln" data-variant="49029898142035">
-          <div class="ph onlight filled"><img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086" alt="1x 80 Kapseln" width="100" height="62" loading="lazy"></div><div class="nm">1× 80 Kapseln</div>
+      <div class="flabel" style="margin-bottom:10px" id="offers">Ihre Vorratsgröße</div>
+      <!-- Supply selector: ALWAYS two options — 3-pack (3×) and single (1×).
+           data-variant carries the real Shopify variant IDs from the prompt;
+           .price strings filled from the product page. -->
+      <div class="offer hasbanner active" data-group="offer" data-offer="three" data-variant="49029911183699" data-price-cents="13995">
+        <div class="banner">BELIEBT: BIS ZU 28 % SPAREN</div>
+        <div class="radio"></div>
+        <div class="info">
+          <b>3er-Pack</b>
+          <div class="sub">3 × 80 Kapseln · 120 Tage Vorrat</div>
+          <div class="li"><span class="v">✓</span>Bester Preis pro Packung</div>
+          <div class="li"><span class="v">✓</span>Durchgehende Routine ohne Lücken</div>
+          <div class="li"><span class="v">✓</span>Gratis Versand</div>
         </div>
-        <div class="optcard" data-group="flavor" data-flavor="firecracker" data-name="30 Kapseln" data-variant="49048171020627">
-          <span class="lt">Starter</span>
-          <div class="ph onlight filled"><img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_30_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189085" alt="1x 30 Kapseln" width="100" height="62" loading="lazy"></div><div class="nm">1× 30 Kapseln</div>
-        </div>
+        <div class="price"><b id="threePrice">139.95 €</b><s id="threeComp">194.85 €</s><span id="threeDay">1,17 €/Tag</span></div>
       </div>
-      <hr>
-      <div class="qrow"><div class="flabel" style="margin:0">Menge</div></div>
-      <div class="toggles" style="margin-top:8px">
-        <div class="tog active" data-group="qty" data-qty="1">1</div>
-        <div class="tog" data-group="qty" data-qty="2">2</div>
+      <div class="offer" data-group="offer" data-offer="one" data-variant="49029898142035" data-price-cents="6495">
+        <div class="radio"></div>
+        <div class="info"><b>Einzelpackung</b><div class="sub">1 × 80 Kapseln · 40 Tage Vorrat</div></div>
+        <div class="price"><b id="onePrice">64.95 €</b><span id="oneDay">1,62 €/Tag</span></div>
       </div>
-      <hr>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <span style="font-size:15px;color:var(--muted)">Gesamt</span>
-        <span id="onePrice" style="font-size:22px;font-weight:900;color:#2a2a26">€64,95</span>
-      </div>
-      <a href="https://nupureshop.com/cart/49029898142035:1,55883547476350:1" class="btn" data-atc>Jetzt in den Warenkorb</a>
+      <a href="https://nupureshop.com/cart/49029911183699:1" data-atc class="btn">In den Warenkorb</a>
+      <div class="autoapplied">Mengenvorteil aktiv ✅ <span id="saveAmt">Sie sparen 54,90 €</span></div>
       <div class="trust3">
-        <div class="it"><div class="ic">✓</div>90 Tage Geld-zurück-Garantie</div>
-        <div class="it"><div class="ic">◈</div>Klinisch &amp; 3rd-Party-geprüft</div>
-        <div class="it"><div class="ic">▦</div>Klarna 30-Tage <u>verfügbar</u></div>
+        <div class="it"><div class="ic">✓</div>90 Tage Geld-zurück</div>
+        <div class="it"><div class="ic">◈</div>Apotheken-Qualität</div>
+        <div class="it"><div class="ic">▦</div>Gratis Versand ab 30 €</div>
       </div>
 
       <!-- accordions -->
-      <div class="acc"><button>Wie viele Kapseln täglich? <span class="sign">+</span></button><div class="body">Erwachsene nehmen täglich 2 Kapseln mit einem Glas Wasser ein. Die Kapseln können zu jeder Tageszeit eingenommen werden – eine kontinuierliche Einnahme wird empfohlen.</div></div>
-      <div class="acc"><button>Inhaltsstoffe &amp; Allergene <span class="sign">+</span></button><div class="body">Enthält Maisstärke und Kapselhülle aus Hydroxypropylmethylcellulose und Pektin. Enthält MILCH (Laktose als Trägerstoff der Kulturen). Ohne Gluten, ohne Fruktose, ohne zugesetzten Zucker, GMO-frei.</div></div>
-      <div class="acc"><button>Muss es im Kühlschrank aufbewahrt werden? <span class="sign">+</span></button><div class="body">Nein. Das Activ-Vial™-System absorbiert Feuchtigkeit aktiv und schützt die Bakterien bei Raumtemperatur. Bei sehr hohen Außentemperaturen kann das Produkt auch im Kühlschrank gelagert werden.</div></div>
-      <div class="acc"><button>Zertifizierungen &amp; Qualität <span class="sign">+</span></button><div class="body">MAX SPEKTRUM N95 ist in Apotheken-Qualität hergestellt, GVO-frei und wurde im Rahmen einer klinischen Studie (ProbaTech™-Formel) untersucht. Die Abfüllung erfolgt in einer zertifizierten Produktionsstätte.</div></div>
-      <div class="acc"><button>Einnahmeempfehlung <span class="sign">+</span></button><div class="body">2 Kapseln täglich mit einem Glas Wasser, vorzugsweise zur gleichen Tageszeit. Das Produkt kann dauerhaft eingenommen werden und eignet sich auch auf Reisen.</div></div>
-      <div class="acc"><button>Welche Vorteile hat die breite Stammvielfalt? <span class="sign">+</span></button><div class="body">Verschiedene Stämme haben unterschiedliche Funktionen im Verdauungssystem. Ein breiteres Spektrum erhöht die Wahrscheinlichkeit, dass nützliche Stämme aktiv werden – ähnlich wie ein vielseitiges Team besser auf unterschiedliche Aufgaben reagieren kann als ein spezialisiertes Einzelmitglied.</div></div>
+      <div class="acc"><button>Warum 95 Stämme? <span class="sign">+</span></button><div class="body">Jeder Bakterienstamm hat eigene Eigenschaften. Mit 95 Stämmen erhöhen Sie die Wahrscheinlichkeit, dass Ihr Darm mit unterschiedlichen nützlichen Bakterien besiedelt wird – wie ein vielfältiges Team, das die natürliche Mikrobiom-Vielfalt nachahmt.</div></div>
+      <div class="acc"><button>Blähungen &amp; Darm <span class="sign">+</span></button><div class="body">Blähungen und Blähbauch entstehen oft durch übermäßige Gasbildung bei der Verdauung. Faktoren wie einseitige Ernährung, zu schnelles Essen oder eine gestörte Darmflora können das Gleichgewicht der Darmbakterien beeinflussen. Eine breite Stammvielfalt plus präbiotische Ballaststoffe unterstützen ein ausgeglichenes Mikrobiom.</div></div>
+      <div class="acc"><button>Inhaltsstoffe &amp; Allergene <span class="sign">+</span></button><div class="body">Ohne Gluten, ohne Fruktose, ohne Zucker, kein GMO. Enthält Milch (aus dem Fermentationsprozess der Bakterienstämme). 100 % natürlich, in Apotheken-Qualität.</div></div>
+      <div class="acc"><button>Qualität &amp; Herstellung <span class="sign">+</span></button><div class="body">Magensaftresistente Kapseln schützen die Bakterien auf dem Weg in den Darm. Spezielle Activ-Vial™-Dosen halten die Stämme stabil – mit garantierter Dosierung von 95 Mrd. KBE bis zum Ende der Haltbarkeit.</div></div>
+      <div class="acc"><button>Einnahme &amp; Anwendung <span class="sign">+</span></button><div class="body">Erwachsene nehmen täglich 2 Kapseln mit einem Glas Wasser ein. Die empfohlene Tagesdosis nicht überschreiten. Für Personen ab 18 Jahren.</div></div>
+      <div class="acc"><button>Chicorée &amp; Vitamin B2 <span class="sign">+</span></button><div class="body">266 mg Chicorée (davon 179 mg Inulin) unterstützen die Verdauung*. Vitamin B2 (2,8 mg / 200 % NRV) trägt zur Erhaltung normaler Schleimhäute bei. *Die Bewertung dieser gesundheitsbezogenen Aussage steht noch aus.</div></div>
 
-      <!-- tastes like -->
-      <h3 class="tlhead">Einnahme auf drei Arten</h3>
+      <!-- tastes like → free-from -->
+      <h3 class="tlhead">Frei von</h3>
       <div class="tl">
-        <div class="it"><div class="ic">💧</div>Mit Wasser</div>
-        <div class="it"><div class="ic">🥤</div>Im Smoothie</div>
-        <div class="it"><div class="ic">🌅</div>Morgens nüchtern</div>
+        <div class="it"><div class="ic">🌿</div>Gluten</div>
+        <div class="it"><div class="ic">🍬</div>Zucker</div>
+        <div class="it"><div class="ic">🧬</div>GMO</div>
       </div>
 
       <!-- packed with -->
-      <h3 class="tlhead">Das steckt drin</h3>
+      <h3 class="tlhead">Enthält</h3>
       <div class="packed">
         <div class="it"><span class="ic">🦠</span>95 Bakterienstämme</div>
-        <div class="it"><span class="ic">📊</span>95 Mrd. KBE pro Tag</div>
-        <div class="it"><span class="ic">🌿</span>Inulin (Zichorie)</div>
-        <div class="it"><span class="ic">💊</span>Vitamin B2</div>
-        <div class="it"><span class="ic">🔬</span>ProbaTech™ Formel</div>
-        <div class="it"><span class="ic">🛡</span>Magensaftresistente Kapsel</div>
-        <div class="it"><span class="ic">📦</span>Activ-Vial™ Schutz</div>
-        <div class="it"><span class="ic">✅</span>Ohne Zucker &amp; Gluten</div>
+        <div class="it"><span class="ic">💪</span>95 Mrd. KBE / Tagesdosis</div>
+        <div class="it"><span class="ic">🌿</span>Chicorée (Inulin)</div>
+        <div class="it"><span class="ic">🧪</span>Vitamin B2 (Riboflavin)</div>
+        <div class="it"><span class="ic">🔬</span>ProbaTech™ Stammformel</div>
+        <div class="it"><span class="ic">🛡️</span>magensaftresistente Kapsel</div>
+        <div class="it"><span class="ic">📦</span>Activ-Vial™ Frischedose</div>
+        <div class="it"><span class="ic">🌱</span>100 % natürlich</div>
       </div>
     </div>
   </div>
@@ -758,42 +742,43 @@
 
 <!-- reviews 3 -->
 <section class="rev3 sec"><div class="wrap">
-  <h2>Was Kunden über ihren Blähbauch sagen</h2>
+  <h2>Das sagen Menschen, die probaflor nehmen</h2>
   <div class="grid">
-    <div class="rcard"><span class="stars">★★★★★</span><h4>„Kein aufgeblähter Bauch mehr!"</h4><p>Ich nehme es jetzt seit ca. 1 Woche und es geht mir soooooo gut. Ich hab keinen aufgeblähten Bauch mehr, fühl mich auch sonst nicht mehr so träge.</p><div class="who">Diana <span class="vc">✓</span> Verifizierte Käuferin</div></div>
-    <div class="rcard"><span class="stars">★★★★★</span><h4>„Schon nach 3 Tagen spürbar"</h4><p>Nach 3 Tagen Einnahme merke ich einen Rückgang der Heißhungerattacken – und mein Bauch fühlt sich viel ruhiger an als zuvor.</p><div class="who">Anita S. <span class="vc">✓</span> Verifizierte Käuferin</div></div>
-    <div class="rcard"><span class="stars">★★★★★</span><h4>„Fühle mich fitter und wohler"</h4><p>Im stressigen Alltag habe ich etwas gesucht, um meinen Darm zu entlasten. Seit etwa 2 Wochen kann ich eine deutliche Verbesserung feststellen.</p><div class="who">Cathleen <span class="vc">✓</span> Verifizierte Käuferin</div></div>
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Kein aufgeblähter Bauch mehr"</h4><p>Ich nehme sie seit etwa einer Woche und mir geht es so gut. Ich habe keinen aufgeblähten Bauch mehr und fühle mich auch sonst nicht mehr so träge. Habe es schon weiterempfohlen.</p><div class="who">Diana <span class="vc">✓</span> Verifizierte Käuferin</div></div>
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Ein gutes Gefühl im Bauch"</h4><p>Ich habe das probaflor MAX SPEKTRUM N95 ausprobiert und bin wirklich zufrieden. Die Qualität wirkt hochwertig und ich vertrage es ausgezeichnet. Würde ich wieder kaufen!</p><div class="who">JuMi <span class="vc">✓</span> Verifizierte Käuferin</div></div>
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Überzeugt"</h4><p>Sehr gutes Produkt, ich bin überzeugt. Lieferung war schnell und seitdem ich es nehme, habe ich ein gutes Gefühl im Bauch.</p><div class="who">Falko <span class="vc">✓</span> Verifizierter Käufer</div></div>
   </div>
 </div></section>
 
 <!-- us vs them -->
 <section class="vs sec"><div class="wrap">
   <div>
-    <h2>probaflor MAX N95 vs. Standard-Probiotika</h2>
-    <p class="lead">Die meisten Probiotika auf dem Markt enthalten 1–10 Stämme. MAX SPEKTRUM N95 bietet das breiteste wissenschaftlich belegte Stammspektrum weltweit.</p>
+    <h2>MAX SPEKTRUM N95 vs. übliche Probiotika</h2>
+    <p class="lead">Nicht jedes Probiotikum ist gleich. Die Stammvielfalt, die garantierte Dosierung und die magensaftresistente Kapsel machen den Unterschied.</p>
   </div>
   <div class="cmptable">
-    <div class="crow"><div class="head-row-thumb"></div><div class="hd">probaflor MAX N95</div><div class="hd">Standard-Probiotika</div></div>
-    <div class="crow"><div class="h">Bakterienstämme</div><div class="c">95 Stämme</div><div class="c">1–10 Stämme</div></div>
+    <div class="crow"><div class="head-row-thumb"></div><div class="hd">MAX SPEKTRUM N95</div><div class="hd">Übliche Probiotika</div></div>
+    <div class="crow"><div class="h">Bakterienstämme</div><div class="c">95</div><div class="c">oft &lt; 20</div></div>
     <div class="crow" style="grid-template-columns:1.4fr 1fr 1fr"><div class="h">Bewertung</div><div class="c stars">★★★★★</div><div class="c stars">★★★</div></div>
-    <div class="crow"><div class="h">KBE pro Tagesdosis</div><div class="c">95 Mrd.</div><div class="c">1–10 Mrd.</div></div>
+    <div class="crow"><div class="h">KBE pro Tagesdosis</div><div class="c">95 Mrd.</div><div class="c">variiert</div></div>
     <div class="crow"><div class="h">Magensaftresistent</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
-    <div class="crow"><div class="h">Klinisch geprüfte Formel</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-y">✓</span></div></div>
-    <div class="crow"><div class="h">Inulin, Vitamin B2 enthalten</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
+    <div class="crow"><div class="h">Mit Chicorée &amp; Vitamin B2</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
+    <div class="crow"><div class="h">Apotheken-Qualität</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
   </div>
 </div></section>
+<!-- (note: the live table has a 3rd "Multi-vitamins" column; kept 2 comparison columns + product to read cleanly on mobile) -->
 
 <!-- carousel -->
 <section class="carouselsec sec"><div class="wrap">
-  <div class="center"><span class="pill soft" style="text-transform:uppercase;letter-spacing:.6px">Kundenstimmen</span><h2>Vertraut von über 1 Million zufriedenen Kunden</h2></div>
+  <div class="center"><span class="pill soft" style="text-transform:uppercase;letter-spacing:.6px">Echte Stimmen</span><h2>Begleitet von tausenden Menschen</h2></div>
   <div class="track" id="track">
-    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Diana S.</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>„Ich hab keinen aufgeblähten Bauch mehr und fühle mich nicht mehr so träge."</p></div>
-    <div class="ccard"><span class="tag">Blähbauch</span><div class="ph filled" id="img-ugcv1"><img src="https://nupureshop.com/cdn/shop/files/1749556819.jpg" alt="UGC Video-Still: Kundin berichtet über Blähbauch-Erfolg" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
-    <div class="ccard"><span class="tag">Routine</span><div class="ph filled" id="img-ugcv2"><img src="https://nupureshop.com/cdn/shop/files/1749556820.jpg" alt="UGC Video-Still: Morgenroutine mit probaflor" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
-    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Anita M.</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>„Nach 3 Tagen merkte ich einen Rückgang der Blähungen. Bin wirklich begeistert."</p></div>
-    <div class="ccard"><span class="tag">Vergleich</span><div class="ph filled" id="img-ugcv3"><img src="https://nupureshop.com/cdn/shop/files/1749556821.jpg" alt="UGC Video-Still: Vorher-Nachher Bauchgefühl" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
-    <div class="ccard"><div class="ph filled" id="img-ugcv4"><img src="https://nupureshop.com/cdn/shop/files/1749556822.jpg" alt="UGC Video-Still: Alltagstest mit probaflor" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
-    <div class="ccard"><span class="tag">Ergebnis</span><div class="ph filled" id="img-ugcv5"><img src="https://nupureshop.com/cdn/shop/files/1749556823.jpg" alt="UGC Video-Still: Kundin zeigt probaflor MAX SPEKTRUM" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Diana</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>Seit etwa einer Woche dabei und es geht mir richtig gut. Hab es schon weiterempfohlen.</p></div>
+    <div class="ccard"><span class="tag">Routine</span><div class="ph filled" id="img-14"><img src="https://nupureshop.com/cdn/shop/files/1781596814.jpg" alt="Morgenroutine mit probaflor" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><span class="tag">Unterwegs</span><div class="ph filled" id="img-15"><img src="https://nupureshop.com/cdn/shop/files/1781596815.jpg" alt="probaflor auf Reisen" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Anita S.</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>Überraschend angenehm in meinen Alltag zu integrieren. Zwei Kapseln, fertig.</p></div>
+    <div class="ccard"><span class="tag">Abends</span><div class="ph filled" id="img-16"><img src="https://nupureshop.com/cdn/shop/files/1781596816.jpg" alt="Abendliche Einnahme mit Wasserglas" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><div class="ph filled" id="img-17"><img src="https://nupureshop.com/cdn/shop/files/1781596817.jpg" alt="Hand mit zwei Kapseln" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><span class="tag">Alltag</span><div class="ph filled" id="img-18"><img src="https://nupureshop.com/cdn/shop/files/1781596818.jpg" alt="probaflor Dose im Badezimmerregal" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
   </div>
   <div class="carnav">
     <button id="prev">←</button>
@@ -805,33 +790,33 @@
 <!-- why choose -->
 <section class="why sec"><div class="wrap">
   <div class="top">
-    <h2>Warum nupure probaflor MAX SPEKTRUM N95 wählen?</h2>
+    <h2>Warum probaflor MAX SPEKTRUM N95?</h2>
     <div class="clinbanner">
-      <div class="cc"><img src="https://nupureshop.com/cdn/shop/files/01_colon_pure_transit_pulver_main_PDP_image_with_powder_and_tag_DE.png?v=1751453778" alt="Colon Pure Transit Pulver" width="52" height="52" style="border-radius:8px;object-fit:cover"><b style="margin-top:6px">Colon Pure</b></div>
-      <div class="txt"><strong style="color:#fff">Häufig zusammen gekauft:</strong> Colon Pure Transit Pulver mit Flohsamenschalen, Enzymen und Bifidobacterium longum ES1. Flohsamenschalen binden Blähgase im Darm und unterstützen die Darmpassage — der ideale Begleiter zu probaflor bei Blähungen.*
-        <div class="lk"><span style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#5f8268;align-items:center;justify-content:center;font-size:10px">+</span> Im Warenkorb optional hinzufügbar</div>
+      <div class="cc">❮<b>+ Colon</b>Pure❯</div>
+      <div class="txt">Perfekt kombinierbar: Colon Pure Transit Pulver liefert Flohsamenschalen und Chicorée – pflanzliche Ballaststoffe, die Ihren nützlichen Bifidobakterien als Futter dienen und eine regelmäßige Verdauung unterstützen. So gehen Sie Blähbauch gleich von zwei Seiten an.
+        <div class="lk"><span class="av" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#5f8268"></span> Im Warenkorb optional hinzufügbar</div>
       </div>
     </div>
   </div>
   <div class="whygrid">
-    <div class="wcard"><h4>90 Tage Geld-zurück-Garantie</h4><div class="ic">♺</div><p>Wenn Sie nicht zufrieden sind, erstatten wir den Kaufpreis vollständig – ohne Wenn und Aber.</p></div>
-    <div class="wcard"><h4>Breites Stammspektrum für alle Darmbereiche</h4><div class="ic">◈</div><p>95 Stämme decken eine Vielfalt an Funktionen ab, die ein einzelner Stamm nicht leisten kann. So unterstützen Sie Ihr Mikrobiom umfassend.</p></div>
-    <div class="wcard"><h4>Klinisch geprüft und apothekenwürdig</h4><div class="ic">◈</div><p>ProbaTech™ zeigte in einer randomisierten Doppelblindstudie bis zu 35 % mehr nützliche Darmstoffe (SCFAs) im Vergleich zu Placebo.* Erhältlich u. a. in der Shop Apotheke.</p></div>
+    <div class="wcard"><h4>30 Tage testen, ganz entspannt</h4><div class="ic">♺</div><p>Mit der 90-Tage-Geld-zurück-Garantie können Sie probaflor in Ruhe in Ihre Routine integrieren – ohne Risiko.</p></div>
+    <div class="wcard"><h4>Vielfalt gegen Blähbauch</h4><div class="ic">◈</div><p>95 wissenschaftlich untersuchte Stämme bilden die natürliche Vielfalt des Darms nach – die Basis für ein ausgeglichenes Mikrobiom und weniger übermäßige Gasbildung.</p></div>
+    <div class="wcard"><h4>ProbaTech™ – klinisch untersucht</h4><div class="ic">◈</div><p>Die enthaltene ProbaTech™-Formel zeigte in einer 12-wöchigen, placebo-kontrollierten Studie eine erhöhte mikrobielle Vielfalt im Darm.</p></div>
   </div>
 </div></section>
 
 <!-- reviews list -->
 <section class="rlist sec" id="reviews"><div class="wrap">
-  <div class="tabs"><div class="t on">probaflor MAX N95</div></div>
+  <div class="tabs"><div class="t on">Bewertungen</div></div>
   <div class="rsummary">
     <div>
-      <div class="big">4.8</div>
+      <div class="big">4,8</div>
       <div class="stars">★★★★★</div>
-      <div class="cnt">915 Bewertungen</div>
+      <div class="cnt">973 Bewertungen</div>
     </div>
     <div class="hist">
-      <div class="hbar"><span>5</span><div class="track2"><i style="width:95%"></i></div></div>
-      <div class="hbar"><span>4</span><div class="track2"><i style="width:3%"></i></div></div>
+      <div class="hbar"><span>5</span><div class="track2"><i style="width:94%"></i></div></div>
+      <div class="hbar"><span>4</span><div class="track2"><i style="width:4%"></i></div></div>
       <div class="hbar"><span>3</span><div class="track2"><i style="width:1%"></i></div></div>
       <div class="hbar"><span>2</span><div class="track2"><i style="width:0%"></i></div></div>
       <div class="hbar"><span>1</span><div class="track2"><i style="width:1%"></i></div></div>
@@ -850,60 +835,59 @@
   <div class="rlistbody" id="rlistBody">
 
   <div class="ritem" data-rating="5" data-time="180" data-photo="1">
-    <div class="person"><div class="av">DI</div><div><b>Diana 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
-    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 2 Wochen</span></div>
+    <div class="person"><div class="av">D</div><div><b>Diana 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 3 Stunden</span></div>
       <h4>Kein aufgeblähter Bauch mehr</h4>
-      <p>Ich nehme es jetzt seit ca. 1 Woche und es geht mir soooooo gut. Ich hab keinen aufgeblähten Bauch mehr, fühl mich auch sonst nicht mehr so träge. Ich hab es schon weiterempfohlen und werde mir noch mind. 1 Packung holen.</p>
-      <div class="imgph"><div class="ph filled" id="img-revphoto"><img src="https://nupureshop.com/cdn/shop/files/1749556824.jpg" alt="Kundenfoto von Diana – Bewertungsbild" width="120" height="90" loading="lazy"></div></div>
-      <div class="for">probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
-      <div class="foot"><span class="rec">♥ Empfehle es weiter</span><span>Hilfreich △ ▽</span></div>
+      <p>Ich nehme sie jetzt seit etwa einer Woche und fühle mich rundum wohl – kein aufgeblähter Bauch mehr und auch sonst nicht mehr so träge. Ich habe es schon weiterempfohlen und werde mir noch eine Packung holen.</p>
+      <div class="imgph"><div class="ph filled" id="img-19"><img src="https://nupureshop.com/cdn/shop/files/1781596819.jpg" alt="Kundenfoto der probaflor Dose" width="120" height="90" loading="lazy"></div></div>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
     </div>
   </div>
 
   <div class="ritem" data-rating="5" data-time="185" data-photo="0">
-    <div class="person"><div class="av">AN</div><div><b>Anita Schick 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
-    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 3 Wochen</span></div>
-      <h4>Überraschend schnelle Wirkung</h4>
-      <p>Nach 3 Tagen Einnahme merke ich einen Rückgang der Heißhungerattacken und mein Bauch fühlt sich deutlich ruhiger an.</p>
-      <div class="for">probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
-      <div class="foot"><span class="rec">♥ Empfehle es weiter</span><span>Hilfreich △ ▽</span></div>
+    <div class="person"><div class="av">J</div><div><b>JuMi 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 4 Stunden</span></div>
+      <h4>Super Produkt, gerne wieder!</h4>
+      <p>Ich habe das probaflor MAX SPEKTRUM N95 ausprobiert und bin wirklich zufrieden. Die Qualität wirkt hochwertig und die Lieferung war fix. Daumen hoch!</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
     </div>
   </div>
 
   <div class="ritem" data-rating="5" data-time="240" data-photo="0">
-    <div class="person"><div class="av">CA</div><div><b>Cathleen 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
-    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 1 Monat</span></div>
-      <h4>Fitter und wohler im Alltag</h4>
-      <p>Im stressigen Alltag und mit schnellem Essen habe ich etwas gesucht, um meinen Darm zu entlasten. Nach etwa 2 Wochen kann ich auf jeden Fall schon eine Verbesserung feststellen – ich fühle mich fitter und allgemein wohler.</p>
-      <div class="for">probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
-      <div class="foot"><span class="rec">♥ Empfehle es weiter</span><span>Hilfreich △ ▽</span></div>
+    <div class="person"><div class="av">C</div><div><b>Cathleen 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 5 Stunden</span></div>
+      <h4>Endlich Ruhe im Bauch</h4>
+      <p>Bei schnellem Essen hatte ich oft einen aufgeblähten Bauch. Seit etwa zwei Wochen dabei und mein Bauch ist deutlich ruhiger – ich fühle mich rundum wohler.</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
     </div>
   </div>
 
   <div class="ritem collapsed" data-rating="5" data-time="245" data-photo="0">
-    <div class="person"><div class="av">JU</div><div><b>JuMi 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
-    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 1 Monat</span></div>
-      <h4>Super Produkt, gerne wieder!</h4>
-      <p>Ich habe probaflor MAX SPEKTRUM N95 ausprobiert und bin wirklich zufrieden. Es hält, was es verspricht, und ich vertrage es ausgezeichnet. Seit ich es nehme, habe ich ein gutes Gefühl im Bauch.</p>
-      <div class="for">probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
-      <div class="foot"><span class="rec">♥ Empfehle es weiter</span><span>Hilfreich △ ▽</span></div>
+    <div class="person"><div class="av">A</div><div><b>Anita S. 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 6 Stunden</span></div>
+      <h4>Überraschend angenehm</h4>
+      <p>Lässt sich super in den Alltag integrieren. Zwei Kapseln mit Wasser, fertig. Ich bin zufrieden.</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
     </div>
   </div>
 
   <div class="ritem collapsed" data-rating="5" data-time="300" data-photo="0">
-    <div class="person"><div class="av">FA</div><div><b>Falko</b><span class="vb">✓ Verifizierter Käufer</span></div></div>
-    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 6 Wochen</span></div>
-      <p style="margin-top:6px">Sehr gutes Produkt, ich bin überzeugt 👍🏻</p>
-      <div class="for" style="margin-top:6px"><span style="background:#eceadb;padding:2px 8px;border-radius:6px;font-size:11px">Verified by shop</span></div>
-      <div class="for">probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+    <div class="person"><div class="av">F</div><div><b>Falko</b><span class="vb">✓ Verifizierter Käufer</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 7 Stunden</span></div>
+      <p style="margin-top:6px">Sehr gutes Produkt, ich bin überzeugt. Lieferung war schnell und alles bestens.</p>
+      <div class="for" style="margin-top:6px"><span style="background:#eceadb;padding:2px 8px;border-radius:6px;font-size:11px">Vom Shop verifiziert</span></div>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
       <div class="foot"><span></span><span>Hilfreich △ ▽</span></div>
     </div>
   </div>
 
   </div><!-- /rlistBody -->
 
-  <a href="https://nupureshop.com/products/probaflor-max-spektrum-n95-80-caps#judgeme_product_reviews" target="_blank" class="btn seemore" id="seeMore" style="width:auto">Mehr Bewertungen anzeigen</a>
-  <div class="junip">Bewertet auf nupureshop.com</div>
+  <div class="junip">Bewertungen über nupureshop.com</div>
 </div></section>
 
 <!-- footer -->
@@ -911,53 +895,45 @@
   <div class="wrap">
     <div class="ftop">
       <div class="fcol"><h4>Produkte</h4>
-        <a href="https://nupureshop.com/collections/darmflora">Darmflora</a>
-        <a href="https://nupureshop.com/collections/reizdarm">Reizdarm</a>
-        <a href="https://nupureshop.com/collections/frauengesundheit">Frauengesundheit</a>
-        <a href="https://nupureshop.com/collections/vitamine-vitality">Vitamine &amp; Vitality</a>
-        <a href="https://nupureshop.com/collections/gesunde-haut">Hautpflege</a>
-        <a href="https://nupureshop.com/collections/mundpflege-probiotika">Mundpflege</a>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/collections/darmflora">Darmflora</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/reizdarm">Reizdarm</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/mundpflege-probiotika">Mundpflege</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/gesunde-haut">Hautpflege</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/frauengesundheit">Frauengesundheit</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/vitamine-vitality">Vitamin &amp; Vitality</a>
       </div>
       <div class="fcol"><h4>Service</h4>
-        <a href="https://nupureshop.com/pages/contact-us">Uns kontaktieren</a>
-        <a href="https://nupureshop.com/pages/versand">Versand</a>
-        <a href="https://nupureshop.com/pages/versand">Rückgabe</a>
-        <a href="https://nupureshop.com/pages/clinical-study">Klinische Studie</a>
-        <a href="https://nupureshop.com/pages/about-us">Über uns</a>
-        <a href="https://nupureshop.com/blogs/news">Blog</a>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/pages/about-us">Über uns</a><a target="_blank" rel="noopener" href="https://nupureshop.com/blogs/news">Blog</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/clinical-study">Klinische Studie</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/contact-us">Kontakt</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/versand">Versand</a><a target="_blank" rel="noopener" href="https://nupureshop.com/account/login">Konto</a><a target="_blank" rel="noopener" href="https://nupureshop.com/">Startseite</a>
       </div>
       <div class="fcol"><h4>Rechtliches</h4>
-        <a href="https://nupureshop.com/pages/impressum">Impressum</a>
-        <a href="https://nupureshop.com/pages/it-recht-datenschutz">Datenschutz</a>
-        <a href="https://nupureshop.com/pages/agb">AGB</a>
-        <a href="https://nupureshop.com/account/login">Konto</a>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/pages/impressum">Impressum</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/it-recht-datenschutz">Datenschutz</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/agb">AGB</a>
       </div>
     </div>
 
     <div class="fbrand">
-      <div class="flogo"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=100 100w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=150 150w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200 200w" sizes="120px" alt="nupure" width="120" height="auto" style="display:block;height:34px;width:auto"></div>
+      <div class="flogo" style="display:flex;align-items:center"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=120 120w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=240 240w" sizes="120px" alt="nupure" style="height:34px;width:auto;display:block"></div>
       <div class="socials"><span class="s">◎</span><span class="s">♪</span><span class="s">▶</span><span class="s">f</span></div>
     </div>
 
     <div class="disc">
-      <div class="box">*Die Bewertung einzelner gesundheitsbezogener Aussagen ist ausstehend (Zichorie). Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche, ausgewogene Ernährung und eine gesunde Lebensweise. Die empfohlene Tagesdosis sollte nicht überschritten werden. Außerhalb der Reichweite von Kleinkindern aufbewahren.</div>
-      <div class="box">Preise inkl. MwSt. Versandkosten werden an der Kasse berechnet.</div>
+      <div class="box">Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche, ausgewogene Ernährung und eine gesunde Lebensweise. Die empfohlene Tagesdosis nicht überschreiten. Außerhalb der Reichweite von kleinen Kindern aufbewahren. Dieses Produkt dient nicht der Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten.</div>
+      <div class="box">*Chicorée: Unterstützt die Verdauung. Die Bewertung dieser gesundheitsbezogenen Aussage steht noch aus. „Klinisch untersucht" bezieht sich auf die ProbaTech™-Stammformel, nicht auf das Gesamtprodukt.</div>
     </div>
 
     <div class="copy">
-      <span>© 2026 nupure – eine Marke von AIXSWISS B.V., Oerkapkade 5, 2031 EN Haarlem, Niederlande</span>
+      <span>© 2026 nupure ist eine Marke von AIXSWISS B.V., Oerkapkade 5, 2031 EN Haarlem, Niederlande</span>
     </div>
   </div>
-
 </footer>
 
-<!-- reusable modal: nutrition label / pack info / intake -->
+<!-- reusable modal: nutrition label / tastes-like / sugar difference -->
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="box">
     <button class="close" id="modalClose" aria-label="Schließen">×</button>
-    <h4 id="modalTitle">Nährwertinformationen</h4>
-    <div class="ph onlight filled" id="modalImg">
-      <img src="https://nupureshop.com/cdn/shop/files/1749556825.jpg" alt="Nährwerttabelle probaflor MAX SPEKTRUM N95" width="480" height="300" loading="lazy">
+    <h4 id="modalTitle">Inhaltsstoffe &amp; Einnahme</h4>
+    <span id="modalImg" style="display:none"><span class="ty"></span></span>
+    <div class="ingredients">
+      <h5>Inhaltsstoffe</h5>
+      <p>Maisstärke; Bakterienstämme: B. animalis spp. lactis Bi1, L. paracasei IMC 502®, B. animalis spp. lactis BLC 1, ≥ 45 Stämme der Spezies L. lactis ssp. lactis, L. delbrueckii ssp. bulgaricus LB284, L. paracasei LPC127, L. paracasei LPC128, L. helveticus LH102, L. plantarum LP48, L. paracasei BGP1, L. paracasei BGP2, L. paracasei LPC43, L. rhamnosus LRH01, L. rhamnosus LRH05, L. rhamnosus LRH14, L. rhamnosus LRH58, L. curvatus LCV16, L. sakei LSK 14, Pediococcus acidilactici SP 29, Pediococcus pentosaceus PP02, S. thermophilus ST628, B. bifidum SP9, B. breve Bl10, B. breve Bbr8, B. adolescentis SP 77, B. longum SP 54, L. acidophilus LA3, L. acidophilus LA1, L. delbrueckii ssp. bulgaricus LB2, L. buchneri LBC01, L. brevis SP 48, L. casei BGP93, L. crispatus SP 28, L. fermentum LF2, L. fermentum CS57, L. helveticus SP 27, L. delbrueckii ssp. lactis LL 82, L. plantarum BG112, L. plantarum LB931, L. plantarum 14D, L. paracasei 101/37, L. reuteri LR92, L. rhamnosus SP1, L. rhamnosus LB21, L. rhamnosus IMC 501®, L. rhamnosus LR1, L. rhamnosus CA 15®, L. salivarius SP2 8, S. thermophilus SP 4, S. thermophilus Z57, (enthält MILCH); Chicorée-Wurzelpulver (Cichorium intybus L.) mit ≥ 90% Inulin; Hydroxypropylmethylcellulose, Pektin (Kapselhülle); Chicorée-Wurzelextrakt (Cichorium intybus L.) mit ≥ 20% Inulin; Trennmittel: Magnesiumsalze von Speisefettsäuren; Riboflavin</p>
+      <h5>Einnahmehinweis</h5>
+      <p>Erwachsene nehmen täglich 2 Kapseln mit einem Glas Wasser ein.</p>
+      <h5>Wichtige Hinweise</h5>
+      <p>Die empfohlene Tagesdosis sollte nicht überschritten werden. Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche und ausgewogene Ernährung und eine gesunde Lebensweise. Lagern Sie das Produkt vor Licht geschützt, kühl und trocken. Außerhalb der Reichweite von Kleinkindern aufbewahren.</p>
     </div>
   </div>
 </div>
@@ -968,54 +944,69 @@
     b.addEventListener('click',function(){ b.parentElement.classList.toggle('open'); });
   });
 
-  // ---------- variant state + dynamic pricing ----------
-  var state = { flavor:'original', qty:1 };
-  var UNIT_PRICES = { original:64.95, firecracker:34.95 }; // 80caps, 30caps
-  var money = function(n){ return '€'+n.toFixed(2).replace('.',','); };
-  function renderPrice(){
-    var unit = UNIT_PRICES[state.flavor] || 64.95;
-    document.getElementById('onePrice').textContent = money(unit * state.qty);
-  }
+  // ---------- supply selection + add-to-cart wiring ----------
+  // Two supplies only: 3-pack (3×) and single (1×). Each .offer card carries
+  // its own data-variant (a real Shopify variant id, filled by the builder
+  // from the prompt) and its own .price strings (filled from the product
+  // page). Selecting a supply updates the savings line and points every
+  // add-to-cart button at that variant's cart link, so the chosen supply is
+  // what reaches the minicart / checkout. No flavor/sugar/quantity controls.
+  var CART_BASE  = 'https://nupureshop.com/cart/';   // builder fills: https://<store>/cart/
+  var saveAmtEl  = document.getElementById('saveAmt');
+  // Only the buybox's own add-to-cart anchor (plus anything the builder marks
+  // [data-atc]) — NOT the hero scroll CTA or the see-more-reviews button, which
+  // also use .btn but must keep their own hrefs.
+  var atcBtns    = Array.prototype.slice.call(document.querySelectorAll('.bb a.btn, [data-atc]'));
+  function priceNum(s){ return parseFloat(String(s).replace(/[^0-9.]/g,'')) || 0; }
+
   function setActive(group, el){
     document.querySelectorAll('[data-group="'+group+'"]').forEach(function(s){ s.classList.remove('active'); });
     el.classList.add('active');
   }
-  function setActive(group, el){
-    document.querySelectorAll('[data-group="'+group+'"]').forEach(function(s){ s.classList.remove('active'); });
-    el.classList.add('active');
+  function selectOffer(el){
+    var variant = el.getAttribute('data-variant');
+    var priceEl = el.querySelector('.price b');
+    var compEl  = el.querySelector('.price s');
+    var price = priceEl ? priceNum(priceEl.textContent) : 0;
+    var comp  = compEl  ? priceNum(compEl.textContent)  : price;
+    if(saveAmtEl){
+      var saved = comp - price;
+      saveAmtEl.textContent = "You're saving $" + (saved > 0 ? saved : 0).toFixed(2);
+    }
+    if(variant){
+      var href = CART_BASE + variant + ':1';
+      atcBtns.forEach(function(b){
+        if(b.tagName === 'A') b.setAttribute('href', href);
+        b.setAttribute('data-variant', variant);
+        b.setAttribute('data-cart-href', href);
+        b.setAttribute('data-price-cents', Math.round(price * 100));
+      });
+    }
   }
-  document.querySelectorAll('[data-group]').forEach(function(el){
-    el.addEventListener('click',function(){
-      var g = el.getAttribute('data-group');
-      setActive(g, el);
-      if(g==='flavor'){
-        state.flavor = el.getAttribute('data-flavor');
-        document.getElementById('flavorName').textContent = el.getAttribute('data-name');
-        galSetFlavor(state.flavor);
-        // update minicart cart links when variant changes
-        var variantId = el.getAttribute('data-variant');
-        if(variantId && window._mcUpdateVariant) window._mcUpdateVariant(variantId);
-      }
-      if(g==='qty') state.qty = parseInt(el.getAttribute('data-qty'),10);
-      renderPrice();
-    });
+  document.querySelectorAll('[data-group="offer"]').forEach(function(el){
+    el.addEventListener('click', function(){ setActive('offer', el); selectOffer(el); });
   });
+  var initOffer = document.querySelector('[data-group="offer"].active') || document.querySelector('[data-group="offer"]');
+  if(initOffer) selectOffer(initOffer);
 
   // ---------- product gallery (thumb swap + arrows) ----------
   var thumbs = Array.prototype.slice.call(document.querySelectorAll('#thumbs .thumb'));
   var galType = document.getElementById('galType');
-  var flavorLabel = 'Produktfoto';
+  var galMainImg = document.querySelector('#galMain img');  // present once real images are wired
   var cur = 0;
   function galShow(i){
     cur = (i + thumbs.length) % thumbs.length;
     thumbs.forEach(function(t){ t.classList.remove('active'); });
     thumbs[cur].classList.add('active');
-    var ty = (cur === 0) ? flavorLabel : thumbs[cur].getAttribute('data-ty');
+    // When real product images are wired, swap the main image. Each thumb
+    // carries the large URL on data-full (falls back to its own <img> src).
+    if(galMainImg){
+      var full = thumbs[cur].getAttribute('data-full');
+      if(!full){ var ti = thumbs[cur].querySelector('img'); if(ti){ full = ti.getAttribute('src'); } }
+      if(full){ galMainImg.src = full; }
+    }
+    var ty = thumbs[cur].getAttribute('data-ty') || 'product photo';
     galType.textContent = ty + ' (' + (cur+1) + '/' + thumbs.length + ')';
-  }
-  function galSetFlavor(f){
-    flavorLabel = (f === 'firecracker') ? '30 Kapseln Produktfoto' : 'Produktfoto';
-    galShow(cur);
   }
   thumbs.forEach(function(t){
     t.addEventListener('click',function(){ galShow(parseInt(t.getAttribute('data-idx'),10)); });
@@ -1023,20 +1014,20 @@
   document.getElementById('galPrev').addEventListener('click',function(){ galShow(cur-1); });
   document.getElementById('galNext').addEventListener('click',function(){ galShow(cur+1); });
 
-  renderPrice(); galShow(0);
+  galShow(0);
 
-  // ---------- modals ----------
+  // ---------- modals (nutrition label / tastes-like / sugar) ----------
   var modal = document.getElementById('modal');
   var modalTitle = document.getElementById('modalTitle');
-  var modalTy = document.querySelector('#modalImg img');
+  var modalTy = document.querySelector('#modalImg .ty');
   var MODALS = {
-    nutrition:['Nährwertinformationen','Nährwerttabelle probaflor MAX SPEKTRUM N95'],
-    taste:['Packungsinfo','probaflor 80 Kapseln – 40 Tage Vorrat'],
-    sugar:['Einnahmeempfehlung','2 Kapseln täglich mit einem Glas Wasser']
+    nutrition:['Inhaltsstoffe & Einnahme',''],
+    taste:['Lorem Tastes Like','tastes-like flavor chart'],
+    sugar:['Low Lorem vs. Sugar-Free','sugar comparison chart']
   };
   function openModal(key){
     var m = MODALS[key] || MODALS.nutrition;
-    modalTitle.textContent = m[0];
+    modalTitle.textContent = m[0]; modalTy.textContent = m[1];
     modal.classList.add('open');
   }
   function closeModal(){ modal.classList.remove('open'); }
@@ -1084,7 +1075,7 @@
     var arr = items.slice();
     arr.sort(function(a,b){
       var ta=+a.dataset.time, tb=+b.dataset.time, ra=+a.dataset.rating, rb=+b.dataset.rating;
-      if(sortMode==='latest') return ta-tb;
+      if(sortMode==='latest') return ta-tb;   // fewer minutes ago = newer
       if(sortMode==='oldest') return tb-ta;
       if(sortMode==='high')   return rb-ra;
       if(sortMode==='low')    return ra-rb;
@@ -1099,61 +1090,57 @@
   }
   document.getElementById('sortSel').addEventListener('change',function(e){ sortMode=e.target.value; applyReviews(); });
   document.getElementById('photoFilter').addEventListener('change',function(e){ photoOnly=e.target.checked; applyReviews(); });
+  // reviews "see more" button removed per request — first reviews render directly.
   applyReviews();
 </script>
-
 <!-- ===== MINICART OVERLAY ===== -->
 <div id="mc-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:900" aria-hidden="true"></div>
 <aside id="mc-drawer" role="dialog" aria-modal="true" aria-label="Warenkorb" style="
   position:fixed;top:0;right:0;height:100%;width:360px;max-width:100vw;
   background:#fff;z-index:901;display:flex;flex-direction:column;
   transform:translateX(100%);transition:transform .3s ease;box-shadow:-4px 0 24px rgba(0,0,0,.15)">
-  <!-- header -->
   <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #e7e4d6">
     <span style="font-weight:800;font-size:17px;color:#16402a">Ihr Warenkorb</span>
     <button id="mc-close" aria-label="Schließen" style="background:none;border:none;font-size:24px;cursor:pointer;color:#73726b;line-height:1">×</button>
   </div>
-  <!-- main item -->
   <div style="padding:18px 20px;border-bottom:1px solid #e7e4d6;display:flex;gap:14px;align-items:flex-start">
-    <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086" alt="probaflor MAX N95" width="64" height="64"
+    <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=128" alt="probaflor MAX SPEKTRUM N95" width="64" height="64"
          style="border-radius:10px;object-fit:cover;flex:0 0 64px;background:#eceadd">
     <div style="flex:1">
       <div style="font-weight:700;font-size:14px;color:#1a2a1a;margin-bottom:4px">probaflor MAX SPEKTRUM N95</div>
-      <div style="font-size:12px;color:#73726b;margin-bottom:10px">80 Kapseln</div>
+      <div style="font-size:12px;color:#73726b;margin-bottom:10px">80 Kapseln · 95 Stämme</div>
       <div style="display:flex;align-items:center;justify-content:space-between">
         <div style="display:flex;align-items:center;border:1px solid #e7e4d6;border-radius:8px;overflow:hidden">
           <button id="mc-minus" aria-label="Weniger" style="background:none;border:none;width:32px;height:32px;font-size:18px;cursor:pointer;color:#1a2a1a">−</button>
           <span id="mc-qty" style="width:28px;text-align:center;font-weight:700;font-size:14px">1</span>
           <button id="mc-plus" aria-label="Mehr" style="background:none;border:none;width:32px;height:32px;font-size:18px;cursor:pointer;color:#1a2a1a">+</button>
         </div>
-        <span id="mc-item-price" style="font-weight:800;font-size:15px;color:#1a2a1a">€64,95</span>
+        <span id="mc-item-price" style="font-weight:800;font-size:15px;color:#1a2a1a">139,95 €</span>
       </div>
     </div>
   </div>
-  <!-- cross-sell -->
   <div id="mc-xsell" style="padding:14px 20px;border-bottom:1px solid #e7e4d6;background:#f6f2e4">
     <div style="display:flex;gap:12px;align-items:center">
-      <img src="https://nupureshop.com/cdn/shop/files/01_colon_pure_transit_pulver_main_PDP_image_with_powder_and_tag_DE.png?v=1751453778" alt="Colon Pure Transit Pulver" width="48" height="48"
+      <img src="https://nupureshop.com/cdn/shop/files/01_colon_pure_transit_pulver_main_PDP_image_with_powder_and_tag_DE.png?v=1751453778&width=96" alt="Colon Pure Transit Pulver" width="48" height="48"
            style="border-radius:8px;object-fit:cover;flex:0 0 48px;background:#eceadd">
       <div style="flex:1">
         <div style="font-size:11px;font-weight:800;color:#1d6f42;letter-spacing:.5px;margin-bottom:2px">HÄUFIG ZUSAMMEN GEKAUFT</div>
         <div style="font-weight:700;font-size:13px;color:#1a2a1a">Colon Pure Transit Pulver</div>
-        <div style="font-size:12px;color:#73726b">Flohsamenschalen · unterstützt Darmpassage*</div>
+        <div style="font-size:12px;color:#73726b">Flohsamenschalen als Futter für Ihre Bifidobakterien</div>
       </div>
       <div style="text-align:right;flex:0 0 auto">
-        <div style="font-size:12px;color:#73726b;text-decoration:line-through">€34,95</div>
+        <div style="font-size:13px;color:#1a2a1a;font-weight:700">34,95 €</div>
         <button id="mc-xsell-btn" style="margin-top:4px;background:#1d6f42;color:#fff;border:none;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer">+ Hinzufügen</button>
       </div>
     </div>
   </div>
-  <!-- subtotal + CTA -->
   <div style="margin-top:auto;padding:18px 20px">
     <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:14px;color:#73726b">
       <span>Zwischensumme</span>
-      <span id="mc-subtotal" style="font-weight:800;color:#1a2a1a">€64,95</span>
+      <span id="mc-subtotal" style="font-weight:800;color:#1a2a1a">139,95 €</span>
     </div>
     <div style="font-size:11px;color:#73726b;margin-bottom:14px">Endgültiger Betrag (inkl. Versand &amp; Rabatte) an der Shopify-Kasse.</div>
-    <a id="mc-checkout-btn" href="https://nupureshop.com/cart/49029898142035:1"
+    <a id="mc-checkout-btn" href="https://nupureshop.com/cart/49029911183699:3"
        style="display:flex;align-items:center;justify-content:center;width:100%;background:#1d6f42;color:#fff;font-weight:800;font-size:17px;border-radius:999px;padding:15px;text-decoration:none">
       Zur Kasse →
     </a>
@@ -1164,18 +1151,20 @@
 <script>
 // ===== MINICART =====
 (function(){
-  var UNIT  = 6495;   // €64,95 in cents (80 caps default)
-  var XUNIT = 3495;   // €34,95 in cents (Colon Pure)
-  var XSELL_ID = '55883547476350';
-  var mainVariant = '49029898142035'; // default: 80 caps
+  // 3er-Pack variant is the per-bottle price (46,65) bought ×3 = 139,95;
+  // single variant is one bottle at 64,95.
+  var PACKS = {
+    '49029911183699': { unit: 13995, mult: 3 },   // 3er-Pack: shown as 1 line @139,95; Shopify qty ×3
+    '49029898142035': { unit: 6495,  mult: 1 }     // Einzelpackung
+  };
+  var UNIT  = 13995;       // default = 3er-Pack (one line @ 139,95)
+  var XUNIT = 3495;        // Colon Pure Transit Pulver
+  var CART_MAIN = 'https://nupureshop.com/cart/49029911183699:3';
+  var CART_BOTH = 'https://nupureshop.com/cart/49029911183699:3,55883547476350:1';
+  var CART_BASE = 'https://nupureshop.com/cart/';
+  var XVARIANT  = '55883547476350';
 
-  function buildCart(main, qty, withXsell){
-    var url = 'https://nupureshop.com/cart/' + main + ':' + qty;
-    if(withXsell) url += ',' + XSELL_ID + ':1';
-    return url;
-  }
-
-  var qty = 1, xAdded = false;
+  var qty = 1, mult = 3, xAdded = false, selVariant = '49029911183699';
   var overlay   = document.getElementById('mc-overlay');
   var drawer    = document.getElementById('mc-drawer');
   var closeBtn  = document.getElementById('mc-close');
@@ -1187,26 +1176,34 @@
   var xBtn      = document.getElementById('mc-xsell-btn');
   var checkBtn  = document.getElementById('mc-checkout-btn');
 
-  function fmt(cents){
-    return '\u20ac'+(cents/100).toFixed(2).replace('.',',');
+  var checkoutBase = '';
+  function fmt(cents){ return '\u20ac'+(cents/100).toFixed(2).replace('.',','); }
+
+  // Converge cross-domain stitching: read the __cvg_uid / __cvg_sid cookies the
+  // Converge pixel sets, and append them to the Shopify checkout URL on click
+  // (a JS-built redirect is NOT auto-decorated by the pixel).
+  function cvgCookie(n){ var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)'); return m?decodeURIComponent(m[1]):''; }
+  function cvgDecorate(url){
+    var uid=cvgCookie('__cvg_uid'), sid=cvgCookie('__cvg_sid'), parts=[];
+    if(uid) parts.push('__cvg_uid='+encodeURIComponent(uid));
+    if(sid) parts.push('__cvg_sid='+encodeURIComponent(sid));
+    if(!parts.length) return url;
+    return url + (url.indexOf('?')>-1?'&':'?') + parts.join('&');
   }
+
   function render(){
     var total = qty * UNIT + (xAdded ? XUNIT : 0);
     qtyEl.textContent     = qty;
     itemPrice.textContent = fmt(qty * UNIT);
     subtotal.textContent  = fmt(total);
-    checkBtn.href = buildCart(mainVariant, qty, xAdded);
+    var cartQty = qty * mult;
+    checkoutBase = CART_BASE + selVariant + ':' + cartQty + (xAdded && XVARIANT ? ',' + XVARIANT + ':1' : '');
+    checkBtn.href = checkoutBase;
     if(xBtn){
       xBtn.textContent      = xAdded ? '✓ Im Warenkorb' : '+ Hinzufügen';
       xBtn.style.background = xAdded ? '#888' : '#1d6f42';
     }
   }
-
-  // called by buybox JS when user switches variant
-  window._mcUpdateVariant = function(variantId){
-    mainVariant = variantId;
-    render();
-  };
 
   function openCart(){
     overlay.style.display = 'block';
@@ -1221,32 +1218,50 @@
     overlay.setAttribute('aria-hidden','true');
   }
 
-  // intercept all ATC buttons (href contains /cart/ OR has data-atc attribute)
-  // exclude #mc-checkout-btn — that one should navigate to Shopify, not re-open the minicart
   document.querySelectorAll('[data-atc], a[href*="/cart/"]').forEach(function(el){
     if(el.id === 'mc-checkout-btn') return;
     el.addEventListener('click', function(e){
       e.preventDefault();
+      var v = el.getAttribute('data-variant');
+      if(v){
+        selVariant = v;
+        qty = 1;
+        if(PACKS[v]){
+          UNIT = PACKS[v].unit;
+          mult = PACKS[v].mult;
+        } else {
+          mult = 1;
+          var pc = el.getAttribute('data-price-cents');
+          if(pc){ UNIT = parseInt(pc, 10) || UNIT; }
+        }
+      }
       openCart();
+      render();
     });
   });
 
   closeBtn.addEventListener('click', closeCart);
   overlay.addEventListener('click', closeCart);
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeCart(); });
-
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCart(); });
   minusBtn.addEventListener('click', function(){ if(qty > 1){ qty--; render(); }});
   plusBtn.addEventListener('click',  function(){ qty++; render(); });
-
-  xBtn.addEventListener('click', function(){
-    xAdded = !xAdded;
-    render();
-  });
+  if(xBtn) xBtn.addEventListener('click', function(){ xAdded = !xAdded; render(); });
+  // append fresh Converge params right before the redirect to Shopify
+  checkBtn.addEventListener('click', function(){ checkBtn.href = cvgDecorate(checkoutBase || checkBtn.href); });
 
   render();
 })();
 // ===== END MINICART =====
 </script>
 
+<!-- GrowthBook -->
+<script async data-api-host="https://cdn.growthbook.io" data-client-key="sdk-mzLYoTpayCvloMg" src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js"></script>
+
+<!-- Converge pixel -->
+<script src="https://static.runconverge.com/pixels/JoftjA.js" async></script>
+<script>
+  window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
+  cvg({method:"track",eventName:"$page_load"});
+</script>
 </body>
 </html>
