@@ -44,6 +44,7 @@
     --brand:#1d6f42; --heading:#1a6b3c; --lime:#9ccb4f; --gold:#f3c021;
     --butter:#faedb0; --text:#3d3d36; --muted:#73726b; --star:#f4b400;
     --line:#e7e4d6; --white:#fff;
+    --cta:#f09e40; --cta-d:#e2902f;
     --sans: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --radius:18px;
   }
@@ -76,10 +77,10 @@
     color:#5a4500;font-weight:800;font-size:12px;letter-spacing:.6px;
     padding:6px 14px;border-radius:999px;text-transform:uppercase}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    background:var(--brand);color:#fff;font-weight:800;font-size:17px;
+    background:var(--cta);color:#fff;font-weight:800;font-size:17px;
     border:none;border-radius:999px;padding:15px 30px;cursor:pointer;
     text-decoration:none;width:100%}
-  .btn:hover{background:#185c37}
+  .btn:hover{background:var(--cta-d)}
   .btn-out{background:#fff;color:var(--heading);border:1.5px solid var(--line);
     border-radius:999px;padding:13px 22px;font-weight:700;width:100%;cursor:pointer}
   .stars{color:var(--star);letter-spacing:2px;font-size:14px}
@@ -200,6 +201,7 @@
   .buy{background:#fff;padding-top:18px}
   .buy .topcap{text-align:center;margin-bottom:22px}
   .buygrid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
+  .buygrid>.gallery{position:sticky;top:74px;align-self:start}
   /* gallery */
   .gallery{display:grid;grid-template-columns:64px 1fr;gap:12px}
   .thumbs{display:flex;flex-direction:column;gap:8px}
@@ -422,6 +424,7 @@
     .feature .f-media{align-self:stretch}
     .trusted07 .wrap{grid-template-columns:1fr;gap:28px}
     .buygrid{grid-template-columns:1fr;gap:28px}
+    .buygrid>.gallery{position:static;top:auto}
     .vs .wrap{grid-template-columns:1fr;gap:24px}
     .why .top{grid-template-columns:1fr;gap:22px}
     .maincard .inner{grid-template-columns:1fr}
@@ -456,6 +459,27 @@
   .modal .ingredients h5{font-size:13px;font-weight:800;color:#16402a;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.4px}
   .modal .ingredients h5:first-child{margin-top:0}
   .modal .ingredients p{font-size:13px;line-height:1.6;color:#3a3a32;margin:0}
+  /* ---------- sticky ATC bar (shows when buybox is off-screen) ---------- */
+  #sticky-atc{position:fixed;left:0;right:0;bottom:0;z-index:800;
+    background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 22px rgba(0,0,0,.10);
+    display:flex;align-items:center;gap:16px;padding:10px 22px;
+    transform:translateY(110%);transition:transform .28s ease}
+  #sticky-atc.show{transform:translateY(0)}
+  #sticky-atc .sa-info{display:flex;align-items:center;gap:12px;min-width:0;flex:1}
+  #sticky-atc .sa-img{width:46px;height:46px;border-radius:10px;object-fit:cover;background:var(--cream);flex:0 0 46px}
+  #sticky-atc .sa-txt{min-width:0}
+  #sticky-atc .sa-txt b{display:block;color:var(--heading);font-size:14px;line-height:1.2;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #sticky-atc .sa-txt span{font-size:12px;color:var(--muted)}
+  #sticky-atc .sa-btn{flex:0 0 auto;background:var(--cta);color:#fff;font-weight:800;font-size:16px;
+    border:none;border-radius:999px;padding:13px 30px;cursor:pointer;text-decoration:none;white-space:nowrap}
+  #sticky-atc .sa-btn:hover{background:var(--cta-d)}
+  @media (max-width:560px){
+    #sticky-atc{gap:10px;padding:8px 14px}
+    #sticky-atc .sa-img{display:none}
+    #sticky-atc .sa-txt b{font-size:13px}
+    #sticky-atc .sa-btn{padding:12px 20px;font-size:15px}
+  }
 </style>
 </head>
 <body>
@@ -488,8 +512,7 @@
       <div class="ph filled" id="img-04"><img src="https://nupureshop.com/cdn/shop/files/1781596804.jpg" alt="Frau in ruhiger Morgenroutine mit einem Glas Wasser" width="620" height="430" loading="lazy"></div>
       <span class="pill tag">★ Apotheken-Qualität</span>
       <div class="clincard">
-        <span style="font-size:11px;color:#888">❮ &nbsp; ❯</span>
-        <b>ProbaTech™</b>
+        <img src="https://nupureshop.com/cdn/shop/files/NU_main_colour__aed000_outline_clean_1.png?v=1773054263" alt="ProbaTech™ – klinisch erwiesen" width="64" height="64" style="display:block;margin:0 auto 6px;width:64px;height:auto" loading="lazy">
         <span>Nupures eigene, klinisch untersuchte Stammformel im Inneren.</span>
       </div>
     </div>
@@ -618,10 +641,10 @@
     <div class="eyebrow">07</div>
     <h2 style="font-size:30px;margin-bottom:14px">Von tausenden Menschen täglich genutzt</h2>
     <p class="lead" style="margin-bottom:16px">Tausende Menschen setzen Max Spektrum N95 täglich ein, um Blähungen und Blähbauch langfristig in den Griff zu bekommen. Wer einmal verstanden hat, wie stark Darmgesundheit das tägliche Wohlbefinden beeinflusst, möchte diesen Schritt nicht mehr missen. Die Kombination aus maximaler Stammvielfalt, klinisch untersuchten Bakterien, präbiotischen Ballaststoffen und Vitamin B2 macht Max Spektrum zur umfassendsten täglichen Unterstützung für einen ruhigen, ausgeglichenen Darm.</p>
-    <span class="pill soft">♥ 4,8 / 5,0 aus 973 Bewertungen.</span>
+    <span class="pill soft">😍 4,8 / 5,0 ❤️ aus 973 Bewertungen</span>
   </div>
   <div class="ugccard">
-    <div class="top"><div class="stars">★★★★★</div><div class="rate">4,8 / 5,0 · 973 Bewertungen</div></div>
+    <div class="top"><div class="stars">⭐⭐⭐⭐⭐</div><div class="rate">4,8 / 5,0 · 😊 973 zufriedene Kund:innen</div></div>
     <div class="ugcgrid">
       <div class="ph ondark filled" id="img-09"><img src="https://nupureshop.com/cdn/shop/files/1781596809.jpg" alt="Kundin mit probaflor in der Küche" width="150" height="120" loading="lazy"></div>
       <div class="ph ondark tall filled" id="img-10"><img src="https://nupureshop.com/cdn/shop/files/1781596810.jpg" alt="probaflor Dose auf dem Frühstückstisch" width="150" height="160" loading="lazy"></div>
@@ -1093,6 +1116,35 @@
   // reviews "see more" button removed per request — first reviews render directly.
   applyReviews();
 </script>
+<!-- ===== STICKY ATC (visible whenever the buybox is off-screen) ===== -->
+<div id="sticky-atc" aria-hidden="true">
+  <div class="sa-info">
+    <img class="sa-img" src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=96" alt="" width="46" height="46" loading="lazy">
+    <div class="sa-txt"><b>probaflor MAX SPEKTRUM N95</b><span>⭐ 4,8 · 973 Bewertungen</span></div>
+  </div>
+  <a class="sa-btn" href="#offers" role="button">In den Warenkorb</a>
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('sticky-atc');
+  var bb  = document.querySelector('.bb');           // the buybox
+  if(!bar || !bb) return;
+  // sticky ATC click → trigger the buybox's add-to-cart (keeps the selected supply)
+  bar.querySelector('.sa-btn').addEventListener('click', function(e){
+    e.preventDefault();
+    var atc = document.querySelector('.bb a.btn[data-atc], .bb [data-atc]');
+    if(atc){ atc.click(); }                            // opens the minicart with the chosen variant
+  });
+  // show the bar only while the buybox is NOT on screen
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      bar.classList.toggle('show', !entries[0].isIntersecting);
+    }, {threshold:0}).observe(bb);
+  }
+})();
+</script>
+<!-- ===== END STICKY ATC ===== -->
+
 <!-- ===== MINICART OVERLAY ===== -->
 <div id="mc-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:900" aria-hidden="true"></div>
 <aside id="mc-drawer" role="dialog" aria-modal="true" aria-label="Warenkorb" style="
@@ -1130,7 +1182,7 @@
       </div>
       <div style="text-align:right;flex:0 0 auto">
         <div style="font-size:13px;color:#1a2a1a;font-weight:700">34,95 €</div>
-        <button id="mc-xsell-btn" style="margin-top:4px;background:#1d6f42;color:#fff;border:none;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer">+ Hinzufügen</button>
+        <button id="mc-xsell-btn" style="margin-top:4px;background:#f09e40;color:#fff;border:none;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer">+ Hinzufügen</button>
       </div>
     </div>
   </div>
@@ -1141,7 +1193,7 @@
     </div>
     <div style="font-size:11px;color:#73726b;margin-bottom:14px">Endgültiger Betrag (inkl. Versand &amp; Rabatte) an der Shopify-Kasse.</div>
     <a id="mc-checkout-btn" href="https://nupureshop.com/cart/49029911183699:3"
-       style="display:flex;align-items:center;justify-content:center;width:100%;background:#1d6f42;color:#fff;font-weight:800;font-size:17px;border-radius:999px;padding:15px;text-decoration:none">
+       style="display:flex;align-items:center;justify-content:center;width:100%;background:#f09e40;color:#fff;font-weight:800;font-size:17px;border-radius:999px;padding:15px;text-decoration:none">
       Zur Kasse →
     </a>
   </div>
@@ -1201,7 +1253,7 @@
     checkBtn.href = checkoutBase;
     if(xBtn){
       xBtn.textContent      = xAdded ? '✓ Im Warenkorb' : '+ Hinzufügen';
-      xBtn.style.background = xAdded ? '#888' : '#1d6f42';
+      xBtn.style.background = xAdded ? '#888' : '#f09e40';
     }
   }
 
