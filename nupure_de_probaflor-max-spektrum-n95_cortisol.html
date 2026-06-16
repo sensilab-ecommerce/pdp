@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>probaflor MAX SPEKTRUM N95 – 95 Stämme für ein Mikrobiom unter Stress | nupure</title>
+<link rel="icon" href="https://nupureshop.com/cdn/shop/files/nupure-favicon.png?crop=center&height=32&v=1704810304&width=32">
+
+<!--
+  ASSUMPTIONS / NOTES (competitor teardown wireframe, not a VHC deliverable):
+  - Single self-contained file. No external CSS/JS/font dependencies.
+    Brand uses a rounded geometric display face; recreated with a system
+    sans stack at heavy weights for fidelity without a web-font request.
+  - Breakpoint: >=900px = DESKTOP (two-column features, side-by-side buy block);
+    <900px = MOBILE (everything stacks; in feature blocks the order becomes
+    eyebrow -> heading -> media -> body, matching the mobile screenshot).
+  - ALL copy is Lorem ipsum. Numeric/price/rating tokens (84%, 4.76, $1.26, ★)
+    are kept as representative placeholders since they carry layout meaning and
+    lorem can't express them.
+  - Every PHOTO / PRODUCT SHOT / VIDEO STILL / LOGO / INFOGRAPHIC is a labelled
+    placeholder box (dimensions + inferred type). Structured UI that is real
+    HTML/CSS on the live site (grids, comparison table, stat blocks, buy-box
+    controls, review list) is rebuilt as real markup, not images.
+  - Tiny inline glyph icons (the dots inside "6 Common Gaps", "Packed With",
+    trust badges, socials) are drawn as simple shapes/emoji rather than fully
+    labelled placeholder boxes, purely for readability at that scale.
+  - JS is vanilla, no libraries. Interactions reproduced from the live page:
+    image gallery (thumbnail swap + prev/next arrows; thumbs carry data-full
+    so a real product image swaps into #galMain), supply selection
+    (single-pack 1x / 3-pack 3x cards; the chosen card drives the "you're
+    saving" line and points every add-to-cart button at that variant's cart
+    link via its data-variant + the page price strings),
+    lightbox modals (nutrition label), smooth-scroll anchors (hero CTA ->
+    #offers, rating -> #reviews), the UGC carousel, review tabs, and review
+    sort / photo-filter / see-more.
+  - The live site is a Shopify PDP: its real add-to-cart, discount auto-apply
+    and checkout are bound to Shopify's cart/variant APIs and cannot run in a
+    static file. Prices/savings here are representative client-side demos only.
+-->
+
+<style>
+  :root{
+    --page:#fbf9ef; --cream:#f6f2e4; --ink:#16402a; --ink2:#1c5638;
+    --brand:#1d6f42; --heading:#1a6b3c; --lime:#9ccb4f; --gold:#f3c021;
+    --butter:#faedb0; --text:#3d3d36; --muted:#73726b; --star:#f4b400;
+    --line:#e7e4d6; --white:#fff;
+    --sans: system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;overflow-x:clip}
+  body{font-family:var(--sans);color:var(--text);background:var(--page);
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+  img{max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+  /* ---------- placeholder ---------- */
+  .ph{background:#e8e6da;border:1px dashed #b6b3a0;color:#6f6c5c;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;border-radius:14px;padding:8px;gap:3px;overflow:hidden}
+  .ph .dim{font-weight:700;font-size:12.5px;letter-spacing:.2px}
+  .ph .ty{font-size:11px;opacity:.85;line-height:1.3}
+  .ph.onlight{background:#eceadd}
+  .ph.ondark{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#eef3ec}
+  /* image-fill helper — applied (add class "filled") only when a real image is wired into a slot */
+  .ph.filled{position:relative;padding:0;border:0;background:none;gap:0}
+  .ph.filled>.dim,.ph.filled>.ty,.ph.filled>span{display:none}
+  .ph.filled>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+  /* ---------- generic ---------- */
+  h1,h2,h3,h4{font-weight:800;line-height:1.1;color:var(--heading);letter-spacing:-.5px}
+  .lead{color:var(--muted);max-width:46ch}
+  .eyebrow{color:var(--heading);font-weight:800;font-size:14px;letter-spacing:1px;margin-bottom:10px}
+  .pill{display:inline-flex;align-items:center;gap:6px;background:var(--gold);
+    color:#5a4500;font-weight:800;font-size:12px;letter-spacing:.6px;
+    padding:6px 14px;border-radius:999px;text-transform:uppercase}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--brand);color:#fff;font-weight:800;font-size:17px;
+    border:none;border-radius:999px;padding:15px 30px;cursor:pointer;
+    text-decoration:none;width:100%}
+  .btn:hover{background:#185c37}
+  .btn-out{background:#fff;color:var(--heading);border:1.5px solid var(--line);
+    border-radius:999px;padding:13px 22px;font-weight:700;width:100%;cursor:pointer}
+  .stars{color:var(--star);letter-spacing:2px;font-size:14px}
+  .sec{padding:48px 0}
+
+  /* ---------- announcement ---------- */
+  .announce{background:var(--ink);color:#fff;text-align:center;
+    font-size:13px;padding:8px 12px;line-height:1.45}
+  .announce b{color:var(--gold)}
+
+  /* ---------- header ---------- */
+  header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  header .wrap{display:flex;align-items:center;justify-content:center;height:58px}
+  .logo{font-weight:900;font-size:30px;color:var(--heading);letter-spacing:-1px}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--cream)}
+  .hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;
+    align-items:center;padding-top:46px;padding-bottom:46px}
+  .reviewpill{display:inline-flex;align-items:center;gap:10px;background:#fff;
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px;
+    font-size:12.5px;font-weight:600;margin-bottom:22px}
+  .avatars{display:flex}
+  .avatars .ph{width:24px;height:24px;border-radius:50%;margin-left:-7px;
+    border:2px solid #fff;padding:0;font-size:0}
+  .avatars .ph:first-child{margin-left:0}
+  .hero h1{font-size:46px;margin-bottom:18px}
+  .hero .lead{margin-bottom:24px}
+  .ctablock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:18px}
+  .ctablock .pill{position:static}
+  .ctablock .btn{width:auto;padding:15px 34px}
+  .riskfree{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+  .riskfree .chk{color:var(--brand)}
+  .riskfree u{cursor:pointer}
+  .hero-media{position:relative}
+  .hero-media .ph{height:430px;border-radius:22px}
+  .hero-media .tag{position:absolute;top:16px;left:16px}
+  .clincard{position:absolute;top:58px;left:16px;background:#fff;border-radius:16px;
+    padding:14px 16px;width:170px;box-shadow:0 8px 22px rgba(0,0,0,.12);text-align:center}
+  .clincard b{display:block;color:var(--heading);font-size:15px;margin:2px 0 6px}
+  .clincard span{font-size:11px;color:var(--muted);line-height:1.35;display:block}
+
+  /* ---------- feature blocks ---------- */
+  .feature .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    grid-template-areas:"head media" "body media";align-items:start}
+  .feature .f-head{grid-area:head}
+  .feature .f-body{grid-area:body;align-self:start}
+  .feature .f-media{grid-area:media;align-self:center}
+  .feature h2{font-size:30px;margin-bottom:0}
+  .feature .f-body{color:var(--muted);max-width:48ch;margin-top:6px}
+
+  .card{border-radius:22px;padding:26px}
+  .card.dark{background:var(--ink)}
+  .card.green{background:var(--ink2)}
+  .card.butter{background:var(--butter)}
+
+  /* 6 gaps grid */
+  .gaps-title{color:#fff;text-align:center;margin-bottom:18px}
+  .gaps-title h3{color:#fff;font-size:22px}
+  .gaps-title span{color:#cfe6d4;font-size:13px}
+  .gaps{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .gap{background:#fff;border-radius:12px;padding:12px 14px;display:flex;
+    align-items:flex-start;justify-content:space-between;gap:8px}
+  .gap b{display:block;font-size:13.5px;color:var(--heading)}
+  .gap span{font-size:12px;color:var(--muted)}
+  .gico{width:18px;height:18px;border-radius:5px;background:var(--lime);flex:0 0 auto;margin-top:2px}
+
+  /* product callout card (sec03) */
+  .calloutcard{position:relative}
+  .calloutcard .ph{height:300px}
+  .callout{font-size:12px;color:#5a4d2a;font-weight:600;margin:6px 0}
+
+  /* sec04 quote card */
+  .quotecard .qbox{background:#fff;border-radius:14px;padding:16px 18px;
+    font-size:14px;color:var(--text);margin-bottom:14px;position:relative}
+  .quotecard .quotemark{font-size:48px;color:var(--gold);line-height:.4;font-weight:900;margin-bottom:6px}
+  .quotecard .ph{height:170px}
+  .namecard{display:inline-block;background:#fff;border-radius:10px;padding:8px 14px;
+    margin-top:-44px;margin-left:12px;position:relative;z-index:2;font-size:12px}
+  .namecard b{display:block;color:var(--heading);font-size:13px}
+
+  /* sec05 product on green */
+  .prodgreen{position:relative;min-height:300px;display:flex;align-items:center;justify-content:center}
+  .prodgreen .faded{position:absolute;inset:0;display:flex;flex-wrap:wrap;gap:8px;
+    align-content:center;justify-content:center;opacity:.22;padding:10px}
+  .prodgreen .faded span{background:rgba(255,255,255,.3);color:#fff;border-radius:999px;
+    padding:4px 10px;font-size:11px}
+  .prodgreen .ph{position:relative;z-index:2;width:200px;height:230px}
+
+  /* sec06 comparison bars */
+  .cmprow{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:14px;
+    display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:10px;align-items:center}
+  .cmprow .lbl b{display:block;color:var(--heading);font-size:14px}
+  .cmprow .lbl span{font-size:11px;color:var(--muted)}
+  .bar{border-radius:10px;text-align:center;font-weight:800;font-size:14px;padding:18px 6px;color:#fff}
+  .bar.gr{background:var(--ink2)}
+  .bar.gy{background:#cfcdc2;color:#56554e}
+
+  /* stats band */
+  .statsband{background:var(--ink);border-radius:22px;padding:34px 26px;text-align:center;position:relative;margin-top:8px}
+  .statsband .pill{position:absolute;top:-15px;left:50%;transform:translateX(-50%)}
+  .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:8px}
+  .statgrid .n{color:#fff;font-size:42px;font-weight:900}
+  .statgrid .l{color:#bfe0c6;font-size:13px}
+  .statfoot{color:#8fb79a;font-size:11px;margin-top:18px}
+
+  /* sec07 trusted */
+  .trusted07 .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:center}
+  .pill.soft{background:#fdf4cf;color:#7a5e00;text-transform:none;font-size:13px}
+  .ugccard{background:var(--ink);border-radius:22px;padding:22px}
+  .ugccard .top{text-align:center;color:#fff;margin-bottom:16px}
+  .ugccard .top .rate{font-size:20px;font-weight:900}
+  .ugcgrid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:10px}
+  .ugcgrid .ph{height:120px}
+  .ugcgrid .ph.tall{grid-row:span 2;height:auto;min-height:160px}
+
+  /* ===== buy section ===== */
+  .buy{background:#fff;padding-top:18px}
+  .buy .topcap{text-align:center;margin-bottom:22px}
+  .buygrid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:start}
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:64px 1fr;gap:12px}
+  .thumbs{display:flex;flex-direction:column;gap:8px}
+  .thumbs .ph{height:64px;font-size:0;padding:2px}
+  .maincard{background:#eaf3e6;border-radius:18px;overflow:hidden}
+  .ribbon{background:var(--ink2);color:#fff;text-align:center;font-weight:800;
+    font-size:13px;padding:9px;letter-spacing:.3px}
+  .maincard .inner{display:grid;grid-template-columns:1.3fr .9fr;gap:8px;padding:14px}
+  .maincard .inner .ph{height:280px}
+  .featlist{background:#f2ecd8;border-radius:12px;padding:14px;display:flex;
+    flex-direction:column;justify-content:space-around;gap:10px}
+  .featlist .it{text-align:center;font-size:12px;color:#4a4a40;font-weight:600}
+  .featlist .it .ic{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--brand);
+    margin:0 auto 5px;display:flex;align-items:center;justify-content:center;color:var(--brand);font-size:13px}
+  .nutbtn{margin:14px 0 12px}
+  .labtest{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);
+    border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+  .labtest .b{width:18px;height:18px;border-radius:50%;background:#2f7fe0;color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:11px;flex:0 0 auto}
+
+  /* buybox */
+  .bb .rate{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:10px}
+  .bb h2{font-size:30px;margin-bottom:12px}
+  .bb .desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+  .bb hr{border:none;border-top:1px solid var(--line);margin:18px 0}
+  .bb .flabel{font-weight:800;color:#2a2a26;font-size:15px;margin-bottom:4px}
+  .bb .fsub{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:12px}
+  .opts2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .optcard{border:1.5px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;
+    text-align:center;position:relative;background:#fff}
+  .optcard.active{border-color:var(--brand);background:#eef6ec}
+  .optcard .ph{height:62px;font-size:0;padding:2px;margin-bottom:6px}
+  .optcard .nm{font-size:12px;font-weight:700;color:#2a2a26}
+  .optcard .lt{position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    background:#f4b9b0;color:#7a2018;font-size:9px;font-weight:800;padding:2px 8px;
+    border-radius:999px;letter-spacing:.5px}
+  .toggles{display:flex;gap:10px}
+  .tog{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:11px;
+    text-align:center;font-weight:700;font-size:14px;cursor:pointer;background:#fff;color:#2a2a26}
+  .tog.active{border-color:var(--brand);background:#eef6ec;color:var(--heading)}
+  .qrow{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .qrow .pill.soft{font-size:11px}
+  .offer{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;
+    margin-bottom:12px;cursor:pointer;display:flex;gap:12px;background:#fff;position:relative}
+  .offer.active{border-color:var(--brand);background:#eef6ec}
+  .offer .banner{position:absolute;top:0;left:0;right:0;background:var(--ink2);
+    color:var(--gold);text-align:center;font-size:11px;font-weight:800;
+    padding:4px;border-radius:12px 12px 0 0;letter-spacing:.5px}
+  .offer.hasbanner{padding-top:30px}
+  .radio{width:18px;height:18px;border-radius:50%;border:2px solid #b7b5a8;flex:0 0 auto;margin-top:2px}
+  .offer.active .radio{border-color:var(--brand);background:radial-gradient(var(--brand) 42%,#fff 46%)}
+  .offer .info{flex:1}
+  .offer .info b{font-size:16px;color:#2a2a26}
+  .offer .info .sub{font-size:12px;color:var(--muted)}
+  .offer .info .li{font-size:12px;color:#4a4a40;margin-top:5px}
+  .offer .info .li .v{color:var(--brand);font-weight:800;margin-right:6px}
+  .offer .price{text-align:right;flex:0 0 auto}
+  .offer .price b{font-size:18px;color:#2a2a26}
+  .offer .price s{display:block;font-size:12px;color:var(--muted)}
+  .offer .price span{display:block;font-size:11px;color:var(--muted)}
+  .autoapplied{background:var(--butter);color:#6b5300;text-align:center;font-weight:700;
+    font-size:13px;border-radius:10px;padding:10px;margin:12px 0}
+  .trust3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin:18px 0}
+  .trust3 .it{font-size:11px;color:var(--muted);font-weight:600}
+  .trust3 .ic{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--brand);
+    margin:0 auto 6px;display:flex;align-items:center;justify-content:center;color:var(--brand)}
+  /* accordion */
+  .acc{border-top:1px solid var(--line)}
+  .acc button{width:100%;background:none;border:none;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 2px;font-size:15px;font-weight:800;color:#2a2a26;font-family:inherit}
+  .acc .sign{font-size:20px;color:var(--muted)}
+  .acc .body{display:none;padding:0 2px 16px;color:var(--muted);font-size:14px}
+  .acc.open .body{display:block}
+  .acc.open .sign{transform:rotate(45deg)}
+  /* tastes like / packed with */
+  .tlhead{text-align:center;font-size:20px;margin:26px 0 14px}
+  .tl{display:flex;justify-content:center;gap:30px;text-align:center}
+  .tl .it{font-size:12px;font-weight:700;color:#2a2a26}
+  .tl .ic{width:46px;height:46px;border-radius:50%;background:#eaf2e3;margin:0 auto 6px;
+    display:flex;align-items:center;justify-content:center;font-size:20px}
+  .packed{max-width:280px;margin:0 auto}
+  .packed .it{display:flex;align-items:center;gap:12px;padding:7px 0;font-size:14px;font-weight:600;color:#2a2a26}
+  .packed .ic{width:34px;height:34px;border-radius:50%;background:#eaf2e3;
+    display:flex;align-items:center;justify-content:center;font-size:16px;flex:0 0 auto}
+
+  /* reviews-3 */
+  .rev3{background:var(--cream)}
+  .rev3 h2{text-align:center;font-size:30px;margin-bottom:28px}
+  .rev3 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .rcard{background:#fff;border-radius:18px;padding:24px;text-align:center}
+  .rcard .stars{display:block;margin-bottom:12px}
+  .rcard h4{font-size:16px;margin-bottom:10px;color:#2a2a26}
+  .rcard p{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .rcard .who{font-size:13px;font-weight:700;color:#2a2a26}
+  .rcard .who .vc{color:var(--brand)}
+
+  /* us vs them */
+  .vs .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}
+  .vs h2{font-size:30px;margin-bottom:12px}
+  .cmptable{background:#fff;border-radius:18px;padding:8px 18px 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);position:relative}
+  .cmptable .thumb{position:absolute;top:-34px;left:50%;transform:translateX(-50%)}
+  .cmptable .thumb .ph{width:70px;height:80px;font-size:0;padding:2px}
+  .crow{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:center;
+    padding:14px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .crow:last-child{border-bottom:none}
+  .crow .h{font-weight:800;color:#2a2a26}
+  .crow .hd{font-weight:800;color:#2a2a26;font-size:12px;text-align:center}
+  .crow .c{text-align:center}
+  .chk-y{display:inline-flex;width:24px;height:24px;border-radius:50%;background:var(--ink2);
+    color:#fff;align-items:center;justify-content:center;font-size:13px}
+  .chk-n{display:inline-flex;width:24px;height:24px;border-radius:50%;border:1.5px solid #cfcdc2;
+    color:#a7a59a;align-items:center;justify-content:center;font-size:12px}
+  .crow .head-row-thumb{height:42px}
+
+  /* carousel */
+  .carsouselsec{background:var(--cream)}
+  .carouselsec .center{text-align:center;margin-bottom:22px}
+  .carouselsec h2{font-size:30px;margin-top:8px}
+  .track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;
+    padding:4px;scrollbar-width:none}
+  .track::-webkit-scrollbar{display:none}
+  .ccard{flex:0 0 230px;background:#fff;border-radius:16px;overflow:hidden;position:relative}
+  .ccard .ph{height:300px}
+  .ccard .tag{position:absolute;top:12px;left:12px;background:var(--lime);color:#16402a;
+    font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px}
+  .ccard .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.45);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:16px}
+  .ccard.testi{padding:16px}
+  .ccard.testi .ph{display:none}
+  .ccard.testi .who{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .ccard.testi .av{width:34px;height:34px;border-radius:50%;background:#dfe8d8;flex:0 0 auto}
+  .ccard.testi .who b{font-size:13px;color:#2a2a26}
+  .ccard.testi .who span{font-size:11px;color:var(--brand)}
+  .ccard.testi p{font-size:13px;color:var(--muted);margin-top:8px}
+  .carnav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:18px}
+  .carnav button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);
+    background:#fff;cursor:pointer;font-size:16px;color:#2a2a26}
+  .dots{display:flex;gap:7px}
+  .dots span{width:8px;height:8px;border-radius:50%;background:#cfcdc2}
+  .dots span.on{background:var(--ink2)}
+
+  /* why choose */
+  .why{background:var(--cream)}
+  .why .top{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:center;margin-bottom:26px}
+  .why h2{font-size:30px}
+  .clinbanner{background:var(--ink);border-radius:16px;padding:18px 20px;
+    display:flex;align-items:center;gap:16px;color:#fff}
+  .clinbanner .cc{flex:0 0 auto;text-align:center}
+  .clinbanner .cc b{font-size:14px;display:block}
+  .clinbanner .txt{font-size:13px}
+  .clinbanner .txt .lk{display:flex;align-items:center;gap:6px;color:#cfe6d4;
+    font-size:12px;margin-top:8px}
+  .whygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .wcard{background:#fff;border-radius:18px;padding:24px;position:relative}
+  .wcard h4{font-size:17px;margin-bottom:12px;max-width:80%}
+  .wcard p{font-size:13.5px;color:var(--muted)}
+  .wcard .ic{position:absolute;top:22px;right:22px;width:36px;height:36px;border-radius:50%;
+    border:1.5px solid var(--brand);display:flex;align-items:center;justify-content:center;color:var(--brand)}
+
+  /* reviews list */
+  .rlist{background:#fff}
+  .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .tabs .t{padding:12px 2px;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent}
+  .tabs .t.on{color:#2a2a26;border-color:var(--heading)}
+  .rsummary{display:flex;gap:30px;align-items:center;margin-bottom:22px}
+  .rsummary .big{font-size:48px;font-weight:900;color:#2a2a26;line-height:1}
+  .rsummary .cnt{font-size:12px;color:var(--muted)}
+  .hist{flex:1;max-width:420px}
+  .hbar{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin:2px 0}
+  .hbar .track2{flex:1;height:8px;background:#eceadb;border-radius:6px;overflow:hidden}
+  .hbar .track2 i{display:block;height:100%;background:var(--ink2)}
+  .filters{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+  .sel{border:1px solid var(--line);border-radius:8px;padding:9px 14px;font-size:13px;background:#fff;color:#2a2a26}
+  .chkbx{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+  .ritem{border-bottom:1px solid var(--line);padding:22px 0;
+    display:grid;grid-template-columns:150px 1fr;gap:18px}
+  .ritem .person{font-size:12px}
+  .ritem .av{width:34px;height:34px;border-radius:50%;background:#dfe8d8;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#2a5a39;margin-bottom:6px}
+  .ritem .person b{display:block;color:#2a2a26}
+  .ritem .person .vb{color:var(--brand);font-size:11px}
+  .ritem .body .toprow{display:flex;justify-content:space-between;align-items:center}
+  .ritem .body .time{font-size:11px;color:var(--muted)}
+  .ritem .body h4{color:#2a2a26;font-size:15px;margin:8px 0 6px}
+  .ritem .body p{font-size:13.5px;color:#4a4a40}
+  .ritem .body .imgph{margin:10px 0}
+  .ritem .body .imgph .ph{width:120px;height:90px}
+  .ritem .body .for{font-size:12px;color:var(--muted);margin-top:8px}
+  .ritem .body .foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px;color:var(--muted)}
+  .ritem .body .rec{color:#c0497a}
+  .seemore{display:block;width:fit-content;margin:24px auto 6px}
+  .junip{text-align:center;font-size:12px;color:var(--muted)}
+
+  /* footer */
+  footer{background:var(--ink);color:#dfe8d8}
+  .ftop{display:grid;grid-template-columns:1fr 1fr 1fr;gap:30px;padding-top:46px}
+  .fcol h4{color:var(--gold);font-size:14px;margin-bottom:14px;letter-spacing:.5px}
+  .fcol a{display:block;color:#cfe0d3;font-size:13px;margin-bottom:9px;text-decoration:none}
+  .fcol a:hover{color:#fff}
+  .fbrand{display:flex;align-items:center;gap:18px;padding:30px 0 22px}
+  .flogo{font-size:42px;font-weight:900;color:var(--gold);letter-spacing:-1.5px}
+  .socials{display:flex;gap:12px}
+  .socials .s{width:30px;height:30px;border-radius:50%;border:1.5px solid #5f8268;
+    display:flex;align-items:center;justify-content:center;color:#cfe0d3;font-size:14px}
+  .disc{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-bottom:20px}
+  .disc .box{border:1px solid #3a5d46;border-radius:8px;padding:14px;font-size:10.5px;color:#9cbca6;line-height:1.5}
+  .copy{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    padding:18px 0 26px;border-top:1px solid #2b4d38;font-size:11.5px;color:#9cbca6}
+
+  /* ---------- responsive ---------- */
+  /* <900px: two-column layouts stack (matches the hero/feature/buy-block design) */
+  @media (max-width:899px){
+    .hero .wrap{grid-template-columns:1fr;gap:28px}
+    .hero h1{font-size:36px}
+    .hero-media .ph{height:320px}
+    .feature .wrap{grid-template-columns:1fr;gap:24px;grid-template-areas:"head" "body" "media"}
+    .feature .f-media{align-self:stretch}
+    .trusted07 .wrap{grid-template-columns:1fr;gap:28px}
+    .buygrid{grid-template-columns:1fr;gap:28px}
+    .vs .wrap{grid-template-columns:1fr;gap:24px}
+    .why .top{grid-template-columns:1fr;gap:22px}
+    .maincard .inner{grid-template-columns:1fr}
+    .statgrid{grid-template-columns:repeat(2,1fr)}
+    .ugcgrid{grid-template-columns:repeat(2,1fr)}
+    .rev3 .grid{grid-template-columns:1fr}
+    .whygrid{grid-template-columns:1fr}
+    .ftop{grid-template-columns:1fr 1fr}
+    .rsummary{flex-direction:column;align-items:flex-start;gap:14px}
+    .hist{width:100%;max-width:none}
+  }
+  /* <560px: phones — everything to a single column */
+  @media (max-width:560px){
+    .wrap{padding:0 16px}
+    .hero h1{font-size:28px}
+    .gaps{grid-template-columns:1fr}
+    .statgrid{grid-template-columns:1fr 1fr}
+    .ugcgrid{grid-template-columns:1fr 1fr}
+    .trust3{grid-template-columns:1fr}
+    .ftop{grid-template-columns:1fr}
+    .cmprow{grid-template-columns:1fr;text-align:center}
+    .ritem{grid-template-columns:1fr}
+    .tl{gap:16px}
+    .disc{grid-template-columns:1fr}
+  }
+  /* ingredient popup (template shipped without modal CSS) */
+  .modal{position:fixed;inset:0;background:rgba(20,30,20,.55);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .modal.open{display:flex}
+  .modal .box{background:#fff;border-radius:16px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 26px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .modal .box h4{font-size:20px;margin:0 0 16px;color:#16402a;padding-right:30px}
+  .modal .close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:26px;line-height:1;cursor:pointer;color:#73726b}
+  .modal .ingredients h5{font-size:13px;font-weight:800;color:#16402a;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.4px}
+  .modal .ingredients h5:first-child{margin-top:0}
+  .modal .ingredients p{font-size:13px;line-height:1.6;color:#3a3a32;margin:0}
+</style>
+</head>
+<body>
+
+<!-- announcement -->
+<div class="announce"><b>✦ Gratis Versand ab 30 € ✦</b><br>90-Tage-Geld-zurück-Garantie · Apotheken-Qualität · Lieferung in 1–2 Werktagen</div>
+
+<!-- header -->
+<header><div class="wrap"><div class="logo" style="display:flex;align-items:center"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=100 100w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=200 200w" sizes="100px" alt="nupure" style="height:28px;width:auto;display:block"></div></div></header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="reviewpill">
+        <span class="avatars">
+          <span class="ph filled" id="img-01"><img src="https://nupureshop.com/cdn/shop/files/1781308801.jpg" alt="Zufriedene Kundin" width="24" height="24" loading="lazy"></span><span class="ph filled" id="img-02"><img src="https://nupureshop.com/cdn/shop/files/1781308802.jpg" alt="Zufriedener Kunde" width="24" height="24" loading="lazy"></span><span class="ph filled" id="img-03"><img src="https://nupureshop.com/cdn/shop/files/1781308803.jpg" alt="Zufriedene Kundin" width="24" height="24" loading="lazy"></span>
+        </span>
+        <span class="stars">★★★★★</span> 4,8 Sterne | 973 Bewertungen | Apotheken-Qualität
+      </div>
+      <h1>7 Gründe, warum Max Spektrum N95 bei Cortisol &amp; Stress hilft</h1>
+      <p class="lead">Endlich ein Darm, der auch in stressigen Zeiten funktioniert</p>
+      <div class="ctablock">
+        <span class="pill">95 Stämme · 95 Mrd. KBE</span>
+        <a href="#offers" class="btn js-scroll">Jetzt entdecken</a>
+      </div>
+      <div class="riskfree"><span class="chk">✔</span> 90 Tage <u>Geld-zurück-Garantie</u></div>
+    </div>
+    <div class="hero-media">
+      <div class="ph filled" id="img-04"><img src="https://nupureshop.com/cdn/shop/files/1781308804.jpg" alt="Frau in ruhiger Morgenroutine mit einem Glas Wasser" width="620" height="430" loading="lazy"></div>
+      <span class="pill tag">★ Apotheken-Qualität</span>
+      <div class="clincard">
+        <span style="font-size:11px;color:#888">❮ &nbsp; ❯</span>
+        <b>ProbaTech™</b>
+        <span>Nupures eigene, klinisch untersuchte Stammformel im Inneren.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 01 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">01</div><h2>Weniger Stress, mehr Wohlbefinden im Alltag</h2></div>
+    <p class="f-body">Chronisch erhöhte Cortisolspiegel beeinflussen den ganzen Alltag: das Gefühl der inneren Unruhe, Schlafprobleme, der Kopf, der einfach nicht abschaltet, der Körper, der dauerhaft im Alarmzustand ist. Viele Menschen wissen nicht, dass Darm und Stressachse direkt miteinander verbunden sind – ein unausgeglichenes Darmmikrobiom kann die Cortisolregulation erheblich beeinträchtigen. Genau hier setzt Max Spektrum N95 an. Mit der richtigen Unterstützung von innen kann sich das Wohlbefinden im Alltag spürbar und nachhaltig verändern.</p>
+    <div class="f-media">
+      <div class="card dark">
+        <div class="ph ondark filled" id="img-05" style="height:300px"><img src="https://nupureshop.com/cdn/shop/files/1781308805.jpg" alt="Infografik der Darm-Hirn-Achse" width="440" height="300" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 02 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">02</div><h2>Der Darm ist das zweite Gehirn – und Cortisol greift ihn an</h2></div>
+    <p class="f-body">Darm und Gehirn kommunizieren ständig über die sogenannte Darm-Hirn-Achse. Chronischer Stress und erhöhtes Cortisol stören diesen Austausch, bringen das Mikrobiom aus dem Gleichgewicht und verstärken Entzündungsreaktionen im Körper. Ein vielfältiges, stabiles Mikrobiom kann diese Stressreaktion abpuffern und dazu beitragen, dass der Körper schneller wieder in die Balance findet.</p>
+    <div class="f-media">
+      <div class="card green">
+        <div class="gaps-title"><h3>6 häufige Störfaktoren</h3><span>für ein aus dem Gleichgewicht geratenes Mikrobiom</span></div>
+        <div class="gaps">
+          <div class="gap"><div><b>Dauerstress</b><span>Belastung über die Darm-Hirn-Achse</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Einseitige Ernährung</b><span>wenig Ballaststoffe</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Antibiotika</b><span>verändern die Darmflora</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Wenig Schlaf</b><span>gestörter Tagesrhythmus</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Infekte</b><span>belasten das Gleichgewicht</span></div><span class="gico"></span></div>
+          <div class="gap"><div><b>Reisen</b><span>neue Routine, neues Umfeld</span></div><span class="gico"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 03 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">03</div><h2>Klinisch getestete Inhaltsstoffe</h2></div>
+    <p class="f-body">Nicht nur viele Stämme, sondern auch gut erforschte. Max Spektrum enthält die 11 klinisch untersuchten Stämme aus ProbaTech™, Nupures eigener wissenschaftlicher Mischung, die in einer klinischen Studie nach 12 Wochen messbare Verbesserungen des allgemeinen Wohlbefindens gezeigt hat. Weitere enthaltene Stämme wie Lactobacillus acidophilus, L. rhamnosus und Bifidobacterium longum sind ebenfalls in zahlreichen Studien auf ihre Wirkung auf Darm und Stressregulation untersucht worden.</p>
+    <div class="f-media">
+      <div class="card butter calloutcard">
+        <div class="callout">95 Stämme &nbsp;•&nbsp; 95 Mrd. KBE / Tag</div>
+        <div class="ph onlight filled" id="img-06"><img src="https://nupureshop.com/cdn/shop/files/1781308806.jpg" alt="probaflor MAX SPEKTRUM N95 Dose mit Hinweisen zu Stammvielfalt" width="380" height="300" loading="lazy"></div>
+        <div class="callout" style="text-align:right">magensaftresistent &nbsp;•&nbsp; Apotheken-Qualität</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 04 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">04</div><h2>95 Stämme, 95 Milliarden lebende Bakterienkulturen – täglich</h2></div>
+    <p class="f-body">Genau diese Darm-Hirn-Achse braucht ein breites, stabiles Fundament. Cortisol bringt den Darm aus dem Takt, fördert schädliche Bakterien und schwächt die Schutzfunktion des Darms. Mit 95 Milliarden KBE pro Tagesdosis und 95 verschiedenen Stämmen bietet Max Spektrum die breiteste verfügbare Grundlage, um dieses Gleichgewicht wiederherzustellen. Das entspricht der Bakterienmenge in einem ganzen Kilogramm Naturjoghurt – täglich.</p>
+    <div class="f-media">
+      <div class="card butter quotecard">
+        <div class="qbox"><div class="quotemark">”</div>Im stressigen Alltag habe ich etwas gesucht, um meinen Darm zu unterstützen. Seit zwei Wochen dabei – ich fühle mich allgemein wohler.</div>
+        <div class="ph onlight filled" id="img-07"><img src="https://nupureshop.com/cdn/shop/files/1781308807.jpg" alt="Kundin in entspanntem Moment zu Hause" width="440" height="170" loading="lazy"></div>
+        <div class="namecard"><b>Cathleen</b>Verifizierte Käuferin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 05 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">05</div><h2>Regelmäßigere Verdauung – auch unter Stress</h2></div>
+    <p class="f-body">Cortisol bringt den Darm aus dem Takt. Stress verlangsamt oder beschleunigt die Verdauung, stört das bakterielle Gleichgewicht und schwächt die Darmbarriere. In der klinischen Studie zu ProbaTech™ konnte nach 12 Wochen eine messbar regelmäßigere Verdauung nachgewiesen werden – ein zentrales Ergebnis der Studie. Ein Darm, der auch in stressigen Phasen regelmäßig arbeitet, ist ein Zeichen für ein stabiles, ausgeglichenes Mikrobiom.</p>
+    <div class="f-media">
+      <div class="card green prodgreen">
+        <div class="faded">
+          <span>95 Stämme</span><span>Vegan-Kapsel</span><span>Vitamin B2</span><span>Chicorée</span>
+          <span>magensaftresistent</span><span>ohne Zucker</span><span>kein GMO</span><span>laktosearm</span>
+          <span>95 Mrd. KBE</span><span>glutenfrei</span><span>ProbaTech™</span><span>Activ-Vial™</span>
+        </div>
+        <div class="ph ondark filled" id="img-08"><img src="https://nupureshop.com/cdn/shop/files/1781308808.jpg" alt="probaflor MAX SPEKTRUM N95 Dose freigestellt" width="200" height="230" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- feature 06 -->
+<section class="feature sec">
+  <div class="wrap">
+    <div class="f-head"><div class="eyebrow">06</div><h2>Schützt die Darmschleimhaut, die Cortisol direkt angreift</h2></div>
+    <p class="f-body">Chronisch erhöhtes Cortisol greift die Darmschleimhaut direkt an, lässt unerwünschte Stoffe passieren und verstärkt Entzündungsreaktionen im ganzen Körper – ein Teufelskreis aus Stress und körperlicher Belastung. Max Spektrum enthält Vitamin B2 (Riboflavin), das laut EFSA-zugelassener Angabe zur Erhaltung normaler Schleimhäute beiträgt. Eine intakte Darmbarriere ist die Grundlage dafür, dass der Körper auch in stressreichen Zeiten stabil bleibt.</p>
+    <div class="f-media">
+      <div class="card butter">
+        <div class="cmprow">
+          <div class="lbl"><b>SCFAs im Darm</b><span>ProbaTech™ vs. Placebo</span></div>
+          <div class="bar gr">+35 %</div><div class="bar gy">Basis</div>
+        </div>
+        <div class="cmprow">
+          <div class="lbl"><b>Mikrobielle Vielfalt</b><span>ProbaTech™ vs. Placebo</span></div>
+          <div class="bar gr">höher</div><div class="bar gy">Basis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- stats band -->
+<section class="sec"><div class="wrap">
+  <div class="statsband">
+    <span class="pill">Warum der Darm zählt</span>
+    <div class="statgrid">
+      <div><div class="n">95%</div><div class="l">des Serotonins entsteht im Darm*</div></div>
+      <div><div class="n">80%</div><div class="l">der aktiven Immunzellen sitzen im Darm*</div></div>
+      <div><div class="n">8</div><div class="l">wichtige Vitamine bilden Darmbakterien*</div></div>
+      <div><div class="n">95</div><div class="l">untersuchte Bakterienstämme pro Dose</div></div>
+    </div>
+    <div class="statfoot">*Allgemeine Angaben zur Rolle des Darmmikrobioms – keine produktbezogene Wirkaussage.</div>
+  </div>
+</div></section>
+
+<!-- feature 07 trusted -->
+<section class="trusted07 sec"><div class="wrap">
+  <div>
+    <div class="eyebrow">07</div>
+    <h2 style="font-size:30px;margin-bottom:14px">Von tausenden Menschen täglich genutzt</h2>
+    <p class="lead" style="margin-bottom:16px">Tausende Menschen setzen Max Spektrum N95 täglich ein, um ihren Darm auch in stressigen Lebensphasen zu unterstützen und die Auswirkungen von erhöhtem Cortisol auf den Körper abzufedern. Wer einmal verstanden hat, wie stark die Verbindung zwischen Darm und Stresssystem ist, möchte diesen Schritt nicht mehr missen. Die Kombination aus maximaler Stammvielfalt, klinisch untersuchten Bakterien, präbiotischen Ballaststoffen und Vitamin B2 macht Max Spektrum zur umfassendsten täglichen Unterstützung für einen ausgeglichenen Körper.</p>
+    <span class="pill soft">♥ 4,8 / 5,0 aus 973 Bewertungen.</span>
+  </div>
+  <div class="ugccard">
+    <div class="top"><div class="stars">★★★★★</div><div class="rate">4,8 / 5,0 · 973 Bewertungen</div></div>
+    <div class="ugcgrid">
+      <div class="ph ondark filled" id="img-09"><img src="https://nupureshop.com/cdn/shop/files/1781308809.jpg" alt="Kundin mit probaflor in der Küche" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark tall filled" id="img-10"><img src="https://nupureshop.com/cdn/shop/files/1781308810.jpg" alt="probaflor Dose auf dem Frühstückstisch" width="150" height="160" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-11"><img src="https://nupureshop.com/cdn/shop/files/1781308811.jpg" alt="Hand hält zwei Kapseln" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-12"><img src="https://nupureshop.com/cdn/shop/files/1781308812.jpg" alt="Ruhiger Morgenmoment mit Wasserglas" width="150" height="120" loading="lazy"></div>
+      <div class="ph ondark filled" id="img-13"><img src="https://nupureshop.com/cdn/shop/files/1781308813.jpg" alt="probaflor auf dem Nachttisch" width="150" height="120" loading="lazy"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- buy section -->
+<section class="buy sec"><div class="wrap">
+  <div class="topcap"><span class="pill soft">95 Stämme · klinisch untersuchte ProbaTech™-Formel</span></div>
+  <div class="buygrid">
+    <!-- gallery (interactive: thumb click swaps main, arrows cycle) -->
+    <div class="gallery">
+      <div class="thumbs" id="thumbs">
+        <div class="ph thumb active filled" data-idx="0" data-ty="Produktfoto" data-full="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=640"><img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=128" alt="probaflor MAX SPEKTRUM N95 Packung" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="1" data-ty="Produktdetails" data-full="https://nupureshop.com/cdn/shop/files/03_NU_Probaflor-Max-spektrum-N95_DE_627cfb5e-89f2-441c-b712-71cb25ec2a1a.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/03_NU_Probaflor-Max-spektrum-N95_DE_627cfb5e-89f2-441c-b712-71cb25ec2a1a.png?v=1744710095&width=128" alt="probaflor Produktdetails" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="2" data-ty="Inhaltsstoffe" data-full="https://nupureshop.com/cdn/shop/files/04_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/04_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1744710095&width=128" alt="probaflor Inhaltsstoffe" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="3" data-ty="Einnahme" data-full="https://nupureshop.com/cdn/shop/files/05_NU_Probaflor-Max-spektrum-N95_DE_55e497e0-ca7e-4dbe-bb6a-096a7339c3c8.png?v=1744710095&width=640"><img src="https://nupureshop.com/cdn/shop/files/05_NU_Probaflor-Max-spektrum-N95_DE_55e497e0-ca7e-4dbe-bb6a-096a7339c3c8.png?v=1744710095&width=128" alt="probaflor Einnahme" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="4" data-ty="Auf Reisen" data-full="https://nupureshop.com/cdn/shop/files/06_proba_reise_probatech_PDP_image_DE_19975d3f-835b-420a-91ef-19e2b2e9fb04.png?v=1773319041&width=640"><img src="https://nupureshop.com/cdn/shop/files/06_proba_reise_probatech_PDP_image_DE_19975d3f-835b-420a-91ef-19e2b2e9fb04.png?v=1773319041&width=128" alt="probaflor für unterwegs" width="64" height="64" loading="lazy"></div>
+        <div class="ph thumb filled" data-idx="5" data-ty="Vergleich" data-full="https://nupureshop.com/cdn/shop/files/07-comparison_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1773319041&width=640"><img src="https://nupureshop.com/cdn/shop/files/07-comparison_NU_Probaflor-Max-spektrum-N95_80caps_DE.png?v=1773319041&width=128" alt="probaflor Vergleich" width="64" height="64" loading="lazy"></div>
+      </div>
+      <div>
+        <div class="maincard">
+          <div class="ribbon">🔥 SPAR-AKTION: BIS ZU 28 % SPAREN 🔥</div>
+          <div class="inner">
+            <div class="galmain">
+              <div class="ph onlight filled" id="galMain">
+                <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=640" alt="probaflor MAX SPEKTRUM N95" width="320" height="280" loading="lazy">
+                <span class="dim">320 × 280</span>
+                <span class="ty" id="galType">Produktfoto (1/6)</span>
+              </div>
+              <button class="galarr left" id="galPrev" aria-label="Vorheriges Bild">‹</button>
+              <button class="galarr right" id="galNext" aria-label="Nächstes Bild">›</button>
+            </div>
+            <div class="featlist">
+              <div class="it"><div class="ic">♺</div>95 Stämme</div>
+              <div class="it"><div class="ic">◉</div>95 Mrd. KBE / Tag</div>
+              <div class="it"><div class="ic">♥</div>magensaftresistent</div>
+              <div class="it"><div class="ic">⚡</div>ProbaTech™ Formel</div>
+              <div class="it"><div class="ic">★</div>Apotheken-Qualität</div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-out nutbtn" id="nutBtn">Nährwerte &amp; Inhaltsstoffe ansehen</button>
+        <div class="labtest"><span class="b">✓</span> Garantierte Dosierung bis zum <b>Ende der Haltbarkeit</b> — dank Activ-Vial™ →</div>
+      </div>
+    </div>
+
+    <!-- buybox -->
+    <div class="bb">
+      <div class="rate"><span class="stars">★★★★★</span> <a href="#reviews" class="js-scroll"><u>4,8 / 5,0 (973 Bewertungen)</u></a></div>
+      <h2>probaflor MAX SPEKTRUM N95</h2>
+      <p class="desc">95 wissenschaftlich untersuchte Bakterienstämme und 95 Mrd. KBE pro Tagesdosis – für die Vielfalt eines Darmmikrobioms, das auch in stressigen Phasen im Gleichgewicht bleibt. 80 Kapseln, magensaftresistent.</p>
+      <hr>
+      <div class="flabel" style="margin-bottom:10px" id="offers">Ihre Vorratsgröße</div>
+      <!-- Supply selector: ALWAYS two options — 3-pack (3×) and single (1×).
+           data-variant carries the real Shopify variant IDs from the prompt;
+           .price strings filled from the product page. -->
+      <div class="offer hasbanner active" data-group="offer" data-offer="three" data-variant="49029911183699" data-price-cents="13995">
+        <div class="banner">BELIEBT: BIS ZU 28 % SPAREN</div>
+        <div class="radio"></div>
+        <div class="info">
+          <b>3er-Pack</b>
+          <div class="sub">3 × 80 Kapseln · 120 Tage Vorrat</div>
+          <div class="li"><span class="v">✓</span>Bester Preis pro Packung</div>
+          <div class="li"><span class="v">✓</span>Durchgehende Routine ohne Lücken</div>
+          <div class="li"><span class="v">✓</span>Gratis Versand</div>
+        </div>
+        <div class="price"><b id="threePrice">139.95 €</b><s id="threeComp">194.85 €</s><span id="threeDay">1,17 €/Tag</span></div>
+      </div>
+      <div class="offer" data-group="offer" data-offer="one" data-variant="49029898142035" data-price-cents="6495">
+        <div class="radio"></div>
+        <div class="info"><b>Einzelpackung</b><div class="sub">1 × 80 Kapseln · 40 Tage Vorrat</div></div>
+        <div class="price"><b id="onePrice">64.95 €</b><span id="oneDay">1,62 €/Tag</span></div>
+      </div>
+      <a href="https://nupureshop.com/cart/49029911183699:1" data-atc class="btn">In den Warenkorb</a>
+      <div class="autoapplied">Mengenvorteil aktiv ✅ <span id="saveAmt">Sie sparen 54,90 €</span></div>
+      <div class="trust3">
+        <div class="it"><div class="ic">✓</div>90 Tage Geld-zurück</div>
+        <div class="it"><div class="ic">◈</div>Apotheken-Qualität</div>
+        <div class="it"><div class="ic">▦</div>Gratis Versand ab 30 €</div>
+      </div>
+
+      <!-- accordions -->
+      <div class="acc"><button>Warum 95 Stämme? <span class="sign">+</span></button><div class="body">Jeder Bakterienstamm hat eigene Eigenschaften. Mit 95 Stämmen erhöhen Sie die Wahrscheinlichkeit, dass Ihr Darm mit unterschiedlichen nützlichen Bakterien besiedelt wird – wie ein vielfältiges Team, das die natürliche Mikrobiom-Vielfalt nachahmt.</div></div>
+      <div class="acc"><button>Stress &amp; Darm <span class="sign">+</span></button><div class="body">Darm und Gehirn stehen über die Darm-Hirn-Achse in Verbindung. Faktoren wie anhaltender Stress, einseitige Ernährung oder Infekte können das Gleichgewicht der Darmflora beeinflussen. Eine breite Stammvielfalt unterstützt dieses Gleichgewicht.</div></div>
+      <div class="acc"><button>Inhaltsstoffe &amp; Allergene <span class="sign">+</span></button><div class="body">Ohne Gluten, ohne Fruktose, ohne Zucker, kein GMO. Enthält Milch (aus dem Fermentationsprozess der Bakterienstämme). 100 % natürlich, in Apotheken-Qualität.</div></div>
+      <div class="acc"><button>Qualität &amp; Herstellung <span class="sign">+</span></button><div class="body">Magensaftresistente Kapseln schützen die Bakterien auf dem Weg in den Darm. Spezielle Activ-Vial™-Dosen halten die Stämme stabil – mit garantierter Dosierung von 95 Mrd. KBE bis zum Ende der Haltbarkeit.</div></div>
+      <div class="acc"><button>Einnahme &amp; Anwendung <span class="sign">+</span></button><div class="body">Erwachsene nehmen täglich 2 Kapseln mit einem Glas Wasser ein. Die empfohlene Tagesdosis nicht überschreiten. Für Personen ab 18 Jahren.</div></div>
+      <div class="acc"><button>Chicorée &amp; Vitamin B2 <span class="sign">+</span></button><div class="body">266 mg Chicorée (davon 179 mg Inulin) unterstützen die Verdauung*. Vitamin B2 (2,8 mg / 200 % NRV) trägt zur Erhaltung normaler Schleimhäute bei. *Die Bewertung dieser gesundheitsbezogenen Aussage steht noch aus.</div></div>
+
+      <!-- tastes like → free-from -->
+      <h3 class="tlhead">Frei von</h3>
+      <div class="tl">
+        <div class="it"><div class="ic">🌿</div>Gluten</div>
+        <div class="it"><div class="ic">🍬</div>Zucker</div>
+        <div class="it"><div class="ic">🧬</div>GMO</div>
+      </div>
+
+      <!-- packed with -->
+      <h3 class="tlhead">Enthält</h3>
+      <div class="packed">
+        <div class="it"><span class="ic">🦠</span>95 Bakterienstämme</div>
+        <div class="it"><span class="ic">💪</span>95 Mrd. KBE / Tagesdosis</div>
+        <div class="it"><span class="ic">🌿</span>Chicorée (Inulin)</div>
+        <div class="it"><span class="ic">🧪</span>Vitamin B2 (Riboflavin)</div>
+        <div class="it"><span class="ic">🔬</span>ProbaTech™ Stammformel</div>
+        <div class="it"><span class="ic">🛡️</span>magensaftresistente Kapsel</div>
+        <div class="it"><span class="ic">📦</span>Activ-Vial™ Frischedose</div>
+        <div class="it"><span class="ic">🌱</span>100 % natürlich</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- reviews 3 -->
+<section class="rev3 sec"><div class="wrap">
+  <h2>Das sagen Menschen, die probaflor nehmen</h2>
+  <div class="grid">
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Ein gutes Gefühl im Bauch"</h4><p>Ich habe das probaflor MAX SPEKTRUM N95 ausprobiert und bin wirklich zufrieden. Die Qualität wirkt hochwertig und ich vertrage es ausgezeichnet. Würde ich wieder kaufen!</p><div class="who">JuMi <span class="vc">✓</span> Verifizierte Käuferin</div></div>
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Im stressigen Alltag"</h4><p>Im stressigen Alltag mit schnellem Essen habe ich etwas gesucht, um meinen Darm zu unterstützen. Nach etwa zwei Wochen fühle ich mich allgemein wohler.</p><div class="who">Cathleen <span class="vc">✓</span> Verifizierte Käuferin</div></div>
+    <div class="rcard"><span class="stars">★★★★★</span><h4>"Überzeugt"</h4><p>Sehr gutes Produkt, ich bin überzeugt. Lieferung war schnell und seitdem ich es nehme, habe ich ein gutes Gefühl im Bauch.</p><div class="who">Falko <span class="vc">✓</span> Verifizierter Käufer</div></div>
+  </div>
+</div></section>
+
+<!-- us vs them -->
+<section class="vs sec"><div class="wrap">
+  <div>
+    <h2>MAX SPEKTRUM N95 vs. übliche Probiotika</h2>
+    <p class="lead">Nicht jedes Probiotikum ist gleich. Die Stammvielfalt, die garantierte Dosierung und die magensaftresistente Kapsel machen den Unterschied.</p>
+  </div>
+  <div class="cmptable">
+    <div class="crow"><div class="head-row-thumb"></div><div class="hd">MAX SPEKTRUM N95</div><div class="hd">Übliche Probiotika</div></div>
+    <div class="crow"><div class="h">Bakterienstämme</div><div class="c">95</div><div class="c">oft &lt; 20</div></div>
+    <div class="crow" style="grid-template-columns:1.4fr 1fr 1fr"><div class="h">Bewertung</div><div class="c stars">★★★★★</div><div class="c stars">★★★</div></div>
+    <div class="crow"><div class="h">KBE pro Tagesdosis</div><div class="c">95 Mrd.</div><div class="c">variiert</div></div>
+    <div class="crow"><div class="h">Magensaftresistent</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
+    <div class="crow"><div class="h">Mit Chicorée &amp; Vitamin B2</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
+    <div class="crow"><div class="h">Apotheken-Qualität</div><div class="c"><span class="chk-y">✓</span></div><div class="c"><span class="chk-n">✕</span></div></div>
+  </div>
+</div></section>
+<!-- (note: the live table has a 3rd "Multi-vitamins" column; kept 2 comparison columns + product to read cleanly on mobile) -->
+
+<!-- carousel -->
+<section class="carouselsec sec"><div class="wrap">
+  <div class="center"><span class="pill soft" style="text-transform:uppercase;letter-spacing:.6px">Echte Stimmen</span><h2>Begleitet von tausenden Menschen</h2></div>
+  <div class="track" id="track">
+    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Diana</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>Seit etwa einer Woche dabei und es geht mir richtig gut. Hab es schon weiterempfohlen.</p></div>
+    <div class="ccard"><span class="tag">Routine</span><div class="ph filled" id="img-14"><img src="https://nupureshop.com/cdn/shop/files/1781308814.jpg" alt="Morgenroutine mit probaflor" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><span class="tag">Unterwegs</span><div class="ph filled" id="img-15"><img src="https://nupureshop.com/cdn/shop/files/1781308815.jpg" alt="probaflor auf Reisen" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard testi"><div class="who"><span class="av"></span><div><b>Anita S.</b><br><span>✓ Verifiziert</span></div></div><span class="stars">★★★★★</span><p>Überraschend angenehm in meinen Alltag zu integrieren. Zwei Kapseln, fertig.</p></div>
+    <div class="ccard"><span class="tag">Abends</span><div class="ph filled" id="img-16"><img src="https://nupureshop.com/cdn/shop/files/1781308816.jpg" alt="Abendliche Einnahme mit Wasserglas" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><div class="ph filled" id="img-17"><img src="https://nupureshop.com/cdn/shop/files/1781308817.jpg" alt="Hand mit zwei Kapseln" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+    <div class="ccard"><span class="tag">Alltag</span><div class="ph filled" id="img-18"><img src="https://nupureshop.com/cdn/shop/files/1781308818.jpg" alt="probaflor Dose im Badezimmerregal" width="230" height="300" loading="lazy"></div><div class="play">▶</div></div>
+  </div>
+  <div class="carnav">
+    <button id="prev">←</button>
+    <div class="dots"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <button id="next">→</button>
+  </div>
+</div></section>
+
+<!-- why choose -->
+<section class="why sec"><div class="wrap">
+  <div class="top">
+    <h2>Warum probaflor MAX SPEKTRUM N95?</h2>
+    <div class="clinbanner">
+      <div class="cc">❮<b>+ Colon</b>Pure❯</div>
+      <div class="txt">Perfekt kombinierbar: Colon Pure Transit Pulver liefert Flohsamenschalen und Chicorée – pflanzliche Ballaststoffe, die Ihren nützlichen Bifidobakterien als Futter dienen. So unterstützen Sie die Mikrobiom-Vielfalt, auf die die Darm-Hirn-Achse aufbaut.
+        <div class="lk"><span class="av" style="display:inline-flex;width:18px;height:18px;border-radius:50%;background:#5f8268"></span> Im Warenkorb optional hinzufügbar</div>
+      </div>
+    </div>
+  </div>
+  <div class="whygrid">
+    <div class="wcard"><h4>30 Tage testen, ganz entspannt</h4><div class="ic">♺</div><p>Mit der 90-Tage-Geld-zurück-Garantie können Sie probaflor in Ruhe in Ihre Routine integrieren – ohne Risiko.</p></div>
+    <div class="wcard"><h4>Vielfalt für anspruchsvolle Phasen</h4><div class="ic">◈</div><p>95 wissenschaftlich untersuchte Stämme bilden die natürliche Vielfalt des Darms nach – die Basis der Darm-Hirn-Achse, die bei Stress besonders gefordert ist.</p></div>
+    <div class="wcard"><h4>ProbaTech™ – klinisch untersucht</h4><div class="ic">◈</div><p>Die enthaltene ProbaTech™-Formel zeigte in einer 12-wöchigen, placebo-kontrollierten Studie eine erhöhte mikrobielle Vielfalt im Darm.</p></div>
+  </div>
+</div></section>
+
+<!-- reviews list -->
+<section class="rlist sec" id="reviews"><div class="wrap">
+  <div class="tabs"><div class="t on">Bewertungen</div></div>
+  <div class="rsummary">
+    <div>
+      <div class="big">4,8</div>
+      <div class="stars">★★★★★</div>
+      <div class="cnt">973 Bewertungen</div>
+    </div>
+    <div class="hist">
+      <div class="hbar"><span>5</span><div class="track2"><i style="width:94%"></i></div></div>
+      <div class="hbar"><span>4</span><div class="track2"><i style="width:4%"></i></div></div>
+      <div class="hbar"><span>3</span><div class="track2"><i style="width:1%"></i></div></div>
+      <div class="hbar"><span>2</span><div class="track2"><i style="width:0%"></i></div></div>
+      <div class="hbar"><span>1</span><div class="track2"><i style="width:1%"></i></div></div>
+    </div>
+  </div>
+  <div class="filters">
+    <select class="sel" id="sortSel">
+      <option value="latest">Sortieren: Neueste</option>
+      <option value="oldest">Sortieren: Älteste</option>
+      <option value="high">Höchste Bewertung</option>
+      <option value="low">Niedrigste Bewertung</option>
+    </select>
+    <label class="chkbx"><input type="checkbox" id="photoFilter"> Mit Fotos &amp; Videos</label>
+  </div>
+
+  <div class="rlistbody" id="rlistBody">
+
+  <div class="ritem" data-rating="5" data-time="180" data-photo="1">
+    <div class="person"><div class="av">D</div><div><b>Diana 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 3 Stunden</span></div>
+      <h4>Ich bin überzeugt</h4>
+      <p>Ich nehme sie jetzt seit etwa einer Woche und fühle mich rundum wohl. Ich habe es schon weiterempfohlen und werde mir noch eine Packung holen.</p>
+      <div class="imgph"><div class="ph filled" id="img-19"><img src="https://nupureshop.com/cdn/shop/files/1781308819.jpg" alt="Kundenfoto der probaflor Dose" width="120" height="90" loading="lazy"></div></div>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
+    </div>
+  </div>
+
+  <div class="ritem" data-rating="5" data-time="185" data-photo="0">
+    <div class="person"><div class="av">J</div><div><b>JuMi 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 4 Stunden</span></div>
+      <h4>Super Produkt, gerne wieder!</h4>
+      <p>Ich habe das probaflor MAX SPEKTRUM N95 ausprobiert und bin wirklich zufrieden. Die Qualität wirkt hochwertig und die Lieferung war fix. Daumen hoch!</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
+    </div>
+  </div>
+
+  <div class="ritem" data-rating="5" data-time="240" data-photo="0">
+    <div class="person"><div class="av">C</div><div><b>Cathleen 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 5 Stunden</span></div>
+      <h4>Hilfreiches Produkt</h4>
+      <p>Im stressigen Alltag habe ich etwas gesucht, um meinen Darm zu unterstützen. Seit etwa zwei Wochen dabei und ich fühle mich allgemein wohler.</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
+    </div>
+  </div>
+
+  <div class="ritem collapsed" data-rating="5" data-time="245" data-photo="0">
+    <div class="person"><div class="av">A</div><div><b>Anita S. 🛡</b><span class="vb">✓ Verifizierte Käuferin</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 6 Stunden</span></div>
+      <h4>Überraschend angenehm</h4>
+      <p>Lässt sich super in den Alltag integrieren. Zwei Kapseln mit Wasser, fertig. Ich bin zufrieden.</p>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span class="rec">♥ Würde ich empfehlen</span><span>Hilfreich △ ▽</span></div>
+    </div>
+  </div>
+
+  <div class="ritem collapsed" data-rating="5" data-time="300" data-photo="0">
+    <div class="person"><div class="av">F</div><div><b>Falko</b><span class="vb">✓ Verifizierter Käufer</span></div></div>
+    <div class="body"><div class="toprow"><span class="stars">★★★★★</span><span class="time">vor 7 Stunden</span></div>
+      <p style="margin-top:6px">Sehr gutes Produkt, ich bin überzeugt. Lieferung war schnell und alles bestens.</p>
+      <div class="for" style="margin-top:6px"><span style="background:#eceadb;padding:2px 8px;border-radius:6px;font-size:11px">Vom Shop verifiziert</span></div>
+      <div class="for">für probaflor MAX SPEKTRUM N95 — 80 Kapseln</div>
+      <div class="foot"><span></span><span>Hilfreich △ ▽</span></div>
+    </div>
+  </div>
+
+  </div><!-- /rlistBody -->
+
+  <div class="junip">Bewertungen über nupureshop.com</div>
+</div></section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="ftop">
+      <div class="fcol"><h4>Produkte</h4>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/collections/darmflora">Darmflora</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/reizdarm">Reizdarm</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/mundpflege-probiotika">Mundpflege</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/gesunde-haut">Hautpflege</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/frauengesundheit">Frauengesundheit</a><a target="_blank" rel="noopener" href="https://nupureshop.com/collections/vitamine-vitality">Vitamin &amp; Vitality</a>
+      </div>
+      <div class="fcol"><h4>Service</h4>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/pages/about-us">Über uns</a><a target="_blank" rel="noopener" href="https://nupureshop.com/blogs/news">Blog</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/clinical-study">Klinische Studie</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/contact-us">Kontakt</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/versand">Versand</a><a target="_blank" rel="noopener" href="https://nupureshop.com/account/login">Konto</a><a target="_blank" rel="noopener" href="https://nupureshop.com/">Startseite</a>
+      </div>
+      <div class="fcol"><h4>Rechtliches</h4>
+        <a target="_blank" rel="noopener" href="https://nupureshop.com/pages/impressum">Impressum</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/it-recht-datenschutz">Datenschutz</a><a target="_blank" rel="noopener" href="https://nupureshop.com/pages/agb">AGB</a>
+      </div>
+    </div>
+
+    <div class="fbrand">
+      <div class="flogo" style="display:flex;align-items:center"><img src="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271" srcset="https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=120 120w, https://nupureshop.com/cdn/shop/files/nupure-logo_a8352eb4-bcb0-43f2-b085-951dcda4e4be.png?v=1704810271&width=240 240w" sizes="120px" alt="nupure" style="height:34px;width:auto;display:block"></div>
+      <div class="socials"><span class="s">◎</span><span class="s">♪</span><span class="s">▶</span><span class="s">f</span></div>
+    </div>
+
+    <div class="disc">
+      <div class="box">Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche, ausgewogene Ernährung und eine gesunde Lebensweise. Die empfohlene Tagesdosis nicht überschreiten. Außerhalb der Reichweite von kleinen Kindern aufbewahren. Dieses Produkt dient nicht der Diagnose, Behandlung, Heilung oder Vorbeugung von Krankheiten.</div>
+      <div class="box">*Chicorée: Unterstützt die Verdauung. Die Bewertung dieser gesundheitsbezogenen Aussage steht noch aus. „Klinisch untersucht" bezieht sich auf die ProbaTech™-Stammformel, nicht auf das Gesamtprodukt.</div>
+    </div>
+
+    <div class="copy">
+      <span>© 2026 nupure ist eine Marke von AIXSWISS B.V., Oerkapkade 5, 2031 EN Haarlem, Niederlande</span>
+    </div>
+  </div>
+</footer>
+
+<!-- reusable modal: nutrition label / tastes-like / sugar difference -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="box">
+    <button class="close" id="modalClose" aria-label="Schließen">×</button>
+    <h4 id="modalTitle">Inhaltsstoffe &amp; Einnahme</h4>
+    <span id="modalImg" style="display:none"><span class="ty"></span></span>
+    <div class="ingredients">
+      <h5>Inhaltsstoffe</h5>
+      <p>Maisstärke; Bakterienstämme: B. animalis spp. lactis Bi1, L. paracasei IMC 502®, B. animalis spp. lactis BLC 1, ≥ 45 Stämme der Spezies L. lactis ssp. lactis, L. delbrueckii ssp. bulgaricus LB284, L. paracasei LPC127, L. paracasei LPC128, L. helveticus LH102, L. plantarum LP48, L. paracasei BGP1, L. paracasei BGP2, L. paracasei LPC43, L. rhamnosus LRH01, L. rhamnosus LRH05, L. rhamnosus LRH14, L. rhamnosus LRH58, L. curvatus LCV16, L. sakei LSK 14, Pediococcus acidilactici SP 29, Pediococcus pentosaceus PP02, S. thermophilus ST628, B. bifidum SP9, B. breve Bl10, B. breve Bbr8, B. adolescentis SP 77, B. longum SP 54, L. acidophilus LA3, L. acidophilus LA1, L. delbrueckii ssp. bulgaricus LB2, L. buchneri LBC01, L. brevis SP 48, L. casei BGP93, L. crispatus SP 28, L. fermentum LF2, L. fermentum CS57, L. helveticus SP 27, L. delbrueckii ssp. lactis LL 82, L. plantarum BG112, L. plantarum LB931, L. plantarum 14D, L. paracasei 101/37, L. reuteri LR92, L. rhamnosus SP1, L. rhamnosus LB21, L. rhamnosus IMC 501®, L. rhamnosus LR1, L. rhamnosus CA 15®, L. salivarius SP2 8, S. thermophilus SP 4, S. thermophilus Z57, (enthält MILCH); Chicorée-Wurzelpulver (Cichorium intybus L.) mit ≥ 90% Inulin; Hydroxypropylmethylcellulose, Pektin (Kapselhülle); Chicorée-Wurzelextrakt (Cichorium intybus L.) mit ≥ 20% Inulin; Trennmittel: Magnesiumsalze von Speisefettsäuren; Riboflavin</p>
+      <h5>Einnahmehinweis</h5>
+      <p>Erwachsene nehmen täglich 2 Kapseln mit einem Glas Wasser ein.</p>
+      <h5>Wichtige Hinweise</h5>
+      <p>Die empfohlene Tagesdosis sollte nicht überschritten werden. Nahrungsergänzungsmittel sind kein Ersatz für eine abwechslungsreiche und ausgewogene Ernährung und eine gesunde Lebensweise. Lagern Sie das Produkt vor Licht geschützt, kühl und trocken. Außerhalb der Reichweite von Kleinkindern aufbewahren.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // accordions
+  document.querySelectorAll('.acc button').forEach(function(b){
+    b.addEventListener('click',function(){ b.parentElement.classList.toggle('open'); });
+  });
+
+  // ---------- supply selection + add-to-cart wiring ----------
+  // Two supplies only: 3-pack (3×) and single (1×). Each .offer card carries
+  // its own data-variant (a real Shopify variant id, filled by the builder
+  // from the prompt) and its own .price strings (filled from the product
+  // page). Selecting a supply updates the savings line and points every
+  // add-to-cart button at that variant's cart link, so the chosen supply is
+  // what reaches the minicart / checkout. No flavor/sugar/quantity controls.
+  var CART_BASE  = 'https://nupureshop.com/cart/';   // builder fills: https://<store>/cart/
+  var saveAmtEl  = document.getElementById('saveAmt');
+  // Only the buybox's own add-to-cart anchor (plus anything the builder marks
+  // [data-atc]) — NOT the hero scroll CTA or the see-more-reviews button, which
+  // also use .btn but must keep their own hrefs.
+  var atcBtns    = Array.prototype.slice.call(document.querySelectorAll('.bb a.btn, [data-atc]'));
+  function priceNum(s){ return parseFloat(String(s).replace(/[^0-9.]/g,'')) || 0; }
+
+  function setActive(group, el){
+    document.querySelectorAll('[data-group="'+group+'"]').forEach(function(s){ s.classList.remove('active'); });
+    el.classList.add('active');
+  }
+  function selectOffer(el){
+    var variant = el.getAttribute('data-variant');
+    var priceEl = el.querySelector('.price b');
+    var compEl  = el.querySelector('.price s');
+    var price = priceEl ? priceNum(priceEl.textContent) : 0;
+    var comp  = compEl  ? priceNum(compEl.textContent)  : price;
+    if(saveAmtEl){
+      var saved = comp - price;
+      saveAmtEl.textContent = "You're saving $" + (saved > 0 ? saved : 0).toFixed(2);
+    }
+    if(variant){
+      var href = CART_BASE + variant + ':1';
+      atcBtns.forEach(function(b){
+        if(b.tagName === 'A') b.setAttribute('href', href);
+        b.setAttribute('data-variant', variant);
+        b.setAttribute('data-cart-href', href);
+        b.setAttribute('data-price-cents', Math.round(price * 100));
+      });
+    }
+  }
+  document.querySelectorAll('[data-group="offer"]').forEach(function(el){
+    el.addEventListener('click', function(){ setActive('offer', el); selectOffer(el); });
+  });
+  var initOffer = document.querySelector('[data-group="offer"].active') || document.querySelector('[data-group="offer"]');
+  if(initOffer) selectOffer(initOffer);
+
+  // ---------- product gallery (thumb swap + arrows) ----------
+  var thumbs = Array.prototype.slice.call(document.querySelectorAll('#thumbs .thumb'));
+  var galType = document.getElementById('galType');
+  var galMainImg = document.querySelector('#galMain img');  // present once real images are wired
+  var cur = 0;
+  function galShow(i){
+    cur = (i + thumbs.length) % thumbs.length;
+    thumbs.forEach(function(t){ t.classList.remove('active'); });
+    thumbs[cur].classList.add('active');
+    // When real product images are wired, swap the main image. Each thumb
+    // carries the large URL on data-full (falls back to its own <img> src).
+    if(galMainImg){
+      var full = thumbs[cur].getAttribute('data-full');
+      if(!full){ var ti = thumbs[cur].querySelector('img'); if(ti){ full = ti.getAttribute('src'); } }
+      if(full){ galMainImg.src = full; }
+    }
+    var ty = thumbs[cur].getAttribute('data-ty') || 'product photo';
+    galType.textContent = ty + ' (' + (cur+1) + '/' + thumbs.length + ')';
+  }
+  thumbs.forEach(function(t){
+    t.addEventListener('click',function(){ galShow(parseInt(t.getAttribute('data-idx'),10)); });
+  });
+  document.getElementById('galPrev').addEventListener('click',function(){ galShow(cur-1); });
+  document.getElementById('galNext').addEventListener('click',function(){ galShow(cur+1); });
+
+  galShow(0);
+
+  // ---------- modals (nutrition label / tastes-like / sugar) ----------
+  var modal = document.getElementById('modal');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalTy = document.querySelector('#modalImg .ty');
+  var MODALS = {
+    nutrition:['Inhaltsstoffe & Einnahme',''],
+    taste:['Lorem Tastes Like','tastes-like flavor chart'],
+    sugar:['Low Lorem vs. Sugar-Free','sugar comparison chart']
+  };
+  function openModal(key){
+    var m = MODALS[key] || MODALS.nutrition;
+    modalTitle.textContent = m[0]; modalTy.textContent = m[1];
+    modal.classList.add('open');
+  }
+  function closeModal(){ modal.classList.remove('open'); }
+  document.querySelectorAll('[data-modal]').forEach(function(b){
+    b.addEventListener('click',function(){ openModal(b.getAttribute('data-modal')); });
+  });
+  document.getElementById('nutBtn').addEventListener('click',function(){ openModal('nutrition'); });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click',function(e){ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeModal(); });
+
+  // ---------- smooth-scroll anchors ----------
+  document.querySelectorAll('a.js-scroll').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var target = document.querySelector(a.getAttribute('href'));
+      if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+    });
+  });
+
+  // ---------- UGC carousel ----------
+  var track = document.getElementById('track');
+  var dots = document.querySelectorAll('.dots span');
+  document.getElementById('next').addEventListener('click',function(){ track.scrollBy({left:250,behavior:'smooth'}); });
+  document.getElementById('prev').addEventListener('click',function(){ track.scrollBy({left:-250,behavior:'smooth'}); });
+  track.addEventListener('scroll',function(){
+    var max = track.scrollWidth - track.clientWidth;
+    var ratio = max>0 ? track.scrollLeft/max : 0;
+    var idx = Math.round(ratio*(dots.length-1));
+    dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+  });
+
+  // ---------- review tabs ----------
+  document.querySelectorAll('.tabs .t').forEach(function(t){
+    t.addEventListener('click',function(){
+      document.querySelectorAll('.tabs .t').forEach(function(x){x.classList.remove('on');});
+      t.classList.add('on');
+    });
+  });
+
+  // ---------- review sort / photo-filter / see-more ----------
+  var listBody = document.getElementById('rlistBody');
+  var items = Array.prototype.slice.call(listBody.querySelectorAll('.ritem'));
+  var expanded = false, photoOnly = false, sortMode = 'latest';
+  function applyReviews(){
+    var arr = items.slice();
+    arr.sort(function(a,b){
+      var ta=+a.dataset.time, tb=+b.dataset.time, ra=+a.dataset.rating, rb=+b.dataset.rating;
+      if(sortMode==='latest') return ta-tb;   // fewer minutes ago = newer
+      if(sortMode==='oldest') return tb-ta;
+      if(sortMode==='high')   return rb-ra;
+      if(sortMode==='low')    return ra-rb;
+      return 0;
+    });
+    arr.forEach(function(el){ listBody.appendChild(el); });
+    arr.forEach(function(el,i){
+      var passPhoto = !photoOnly || el.dataset.photo==='1';
+      var withinLimit = expanded || i < 3;
+      el.style.display = (passPhoto && withinLimit) ? 'grid' : 'none';
+    });
+  }
+  document.getElementById('sortSel').addEventListener('change',function(e){ sortMode=e.target.value; applyReviews(); });
+  document.getElementById('photoFilter').addEventListener('change',function(e){ photoOnly=e.target.checked; applyReviews(); });
+  // reviews "see more" button removed per request — first reviews render directly.
+  applyReviews();
+</script>
+<!-- ===== MINICART OVERLAY ===== -->
+<div id="mc-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:900" aria-hidden="true"></div>
+<aside id="mc-drawer" role="dialog" aria-modal="true" aria-label="Warenkorb" style="
+  position:fixed;top:0;right:0;height:100%;width:360px;max-width:100vw;
+  background:#fff;z-index:901;display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .3s ease;box-shadow:-4px 0 24px rgba(0,0,0,.15)">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid #e7e4d6">
+    <span style="font-weight:800;font-size:17px;color:#16402a">Ihr Warenkorb</span>
+    <button id="mc-close" aria-label="Schließen" style="background:none;border:none;font-size:24px;cursor:pointer;color:#73726b;line-height:1">×</button>
+  </div>
+  <div style="padding:18px 20px;border-bottom:1px solid #e7e4d6;display:flex;gap:14px;align-items:flex-start">
+    <img src="https://nupureshop.com/cdn/shop/files/02-Main-image_NU_Probaflor-Max-spektrum-N95_80_main_PDP_front_packshot_image_with_probatech_stamp_DE.png?v=1779189086&width=128" alt="probaflor MAX SPEKTRUM N95" width="64" height="64"
+         style="border-radius:10px;object-fit:cover;flex:0 0 64px;background:#eceadd">
+    <div style="flex:1">
+      <div style="font-weight:700;font-size:14px;color:#1a2a1a;margin-bottom:4px">probaflor MAX SPEKTRUM N95</div>
+      <div style="font-size:12px;color:#73726b;margin-bottom:10px">80 Kapseln · 95 Stämme</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="display:flex;align-items:center;border:1px solid #e7e4d6;border-radius:8px;overflow:hidden">
+          <button id="mc-minus" aria-label="Weniger" style="background:none;border:none;width:32px;height:32px;font-size:18px;cursor:pointer;color:#1a2a1a">−</button>
+          <span id="mc-qty" style="width:28px;text-align:center;font-weight:700;font-size:14px">1</span>
+          <button id="mc-plus" aria-label="Mehr" style="background:none;border:none;width:32px;height:32px;font-size:18px;cursor:pointer;color:#1a2a1a">+</button>
+        </div>
+        <span id="mc-item-price" style="font-weight:800;font-size:15px;color:#1a2a1a">139,95 €</span>
+      </div>
+    </div>
+  </div>
+  <div id="mc-xsell" style="padding:14px 20px;border-bottom:1px solid #e7e4d6;background:#f6f2e4">
+    <div style="display:flex;gap:12px;align-items:center">
+      <img src="https://nupureshop.com/cdn/shop/files/01_colon_pure_transit_pulver_main_PDP_image_with_powder_and_tag_DE.png?v=1751453778&width=96" alt="Colon Pure Transit Pulver" width="48" height="48"
+           style="border-radius:8px;object-fit:cover;flex:0 0 48px;background:#eceadd">
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;color:#1d6f42;letter-spacing:.5px;margin-bottom:2px">HÄUFIG ZUSAMMEN GEKAUFT</div>
+        <div style="font-weight:700;font-size:13px;color:#1a2a1a">Colon Pure Transit Pulver</div>
+        <div style="font-size:12px;color:#73726b">Flohsamenschalen als Futter für Ihre Bifidobakterien</div>
+      </div>
+      <div style="text-align:right;flex:0 0 auto">
+        <div style="font-size:13px;color:#1a2a1a;font-weight:700">34,95 €</div>
+        <button id="mc-xsell-btn" style="margin-top:4px;background:#1d6f42;color:#fff;border:none;border-radius:999px;padding:6px 14px;font-size:12px;font-weight:800;cursor:pointer">+ Hinzufügen</button>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:auto;padding:18px 20px">
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:14px;color:#73726b">
+      <span>Zwischensumme</span>
+      <span id="mc-subtotal" style="font-weight:800;color:#1a2a1a">139,95 €</span>
+    </div>
+    <div style="font-size:11px;color:#73726b;margin-bottom:14px">Endgültiger Betrag (inkl. Versand &amp; Rabatte) an der Shopify-Kasse.</div>
+    <a id="mc-checkout-btn" href="https://nupureshop.com/cart/49029911183699:3"
+       style="display:flex;align-items:center;justify-content:center;width:100%;background:#1d6f42;color:#fff;font-weight:800;font-size:17px;border-radius:999px;padding:15px;text-decoration:none">
+      Zur Kasse →
+    </a>
+  </div>
+</aside>
+<!-- ===== END MINICART ===== -->
+
+<script>
+// ===== MINICART =====
+(function(){
+  // 3er-Pack variant is the per-bottle price (46,65) bought ×3 = 139,95;
+  // single variant is one bottle at 64,95.
+  var PACKS = {
+    '49029911183699': { unit: 13995, mult: 3 },   // 3er-Pack: shown as 1 line @139,95; Shopify qty ×3
+    '49029898142035': { unit: 6495,  mult: 1 }     // Einzelpackung
+  };
+  var UNIT  = 13995;       // default = 3er-Pack (one line @ 139,95)
+  var XUNIT = 3495;        // Colon Pure Transit Pulver
+  var CART_MAIN = 'https://nupureshop.com/cart/49029911183699:3';
+  var CART_BOTH = 'https://nupureshop.com/cart/49029911183699:3,55883547476350:1';
+  var CART_BASE = 'https://nupureshop.com/cart/';
+  var XVARIANT  = '55883547476350';
+
+  var qty = 1, mult = 3, xAdded = false, selVariant = '49029911183699';
+  var overlay   = document.getElementById('mc-overlay');
+  var drawer    = document.getElementById('mc-drawer');
+  var closeBtn  = document.getElementById('mc-close');
+  var minusBtn  = document.getElementById('mc-minus');
+  var plusBtn   = document.getElementById('mc-plus');
+  var qtyEl     = document.getElementById('mc-qty');
+  var itemPrice = document.getElementById('mc-item-price');
+  var subtotal  = document.getElementById('mc-subtotal');
+  var xBtn      = document.getElementById('mc-xsell-btn');
+  var checkBtn  = document.getElementById('mc-checkout-btn');
+
+  function fmt(cents){ return '\u20ac'+(cents/100).toFixed(2).replace('.',','); }
+
+  function render(){
+    var total = qty * UNIT + (xAdded ? XUNIT : 0);
+    qtyEl.textContent     = qty;
+    itemPrice.textContent = fmt(qty * UNIT);
+    subtotal.textContent  = fmt(total);
+    var cartQty = qty * mult;
+    checkBtn.href = CART_BASE + selVariant + ':' + cartQty + (xAdded && XVARIANT ? ',' + XVARIANT + ':1' : '');
+    if(xBtn){
+      xBtn.textContent      = xAdded ? '✓ Im Warenkorb' : '+ Hinzufügen';
+      xBtn.style.background = xAdded ? '#888' : '#1d6f42';
+    }
+  }
+
+  function openCart(){
+    overlay.style.display = 'block';
+    drawer.style.transform = 'translateX(0)';
+    document.body.style.overflow = 'hidden';
+    overlay.setAttribute('aria-hidden','false');
+  }
+  function closeCart(){
+    overlay.style.display = 'none';
+    drawer.style.transform = 'translateX(100%)';
+    document.body.style.overflow = '';
+    overlay.setAttribute('aria-hidden','true');
+  }
+
+  document.querySelectorAll('[data-atc], a[href*="/cart/"]').forEach(function(el){
+    if(el.id === 'mc-checkout-btn') return;
+    el.addEventListener('click', function(e){
+      e.preventDefault();
+      var v = el.getAttribute('data-variant');
+      if(v){
+        selVariant = v;
+        qty = 1;
+        if(PACKS[v]){
+          UNIT = PACKS[v].unit;
+          mult = PACKS[v].mult;
+        } else {
+          mult = 1;
+          var pc = el.getAttribute('data-price-cents');
+          if(pc){ UNIT = parseInt(pc, 10) || UNIT; }
+        }
+      }
+      openCart();
+      render();
+    });
+  });
+
+  closeBtn.addEventListener('click', closeCart);
+  overlay.addEventListener('click', closeCart);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeCart(); });
+  minusBtn.addEventListener('click', function(){ if(qty > 1){ qty--; render(); }});
+  plusBtn.addEventListener('click',  function(){ qty++; render(); });
+  if(xBtn) xBtn.addEventListener('click', function(){ xAdded = !xAdded; render(); });
+
+  render();
+})();
+// ===== END MINICART =====
+</script>
+</body>
+</html>
