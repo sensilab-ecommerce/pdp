@@ -37,7 +37,11 @@
     and checkout are bound to Shopify's cart/variant APIs and cannot run in a
     static file. Prices/savings here are representative client-side demos only.
 -->
-
+<script async
+  data-api-host="https://cdn.growthbook.io"
+  data-client-key="sdk-mzLYoTpayCvloMg"
+  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js"
+></script>
 <style>
   :root{
     --page:#fbf9ef; --cream:#f6f2e4; --ink:#16402a; --ink2:#1c5638;
@@ -1242,10 +1246,5 @@
   window.cvg||(cvg=function(){cvg.process?cvg.process.apply(cvg,arguments):cvg.queue.push(arguments)},cvg.queue=[]);
   cvg({method:"track",eventName:"$page_load"});
 </script>
-<script async
-  data-api-host="https://cdn.growthbook.io"
-  data-client-key="sdk-mzLYoTpayCvloMg"
-  src="https://cdn.jsdelivr.net/npm/@growthbook/growthbook/dist/bundles/auto.min.js"
-></script>
 </body>
 </html>
